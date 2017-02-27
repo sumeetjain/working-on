@@ -5,31 +5,41 @@
 </head>
 <body>
 
+<p>Information stored in CSV: Time Submitted,Interval,Name,Submission</p>
+
+<p>Other crictical elements:</p>
+<p>Status time begin, status time end,(day of week?)</p>
+
 Basic Story:
 <ol>
 	<li>Login system home page(students and admin)</li>
+	<li>if no session for name, prompt user for name</li>
+	<li>temp login can be sessions variable</li>
+	<!-- these are done: -->
 	<li><strong>What is done (student submission page:)</strong></li>
 	<li>Build basic Sinatra framework.</li>
-	<li>Alert for missed submissions</li>
+	<li>timing mechanism (hardcoded every hour) 10AM to 5PM</li>
+	<li>If user hasn't updated for a period, send alert to instructer (and user?)</li>
 	<li>Input field asking what student is working on.</li>
+	<li>radial button submit emotional state</li>
 	<li>Verify that all fields have been filled out.</li>
 	<li>Submit button.</li>
+	<!-- todo from here -->
 	<li>Alert stating submission was successful.</li>
 	<li>Send form data to server for storage in CSV.</li>
-	<li>Redirect to page displaying user's daily submissions.</li>
+	<li>ruby server checks previous time with current time on submission</li>
+	<li>Redirect to page displaying everyone's daily submissions.</li>
 	<li>CSS styling</li>
 </ol>
-
-<p>Information stored in CSV: Time Submitted,Name,Submission</p>
 
 <p>Login System CSV: name,password,admin true/false</p>
 
 <p>Admin Menu:</p>
 	<ul>
-		<li>User creation</li>
-		<li>Set update submission times</li>
-		<li>List of missed submissions</li>
-		<li>Function to alert instructor of missed submissions (@ 15 mins)</li>
+<!-- 		<li>User creation</li> -->
+		<li>Set update submission times(not for every day, set once store on backend)</li>
+		<li>List of missed submissions, or "lazy list"</li>
+<!-- 		<li>Function to alert instructor of missed submissions (@ 15 mins)</li> -->
 		<li>Searchable post information (by user, by time, by day, etc...)</li>
 	</ul>
 
