@@ -25,7 +25,7 @@ class Database
 
     CSV.foreach(@file, {headers:true}) do |row|
       keys.each do |key|
-        row[key] = row[key]
+        row[key]
       end
       
       all_info << row.to_s
@@ -46,9 +46,26 @@ class Database
     else
       last_checkin = students.last
       last_checkin = last_checkin.split(",")
-      last_checkin = last_checkin[0]
+      last_checkin = last_checkin[0].to_i
+      if Time.at(last_checkin).utc.day != Time.now.day
+        last_checkin = nil
+      end
     end
     return last_checkin
+  end
+
+  def getPreviousEntryTime(array)
+    if students == []
+      last_checkin = nil
+    else
+      last_checkin = students.last
+      last_checkin = last_checkin.split(",")
+      last_checkin = last_checkin[0].to_i
+      if Time.at(last_checkin).utc.day != Time.now.day
+        last_checkin = nil
+      end
+    end
+    return array
   end
 
   def findTimeDifference(time)
