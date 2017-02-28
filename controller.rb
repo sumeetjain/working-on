@@ -1,8 +1,10 @@
 get "/" do
-  erb :index
+	@login = session["login"]
+	erb :index
 end
 
 post "/submit" do
+	session["login"] = params["name"]
   submission = Submission.new
   submission.create(params)
   redirect("/display")

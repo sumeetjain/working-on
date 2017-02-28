@@ -7,7 +7,11 @@
 <body>
 
 <form method="post" action="/submit">
-	<input type="text" name="name"><br>
+	<% if @login == nil %>
+		<input type="text" name="name"><br>
+	<%else%>
+		<p><%=@login%> please enter your status</p>
+	<%end%>
 	<textarea name="submission"></textarea>
 	<input type="submit">
 </form>

@@ -25,7 +25,7 @@ class Database
 
     CSV.foreach(@file, {headers:true}) do |row|
       keys.each do |key|
-        row[key] = row[key].chomp
+        row[key]
       end
       
       all_info << row.to_s
