@@ -34,6 +34,15 @@ class Database
     return all_info
   end
 
+  def everythingHash(keys)
+    blank = {}
+    csv = CSV.foreach(@file, {headers:true}) do |row|
+      puts :headers
+      binding.pry
+    end
+    
+  end
+
   def getPreviousEntry(student)
     students = []
     CSV.foreach(@file, {headers:true}) do |row|

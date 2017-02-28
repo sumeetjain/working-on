@@ -22,13 +22,16 @@ class Submission
   # 
   # Returns an Array.
   def Submission.all
-    DATABASE.everything(["time", "interval", "name", "stressLevel", "submission"])
+    DATABASE.everythingHash(["time", "interval", "name", "stressLevel", "submission"])
   end
+
+
 
   # Get all submissions.
   #
   # Returns a Hash.
   def Submission.hashAll
+    binding.pry
     DATABASE.everything([time: "time", interval: "interval", name:"name", stressLevel:"stressLevel", submission:"submission"])
   end
 
