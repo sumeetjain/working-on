@@ -7,4 +7,3 @@ require './models/submission.rb'
 enable :sessions
 
 require './controller.rb'
-

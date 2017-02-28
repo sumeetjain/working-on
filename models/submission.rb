@@ -7,7 +7,7 @@ class Submission
   # params - Hash of attributes for the submission to be created.
   def create(params)
     time = Time.now.strftime("%a: %b %d: %I:%M:%P")
-    new_submission = time + "," + params[:name] + "," + params[:submission] + "\n"
+    new_submission = time + "," + params[:name] + "," + params[:submission] +"," + params[:stressLevel] + "\n"
     DATABASE.add(new_submission)
   end
 
@@ -15,7 +15,7 @@ class Submission
   # 
   # Returns an Array.
   def Submission.all
-    DATABASE.everything(["time", "name", "submission"])
+    DATABASE.everything(["time", "name", "submission", "stressLevel"])
   end
 
 end
