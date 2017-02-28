@@ -1,20 +1,10 @@
 require 'sinatra'
 require 'pry'
-require './functions.rb'
+require 'csv'
+require './services/database.rb'
+require './models/submission.rb'
 
 enable :sessions
 
-get "/" do
-	erb :index
-end
+require './controller.rb'
 
-post "/submit" do
-	storeInformation(params)
-	redirect("/display")
-end
-
-get "/display" do
-	
-	@submissions = displayInformation()
-	erb :display
-end
