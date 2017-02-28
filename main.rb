@@ -1,6 +1,9 @@
 require 'sinatra'
 require 'pry'
 require './functions.rb'
+require 'csv'
+require './services/database.rb'
+require './models/submission.rb'
 
 enable :sessions
 
@@ -9,7 +12,9 @@ get "/" do
 end
 
 post "/submit" do
-	storeInformation(params)
+  submission = Submission.new
+  submission.set_database
+  submission.create(params)
 	redirect("/display")
 end
 
