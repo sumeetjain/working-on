@@ -54,20 +54,6 @@ class Database
     return last_checkin
   end
 
-  def getPreviousEntryTime(array)
-    if students == []
-      last_checkin = nil
-    else
-      last_checkin = students.last
-      last_checkin = last_checkin.split(",")
-      last_checkin = last_checkin[0].to_i
-      if Time.at(last_checkin).utc.day != Time.now.day
-        last_checkin = nil
-      end
-    end
-    return array
-  end
-
   def findTimeDifference(time)
     time_difference = Time.at(time).utc.strftime("%H:%M:%S")
     return time_difference
