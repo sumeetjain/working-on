@@ -2,7 +2,7 @@
 
 class Database
 
-  def initialize(file='./public/submissions.csv')
+  def initialize(file='./public/database.csv')
     @file = file
   end
 
