@@ -1,4 +1,8 @@
 class Submission
+  def initialize
+    set_database
+  end
+
   def set_database
     @database = Database.new
   end

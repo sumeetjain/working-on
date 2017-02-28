@@ -13,7 +13,6 @@ end
 
 post "/submit" do
   submission = Submission.new
-  submission.set_database
   submission.create(params)
 	redirect("/display")
 end
