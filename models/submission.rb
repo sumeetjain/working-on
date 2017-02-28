@@ -15,7 +15,7 @@ class Submission
     else
       new_submission = time.to_s + ",first_of_day," + params[:name] + "," + params[:stressLevel] + "," + params[:submission] + "\n"
     end
-
+  end
   # Get all submissions.
   # 
   # Returns an Array.
