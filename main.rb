@@ -9,6 +9,7 @@ get "/" do
 end
 
 post "/submit" do
+	binding.pry
 	storeInformation(params)
 	redirect("/display")
 end

@@ -15,6 +15,7 @@ def displayInformation()
 		row["time"] = row["time"].chomp
 		row["name"] = row["name"].chomp
 		row["submission"] = row["submission"].chomp
+		row["stress-level"] =row["stress-level"].chomp
 		submissions << row.to_s
 	end
 	return submissions
