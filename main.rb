@@ -5,5 +5,4 @@ require './services/database.rb'
 require './models/submission.rb'
 
 enable :sessions
-
 require './controller.rb'
