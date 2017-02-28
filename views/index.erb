@@ -12,6 +12,7 @@
 		<input type="text" name="name"><br>
 	<%else%>
 		<p><%=@login%> please enter your status</p>
+		<input type="text" name="name" style="display: none" value=<%= @login %>>
 	<%end%>
 	<textarea name="submission"></textarea>
 	<legend>Rate Your Stress Level. (Honestly)</legend>
