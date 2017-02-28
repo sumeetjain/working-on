@@ -11,6 +11,6 @@ post "/submit" do
 end
 
 get "/display" do
-  @submissions = Submission.all
+  @submissions = Submission.hashAll
   erb :display
 end
