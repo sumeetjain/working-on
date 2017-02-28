@@ -25,4 +25,11 @@ class Submission
     DATABASE.everything(["time", "interval", "name", "stressLevel", "submission"])
   end
 
+  # Get all submissions.
+  #
+  # Returns a Hash.
+  def Submission.hashAll
+    DATABASE.everything([time: "time", interval: "interval", name:"name", stressLevel:"stressLevel", submission:"submission"])
+  end
+
 end
