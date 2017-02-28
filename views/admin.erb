@@ -6,7 +6,23 @@
 </head>
 <body>
 
-<h1>Admin Page</h1>
+	<h1>Admin Page</h1>
+	<% @submissions.each do |x| %>
+		<%= x %> <br>
+	<% end %>
+    <form>
 
+	    <select>
+	       	<% @submissions.each do |post|%>
+	       	<% post = post.split(",")[2]%>
+	       	<option value = name></option>
+	    </select>
+	    <select>
+	      	<% @submissions.each do |post|%>
+	       	<% post = post.split(",")[2]%>
+	       	<option value = name></option>  
+	    </select>
+	 	<input type="submit">
+    </form>
 </body>
 </html>

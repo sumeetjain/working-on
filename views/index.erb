@@ -12,6 +12,7 @@
 		<input type="text" name="name"><br>
 	<%else%>
 		<p><%=@login%> please enter your status</p>
+		<input type="text" name="name" style="display: none" value=<%= @login %>>
 	<%end%>
 	<textarea name="submission"></textarea>
 	<legend>Rate Your Stress Level. (Honestly)</legend>
@@ -28,7 +29,11 @@
 	<input type="submit">
 </form>
 
-<a href="/display">See submissions</a>
+<a href="/display">See submissions</a> <br>
+
+<form method = "post" action ="/verify">
+	<input type="text" name="loginName">
+</form>
 
 </body>
 </html>
