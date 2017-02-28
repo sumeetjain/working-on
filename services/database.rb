@@ -14,4 +14,23 @@ class Database
       file << row
     end
   end
+
+  # Get all rows.
+  # 
+  # keys - Array of column headers.
+  # 
+  # Returns an Array of rows as Strings.
+  def everything(keys)
+    all_info = []
+
+    CSV.foreach(@file, {headers:true}) do |row|
+      keys.each do |key|
+        row[key] = row[key].chomp
+      end
+      
+      all_info << row.to_s
+    end
+
+    return all_info
+  end
 end

@@ -18,6 +18,7 @@ post "/submit" do
 end
 
 get "/display" do
-	@submissions = displayInformation()
+  submission = Submission.new
+	@submissions = submission.all
 	erb :display
 end

@@ -12,6 +12,13 @@ class Submission
     @database.add(new_submission)
   end
 
+  # Get all submissions.
+  # 
+  # Returns an Array.
+  def all
+    @database.everything(["time", "name", "submission"])
+  end
+
   private
 
   def set_database
