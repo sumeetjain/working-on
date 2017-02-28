@@ -13,16 +13,14 @@ class Submission
       time_difference = DATABASE.findTimeDifference(time_interval)
       new_submission = time.to_s + "," + time_difference + "," + params[:name] + "," + params[:submission] + "\n"
     else
-      new_submission = time.to_s + ",first_of_day," + params[:name] + "," + params[:submission] + "\n"
+      new_submission = time.to_s + ",first_of_day," + params[:name] + "," + params[:stressLevel] + "," + params[:submission] + "\n"
     end
-    DATABASE.add(new_submission)
-  end
 
   # Get all submissions.
   # 
   # Returns an Array.
   def Submission.all
-    DATABASE.everything(["time", "interval", "name", "submission"])
+    DATABASE.everything(["time", "interval", "name", "stressLevel", "submission"])
   end
 
 end
