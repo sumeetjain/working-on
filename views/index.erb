@@ -6,28 +6,32 @@
 </head>
 <body>
 
-<!-- this area gathers the user input, sending name, Status, and stress level to /submit -->
-<form method="post" action="/submit">
-	<% if @login == nil %>
-		<input type="text" name="name"><br>
-	<%else%>
-		<p><%=@login%> please enter your status</p>
-		<input type="text" name="name" style="display: none" value=<%= @login %>>
-	<%end%>
-	<textarea name="submission"></textarea>
-	<legend>Rate Your Stress Level. (Honestly)</legend>
-	<input type="radio" name="stressLevel" value="1">Chill
-	<input type="radio" name="stressLevel" value ="2">Good 
-	<input type="radio" name="stressLevel" value ="3">Well 
-	<input type="radio" name="stressLevel" value ="4">Fine 
-	<input type="radio" name="stressLevel" value="5">Level
-	<input type="radio" name="stressLevel" value ="6">Okay 
-	<input type="radio" name="stressLevel" value ="7">Ouch 
-	<input type="radio" name="stressLevel" value ="8">Cry  
-	<input type="radio" name="stressLevel" value="9">Tilt 	
-	<input type="radio" name="stressLevel" value="10">F*** 
-	<input type="submit">
-</form>
+<div class="topbar">
+	<div class="topbar--submission_area">
+	<!-- this area gathers the user input, sending name, Status, and stress level to /submit -->
+	<form method="post" action="/submit">
+		<% if @login == nil %>
+			<input type="text" name="name" class="topbar--name_box"><br>
+		<%else%>
+			<p><%=@login%> please enter your status</p>
+			<input type="text" name="name" style="display: none" value=<%= @login %>>
+		<%end%>
+		<textarea name="submission" class="topbar--textarea"></textarea>
+		<div class="topbar--stress_header">Rate Your Stress Level. (Honestly)</div>
+		<input type="radio" name="stressLevel" value="1">Chill
+		<input type="radio" name="stressLevel" value ="2">Good 
+		<input type="radio" name="stressLevel" value ="3">Well 
+		<input type="radio" name="stressLevel" value ="4">Fine 
+		<input type="radio" name="stressLevel" value="5">Level
+		<input type="radio" name="stressLevel" value ="6">Okay 
+		<input type="radio" name="stressLevel" value ="7">Ouch 
+		<input type="radio" name="stressLevel" value ="8">Cry  
+		<input type="radio" name="stressLevel" value="9">Tilt 		
+		<input type="radio" name="stressLevel" value="10">F*** 
+		<input type="submit">
+	</form>
+	</div>
+</div>
 
 <a href="/display">See submissions</a>
 
