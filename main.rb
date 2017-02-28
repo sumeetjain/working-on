@@ -14,6 +14,7 @@ post "/submit" do
 end
 
 get "/display" do
+	
 	@submissions = displayInformation()
 	erb :display
 end
