@@ -8,16 +8,9 @@ class Submission
   #
   # Finds time differene between current post and previous post in EPOCH time.
   def create(params)
-    time_interval = DATABASE.getPreviousEntry(params[:name]).to_i
-    time = Time.now.to_i 
-    if time_interval != 0
-      time_interval = time - time_interval
-      time_difference = DATABASE.findTimeDifference(time_interval)
-      new_submission = time.to_s + "," + time_difference + "," + params[:name] + "," + params[:stressLevel] + "," + params[:submission] + "\n"
-    else
-      new_submission = time.to_s + ",first_of_day," + params[:name] + "," + params[:stressLevel] + "," + params[:submission] + "\n"
-    end
+    student = Student.new(params[:name])
 
+    new_submission = "#{Time.now.to_i},#{student.last_submission_at},#{params[:name]},#{params[:stressLevel]},#{params[:submission]}\n"
     DATABASE.add(new_submission)
   end
 
