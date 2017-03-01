@@ -27,7 +27,6 @@ class Database
       keys.each do |key|
         row[key]
       end
-      
       all_info << row.to_s
     end
 

@@ -15,6 +15,7 @@ class Submission
     else
       new_submission = time.to_s + ",first_of_day," + params[:name] + "," + params[:stressLevel] + "," + params[:submission] + "\n"
     end
+
     DATABASE.add(new_submission)
   end
 
