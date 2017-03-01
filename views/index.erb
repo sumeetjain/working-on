@@ -7,52 +7,56 @@
 <body>
 
 <div class="topbar">
+
 	<div class = "topbar--imgBox">
 		<img src="ocs.png">
 	</div>
+
 	<div class="topbar--submission_area">
 	<!-- this area gathers the user input, sending name, Status, and stress level to /submit -->
-	<form method="post" action="/submit">
-		
-	<!-- This area checks of there is a cookie of a users name, stored at @login.  If there is not an @login stored, the first section of code runs, presenting an empty text area for user to enter thier name.  This is then stored as the cookie @login, and used in subsequent sections.  The information is also passed to controller.rb as a string.  
-	If @login has a name stored at pageload, This code simply displays please enter your status, and the value of @value is passed as a string when submit is pressed. -->
-		<% if @login == nil %>
-			<input type="text" name="name" class="topbar--name_box" placeholder="enter Name!"><br>
-		<%else%>
-			<div><%=@login%> please enter your status</div>
-			<input type="text" name="name" style="display: none" value=<%= @login %>>
-		<%end%>
+		<form method="post" action="/submit">
+			
+		<!-- This area checks of there is a cookie of a users name, stored at @login.  If there is not an @login stored, the first section of code runs, presenting an empty text area for user to enter thier name.  This is then stored as the cookie @login, and used in subsequent sections.  The information is also passed to controller.rb as a string.  
+		If @login has a name stored at pageload, This code simply displays please enter your status, and the value of @value is passed as a string when submit is pressed. -->
+			<% if @login == nil %>
+				<input type="text" name="name" class="topbar--name_box" placeholder="enter Name!"><br>
+			<%else%>
+				<div><%=@login%> please enter your status</div>
+				<input type="text" name="name" style="display: none" value=<%= @login %>>
+			<%end%>
 
-		<!-- Update area, for users to input what they are working on. Sends the user input as a string to controller.rb-->
-		<textarea name="submission" class="topbar--textarea" placeholder="Tell Us What You're doing!!"></textarea>
+			<!-- Update area, for users to input what they are working on. Sends the user input as a string to controller.rb-->
+			<textarea name="submission" class="topbar--textarea" placeholder="Tell Us What You're doing!!"></textarea>
 
-		<!-- Stress rating system  Returns a number 1-10 depending on user input, which is sent to the server side programing. -->
-		<div class="topbar--stress_header">Rate Your Stress Level. (Honestly)</div>
-		<input type="radio" name="stressLevel" value="1">Chill
-		<input type="radio" name="stressLevel" value ="2">Good 
-		<input type="radio" name="stressLevel" value ="3">Well 
-		<input type="radio" name="stressLevel" value ="4">Fine 
-		<input type="radio" name="stressLevel" value="5">Level
-		<input type="radio" name="stressLevel" value ="6">Okay 
-		<input type="radio" name="stressLevel" value ="7">Ouch 
-		<input type="radio" name="stressLevel" value ="8">Cry  
-		<input type="radio" name="stressLevel" value="9">Tilt 		
-		<input type="radio" name="stressLevel" value="10">F*** 
-		<input type="submit">
-	</form>
+			<!-- Stress rating system  Returns a number 1-10 depending on user input, which is sent to the server side programing. -->
+			<div class="topbar--stress_header">Rate Your Stress Level. (Honestly)</div>
+			<input type="radio" name="stressLevel" value="1">Chill
+			<input type="radio" name="stressLevel" value ="2">Good 
+			<input type="radio" name="stressLevel" value ="3">Well 
+			<input type="radio" name="stressLevel" value ="4">Fine 
+			<input type="radio" name="stressLevel" value="5">Level
+			<input type="radio" name="stressLevel" value ="6">Okay 
+			<input type="radio" name="stressLevel" value ="7">Ouch 
+			<input type="radio" name="stressLevel" value ="8">Cry  
+			<input type="radio" name="stressLevel" value="9">Tilt 		
+			<input type="radio" name="stressLevel" value="10">F*** 
+			<input type="submit">
+		</form>
+	</div>
+
+	<div class= "topbar--adminButton">
 	</div>
 </div>
 
-<div class="dailyFeedContainer">
-	<table class = "dailyFeed">
-		<tr>
-			<th>Name</th>
-			<th>Time</th>
-			<th>Post</th>
-		</tr>
-		<tr>
-			<td>
 
+<div class="dailyFeed">
+	<div class ="post">
+		<div>
+			<div>Bob</div>
+			<div>9:14</div>
+			<div>HELP OH GOD HELPPPP!!!!</div>
+		</div>
+</div>
 
 
 </body>

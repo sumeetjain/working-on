@@ -16,10 +16,11 @@ body {
 	display:flex;
 	flex-direction: row;
 }
+.topbar>*{
+	flex-grow: 1;
+}
 
 	.topbar--imgBox{
-		margin-left: 5px;
-		margin-right: 230px;
 	}
 
 	.topbar--name_box {
@@ -47,6 +48,10 @@ body {
 	.topbar--submission_area{
 		color: white;
 	}
+
+	.topbar--adminButton{
+	}
+
 .center {
 	text-align: center;
 }
