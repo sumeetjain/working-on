@@ -5,6 +5,8 @@ class Submission
   # Create a submission.
   # 
   # params - Hash of attributes for the submission to be created.
+  #
+  # Finds time differene between current post and previous post in EPOCH time.
   def create(params)
     time_interval = DATABASE.getPreviousEntry(params[:name]).to_i
     time = Time.now.to_i
@@ -23,7 +25,7 @@ class Submission
   # 
   # Returns an Array.
   def Submission.all
-    DATABASE.everything(["time", "interval", "name", "stressLevel", "submission"])
+    DATABASE.everything()
   end
 
 end
