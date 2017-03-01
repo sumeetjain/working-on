@@ -45,34 +45,22 @@ class Database
     return submissions
   end
 
-  # Gets previous entry of the student submitting.
-  #
-  # Finds an array of all student entries in CSV and splits out last entry.
-  #
-  # Returns the time of the last entry, or nil if student is new or last entry was yesterday.
-  def getPreviousEntry(student)
-    students = []
-    CSV.foreach(@file, {headers:true}) do |row|
-      if row["name"] == student
-        students << row.to_s
-      end
-    end
-    if students == []
-      last_checkin = nil
-    else
-      last_checkin = students.last
-      last_checkin = last_checkin.split(",")
-      last_checkin = last_checkin[0].to_i
-      if Time.at(last_checkin).utc.day != Time.now.day
-        last_checkin = nil
-      end
-    end
-    return last_checkin
-  end
+  # Get all rows through a particular filter.
+  # 
+  # key   - String of the column header to filter on.
+  # value - String of the value the column header must match.
+  # 
+  # Returns an Array of row Strings.
+  def all_filtered(key, value)
+    list = []
 
-  # Converts the EPOCH time difference between new post and last post to H:M:S.
-  def findTimeDifference(time)
-    time_difference = Time.at(time).utc.strftime("%H:%M:%S")
-    return time_difference
+    CSV.foreach(@file, {headers:true}) do |row|
+      if row[key] == value
+        list << row.to_s
+      end
+    end
+
+    return list
   end
+  
 end
