@@ -53,7 +53,6 @@ class Database
   # Returns an Array of row Strings.
   def all_filtered(key, value)
     list = []
-
     CSV.foreach(@file, {headers:true}) do |row|
       if row[key] == value
         list << row.to_s
@@ -63,9 +62,21 @@ class Database
     return list
   end
 
+  ### Grabs all the posts for today
+  #
+  ### 
 
-  def posts_filtered()
-    
+  def posts_today()
+    postCollection = []
+    todaysYearDay = Time.now.yday
+    CSV.foreach(@file, {headers:true}) do |row|
+      rowEpoch = Time.at(row["time"].to_i)
+      if rowEpoch.yday == todaysYearDay
+        postCollection << row["name"] + " " + rowEpoch.strftime("%m/%d @ %I:%M%p") + " " + row["submission"]
+      end
+    end
+
+    return postCollection
   end
   
 end
