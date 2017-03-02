@@ -8,12 +8,11 @@ class Student
   # Gets the time of the student's last checkin.
   # 
   # Returns Integer EPOCH time.
-  def last_submission_at
-    formatter = TimeFormatter.new(time_since_last_checkin)
-    
+  def last_submission_at    
     if last_submission.nil? || last_submission_was_not_today?
       return "first_of_day"
     else
+      formatter = TimeFormatter.new(time_since_last_checkin)
       return formatter.time_as_hms
     end
   end
