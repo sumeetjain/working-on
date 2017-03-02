@@ -21,15 +21,20 @@ class Database
   # value - String of the value the column header must match.
   # 
   # Returns an Array of row Strings.
-  def all_filtered(key, value)
+  def all_filtered(filter)
     list = []
     CSV.foreach(@file, {headers:true}) do |row|
-      if row[key] == value
+      if filter.call(row) == true
         list << row.to_s
       end
     end
 
     return list
+  end
+
+  def all_by(key, value)
+    filter = Proc.new { |row| row[key] == value }
+    all_filtered(filter)
   end
 
   ###Searches through all rows, given time

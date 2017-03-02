@@ -9,7 +9,7 @@ class Posts
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = DATABASE.all_filtered("name", @student)
+		posts = DATABASE.all_by("name", @student)
 	end
 
 	# Get all of the students' posts from the requested date.
