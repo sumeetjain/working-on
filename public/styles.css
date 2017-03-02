@@ -86,6 +86,19 @@ input[type="radio"] {
 		margin-top: 9px;
 	}
 
+	.radio_button > input{
+  		visibility: hidden;
+  		position: absolute;
+	}
+
+	.radio_button > input + i{ 
+  		cursor:pointer;
+	}
+
+	.radio_button > input:checked + i{
+  		color: red;
+	}
+
 	.topbar--adminButton{
 		display: flex;
 		flex-direction: row;
