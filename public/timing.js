@@ -1,10 +1,20 @@
-window.addEventListener("load", function() {
- setInterval(function() { displayPosts(); }, 10000); 
+window.addEventListener("load", function(){
+ 	displayPosts();
+
+ 	setInterval(function() { displayPosts(); }, 10000);
 });
 
 function displayPosts() {
-	console.log("hi");
-	page = document.getElementById("dailyFeed")
-	html = "<%dailyPosts = Database.new%><%dailyPosts = dailyPosts.posts_today%><%dailyPosts.each do |post|%><div class =\"post\" ><div class = \"postProfile\"><div><%=post[0]%></div><div><%=post[1]%></div></div><div><div><%=post[2]%></div></div></div><%end%></div>";
-	page.insertAdjacentHTML("afterbegin", page);
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('GET', '/display')
+  	xhttp.onload = function() {
+    	var dailyPosts = JSON.parse(xhttp.responseText);
+    	var top = document.getElementById("dailyFeed");
+    	document.getElementById("dailyFeed").innerHTML = "";
+    	for (x = 0; x < dailyPosts.length; x++) {
+    		var html = "<div class=\"post thinbluebox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts[x][0] + "</div><div class=\"postdate\">" + dailyPosts[x][1] + "</div></div><div class=\"postsubmission\">" + dailyPosts[x][2] + "</div></div></div>";
+    		top.insertAdjacentHTML("afterbegin", html);
+    	}
+  	};
+  	xhttp.send();
 }

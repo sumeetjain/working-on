@@ -26,10 +26,9 @@ get "/admin" do
 end
 
 get "/display" do
-  	data = Database.new
-    @submissions_today = data.posts_today
-    erb :display
-end 
+	@dailyPosts = Database.new.posts_today
+	@dailyPosts.to_json
+end
 
 # Sends these params into the Posts class to grab the requested posts for display.
 #
