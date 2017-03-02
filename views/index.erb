@@ -3,6 +3,8 @@
 <head>
 	<title>Submit what you are working on</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -21,7 +23,7 @@
 			<% if @login == nil %>
 				<input type="text" name="name" class="topbar--name_box" placeholder="enter Name!"><br>
 			<%else%>
-				<div><%=@login%> please enter your status</div>
+				<div><%=@login%> Please Enter Your Status</div>
 				<input type="text" name="name" style="display: none" value=<%= @login %>>
 			<%end%>
 
@@ -45,19 +47,23 @@
 	</div>
 
 	<div class= "topbar--adminButton">
+		<i class="fa fa-key" aria-hidden="true" id = "adminKey"></i>
 	</div>
 </div>
 
 
-<div class="dailyFeed">
-	<div class ="post">
-		<div>
-			<div>Bob</div>
-			<div>9:14</div>
-			<div>HELP OH GOD HELPPPP!!!!</div>
-		</div>
-</div>
+<div id="dailyFeed">
 
+	<div class ="post">
+		<div class = "postProfile">
+			<div>name</div>
+			<div>time</div>
+		</div>
+		<div
+			<div>comment</div>
+		</div>
+
+</div>
 
 </body>
 </html>
