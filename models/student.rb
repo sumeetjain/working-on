@@ -9,10 +9,12 @@ class Student
   # 
   # Returns Integer EPOCH time.
   def last_submission_at
+    formatter = TimeFormatter.new
+    
     if last_submission.nil? || last_submission_was_not_today?
       return "first_of_day"
     else
-      return time_as_hms(time_since_last_checkin)
+      return formatter.time_as_hms(time_since_last_checkin)
     end
   end
 
@@ -38,14 +40,5 @@ class Student
   # Checks to see if last student submission was NOT today.
   def last_submission_was_not_today?
     Time.at(last_checkin_at).utc.day != Time.now.day
-  end
-
-  # Converts an EPOCH time to H:M:S.
-  # 
-  # time - Integer of EPOCH time.
-  # 
-  # Returns String of the time amount as HH:MM:SS.
-  def time_as_hms(time)
-    Time.at(time).utc.strftime("%H:%M:%S")
   end
 end

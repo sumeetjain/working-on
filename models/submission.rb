@@ -23,6 +23,6 @@ class Submission
   # Converts EPOCH integer to MM/DD/YY.
   def Submission.dates
     array = DATABASE.get_items_by_header("time")
-    DATABASE.parseDates(array)
+    TimeFormatter.parseDates(array)
   end
 end
