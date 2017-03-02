@@ -36,5 +36,5 @@ end
 get "/getinfo" do
 	@info = Posts.new(params)
 	@info = @info.get_posts_by_date
-  	erb :getinfo
+  erb :getinfo
 end

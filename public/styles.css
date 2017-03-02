@@ -153,6 +153,6 @@ input[type="radio"] {
 	align-self:flex-end;
 }
 
-
-
-
+.post_info {
+	font-size: 13px;
+}
