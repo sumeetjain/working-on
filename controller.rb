@@ -28,7 +28,6 @@ end
 get "/display" do
   	data = Database.new
     @submissions_today = data.posts_today
-    erb :display
 end 
 
 # Sends these params into the Posts class to grab the requested posts for display.

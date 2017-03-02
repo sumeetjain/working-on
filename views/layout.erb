@@ -5,6 +5,7 @@
 	<title>Omaha Code School - What are you working on?</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 </head>
 <body>
 
@@ -21,14 +22,14 @@
 		<!-- This area checks of there is a cookie of a users name, stored at @login.  If there is not an @login stored, the first section of code runs, presenting an empty text area for user to enter thier name.  This is then stored as the cookie @login, and used in subsequent sections.  The information is also passed to controller.rb as a string.  
 		If @login has a name stored at pageload, This code simply displays please enter your status, and the value of @value is passed as a string when submit is pressed. -->
 			<% if @login == nil %>
-				<input type="text" name="name" class="topbar--name_box" placeholder="enter Name!"><br>
+				<input type="text" name="name" class="topbar--name_box" placeholder="Enter Name!" required><br>
 			<%else%>
 				<div><%=@login%> Please Enter Your Status</div>
 				<input type="text" name="name" style="display: none" value=<%= @login %>>
 			<%end%>
 
 			<!-- Update area, for users to input what they are working on. Sends the user input as a string to controller.rb-->
-			<textarea name="submission" class="topbar--textarea" placeholder="Tell Us What You're doing!!"></textarea>
+			<textarea name="submission" class="topbar--textarea" placeholder="Tell Us What You're doing!!" required></textarea>
 
 			<!-- Stress rating system  Returns a number 1-10 depending on user input, which is sent to the server side programing. -->
 			<div class="topbar--stress_header">Rate Your Stress Level. (Honestly)</div>
