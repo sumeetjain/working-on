@@ -6,7 +6,21 @@
 </head>
 <body>
 
-<h1>Admin Page</h1>
+<form method="get" action="/getinfo">
+	<select name="student">
+		<% @names.each do |name| %>
+		<option value=<%= name %>><%=name%></option>
+		<% end %>
+	</select>
+
+	<select name="day">
+		<% @dates.each do |date| %>
+		<option value=<%= date %>><%=date%></option>
+		<% end %>
+	</select>
+
+	<button type="submit">Show Information</button>
+</form>
 
 </body>
 </html>

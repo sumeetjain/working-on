@@ -1,4 +1,4 @@
-#displays index.erb the mainpaige of the website
+# displays index.erb the mainpaige of the website
 
 get "/" do
 	@login = session["login"]
@@ -6,7 +6,7 @@ get "/" do
 end
 
 # session["login"] creates a cookie that will keep track of the user.  Creates a new submission
-# class object, and adds the value set (params) gotten from 
+# class object, and adds the value set (params) gotten from /submit
 
 
 post "/submit" do
@@ -17,6 +17,25 @@ post "/submit" do
 end
 
 get "/display" do
-  	@submissions = Submission.all
+  	@names = Submission.names
+  	@dates = Submission.dates
   	binding.pry
+end
+
+get "/admin" do
+	@names = Submission.names
+  	@dates = Submission.dates
+  	erb :admin
+end
+
+get "/getinfo" do
+	@info = Posts.new(params)
+	@info = @info.get_posts_by_date
+	binding.pry
+	# @student = params[:student]
+ #  	@day = params[:day]
+ #  	binding.pry
+ #  	@return = Database.new
+ #  	@return = @return.all_filtered("name", @student)
+  	erb :getinfo
 end

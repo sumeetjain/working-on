@@ -62,5 +62,25 @@ class Database
 
     return list
   end
+
+  def get_items_by_header(header)
+    list = []
+
+    CSV.foreach(@file, {headers:true}) do |row|
+      item = row[header]
+      list << item
+    end
+    list = list.uniq
+    return list
+  end
   
+  def parseDates(array_of_epoch_time)
+    new_time = []
+    array_of_epoch_time.each do |time|
+      time = time.to_i
+      new_time << Time.at(time).strftime("%D")
+    end
+    new_time = new_time.uniq
+    return new_time
+  end
 end
