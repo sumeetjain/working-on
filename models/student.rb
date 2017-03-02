@@ -21,7 +21,7 @@ class Student
     submissions = DATABASE.all_filtered("name", @name)
 
     submissions.last
-  end
+  end 
 
   private
 
@@ -35,6 +35,7 @@ class Student
     last_submission.split(",")[0].to_i
   end
 
+  # Checks to see if last student submission was NOT today.
   def last_submission_was_not_today?
     Time.at(last_checkin_at).utc.day != Time.now.day
   end

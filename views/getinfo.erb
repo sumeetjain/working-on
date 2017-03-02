@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Admin Information</title>
+</head>
+<body>
+
+<div id="info_window">
+	<% if @info == [] %>
+		<p>Student has no post information for this day.</p>
+	<% else %>
+		<p><strong>Student Name ** Post Date/Time ** Time Since Previous Post ** Stress Level ** Post Submission</strong></p>
+		<% @info.each do |row|
+			current_row = row.split(",")
+			date = current_row[0].to_i
+			date = Time.at(date).strftime('%x %I:%M:%S%p') %>
+			<p><%=current_row[2]%> ** <%=date%> ** <%=current_row[1]%> ** <%=current_row[3]%> ** <%=current_row[4]%></p>
+		<% end %>
+	<% end %>
+</div>
+
+</body>
+</html>
