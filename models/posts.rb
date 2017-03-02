@@ -1,3 +1,6 @@
+# This class is for functionality related to ALL of a student's posts. That is,
+# one object/instance of this class is ALL of a student's posts.
+
 class Posts
 	DATABASE = Database.new
 
