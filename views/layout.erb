@@ -25,7 +25,7 @@
 				<div>What are you working on?</div>
 			<%else%>
 				<div><%=@login%> what you are you working on?</div>
-				<input type="text" name="name" style="display: none" value=<%= @login %>>
+				<input type="hidden" name="name" value="<%= @login %>">
 			<%end%>
 
 			<!-- Update area, for users to input what they are working on. Sends the user input as a string to controller.rb-->
