@@ -1,3 +1,11 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html{
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -67,11 +75,9 @@ input[type="radio"] {
 
 	.topbar--textarea {
 		margin-top: 5px;
-		margin-right: 5px;
 		margin-bottom: 5px;
-		margin-left: 5px;
 		resize: none;
-		width: 80%;
+		width: 100%;
 		border-radius: 5px;
 		border: solid 2px black;
 	}
@@ -79,6 +85,7 @@ input[type="radio"] {
 	.topbar--submission_area{
 		color: white;
 		flex-grow: 1;
+		padding: 0 20px;
 	}
 
 	#topbar--submitButton {
