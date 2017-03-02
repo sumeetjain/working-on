@@ -8,7 +8,12 @@ class Posts
 	def initialize(params)
 		@student = params[:student]
 		@day = params[:day]
+    @today = Time.now.strftime("%D")
 	end
+
+  def today
+    return @today
+  end
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
@@ -19,14 +24,14 @@ class Posts
 	# Get all of the students' posts from the requested date.
 	#
 	# Returns an array of requested posts.
-	def get_posts_by_date
+	def get_posts_by_date(day=@day)
 		posts = get_requested_posts_by_name
 		requested_posts = []
 		posts.each do |date|
 			post_day = date.split(",")
 			post_day = post_day[0].to_i
 			post_day = Time.at(post_day).strftime("%D")
-			if post_day == @day
+			if post_day == day
 				requested_posts << date
 			end
 		end
@@ -49,4 +54,5 @@ class Posts
 
     return postCollection
   end
+
 end
