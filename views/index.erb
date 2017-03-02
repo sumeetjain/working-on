@@ -1,13 +1,11 @@
 <div id="dailyFeed">
-	<%dailyPosts = Database.new%>
-	<%dailyPosts = dailyPosts.posts_today%>
-	<%dailyPosts.each do |post|%>
+	<% @dailyPosts.each do |post| %>
 	<div class ="post thinbluebox">
 		<div class = "postProfile">
-			<div class="postname"><%=post[0]%></div>
-			<div class="postdate"><%=post[1]%></div>
+			<div class="postname"><%= post[0] %></div>
+			<div class="postdate"><%= post[1] %></div>
 		</div>
-		<div class="postsubmission"><%=post[2]%></div>
+		<div class="postsubmission"><%= post[2] %></div>
 	</div>
-	<%end%>
+	<% end %>
 </div>
