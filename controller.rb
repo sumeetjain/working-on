@@ -28,10 +28,9 @@ get "/admin" do
 end
 
 get "/display" do
-  # TODO Refactor the posts_today method; then replace this with new code.
-  data = Database.new
-  @submissions_today = data.posts_today
-end 
+	@dailyPosts = Database.new.posts_today
+	@dailyPosts.to_json
+end
 
 # Sends these params into the Posts class to grab the requested posts for display.
 #
