@@ -7,6 +7,12 @@ html{
 body{
 	margin:0px;
 }
+
+input[type="radio"] {
+	margin-top: 9px;
+	vertical-align: top;
+}
+
 .clear{
 	clear:both;
 }
@@ -22,15 +28,12 @@ body{
 	border-color: silver;
 	display:flex;
 	flex-direction: row;
-	align-items:center;
+	align-items: center;
 	padding: 20px;
 }
 .topbar>*{
 	flex-basis: 33.3%;
 }
-
-	.topbar--imgBox{
-	}
 
 	#imgOCS{
 		height: 90px;
@@ -43,6 +46,8 @@ body{
 		margin-right: 5px;
 		margin-bottom: 5px;
 		margin-left: 5px;
+		border-radius: 5px;
+		border: solid 2px black;
 	}
 
 	.topbar--stress_area {
@@ -58,11 +63,20 @@ body{
 		margin-right: 5px;
 		margin-bottom: 5px;
 		margin-left: 5px;
+		resize: none;
+		width: 80%;
+		border-radius: 5px;
+		border: solid 2px black;
 	}
 
 	.topbar--submission_area{
 		color: white;
 		flex-grow: 1;
+	}
+
+	#topbar--submitButton {
+		vertical-align: top;
+		margin-top: 9px;
 	}
 
 	.topbar--adminButton{
@@ -72,8 +86,16 @@ body{
 	}
 
 	#adminKey{
-		color: white;
 		font-size: 40px;
+	}
+
+	a:link, a:visited #adminKey {
+		color: white;
+	}
+
+	a:hover #adminKey {
+		color: silver;
+		transition: color 1s ease;
 	}
 
 #dailyFeed{

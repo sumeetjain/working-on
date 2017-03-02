@@ -10,10 +10,8 @@
 <body>
 
 <div class="topbar">
-<div></div>
-
 	<div class = "topbar--imgBox">
-		<img src="ocs.png" id="imgOCS">
+		<a href="/"><img src="ocs.png" id="imgOCS"></a>
 	</div>
 
 	<div class="topbar--submission_area">
@@ -23,28 +21,22 @@
 		<!-- This area checks of there is a cookie of a users name, stored at @login.  If there is not an @login stored, the first section of code runs, presenting an empty text area for user to enter thier name.  This is then stored as the cookie @login, and used in subsequent sections.  The information is also passed to controller.rb as a string.  
 		If @login has a name stored at pageload, This code simply displays please enter your status, and the value of @value is passed as a string when submit is pressed. -->
 			<% if @login == nil %>
-				<input type="text" name="name" class="topbar--name_box" placeholder="Enter Name!" required><br>
+				<input type="text" name="name" class="topbar--name_box" placeholder="Enter your name" required><br>
+				<div>What are you working on?</div>
 			<%else%>
-				<div><%=@login%> Please Enter Your Status</div>
+				<div><%=@login%> what you are you working on?</div>
 				<input type="text" name="name" style="display: none" value=<%= @login %>>
 			<%end%>
 
 			<!-- Update area, for users to input what they are working on. Sends the user input as a string to controller.rb-->
-			<textarea name="submission" class="topbar--textarea" placeholder="Tell Us What You're doing!!" required></textarea>
+			<textarea name="submission" class="topbar--textarea" placeholder="Describe what you are currently working on" required></textarea>
 
 			<!-- Stress rating system  Returns a number 1-10 depending on user input, which is sent to the server side programing. -->
 			<div class="topbar--stress_header">Rate Your Stress Level. (Honestly)</div>
-			<input type="radio" name="stressLevel" value="1">Chill
-			<input type="radio" name="stressLevel" value ="2">Good 
-			<input type="radio" name="stressLevel" value ="3">Well 
-			<input type="radio" name="stressLevel" value ="4">Fine 
-			<input type="radio" name="stressLevel" value="5">Level
-			<input type="radio" name="stressLevel" value ="6">Okay 
-			<input type="radio" name="stressLevel" value ="7">Ouch 
-			<input type="radio" name="stressLevel" value ="8">Cry  
-			<input type="radio" name="stressLevel" value="9">Tilt 		
-			<input type="radio" name="stressLevel" value="10">F*** 
-			<input type="submit">
+			<input type="radio" name="stressLevel" value="1" required><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i>
+			<input type="radio" name="stressLevel" value ="2"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i>
+			<input type="radio" name="stressLevel" value ="3"><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i>
+			<input type="submit" id="topbar--submitButton">
 		</form>
 	</div>
 
