@@ -31,11 +31,5 @@ end
 get "/getinfo" do
 	@info = Posts.new(params)
 	@info = @info.get_posts_by_date
-	binding.pry
-	# @student = params[:student]
- #  	@day = params[:day]
- #  	binding.pry
- #  	@return = Database.new
- #  	@return = @return.all_filtered("name", @student)
   	erb :getinfo
 end

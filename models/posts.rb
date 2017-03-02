@@ -21,7 +21,6 @@ class Posts
 				requested_posts << date
 			end
 		end
-		binding.pry
 		return requested_posts
 	end
 end
