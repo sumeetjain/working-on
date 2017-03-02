@@ -1,5 +1,5 @@
 window.onscroll = function() {
-   	if (document.body.scrollTop + document.documentElement.scrollTop > 100) {
+   	if (document.body.scrollTop + document.documentElement.scrollTop > 0) {
    		document.getElementsByClassName("topbar")[0].style.position = "fixed"
    		document.getElementsByClassName("topbar")[0].style.top = "0"
    		document.getElementsByClassName("topbar")[0].style.left = "0"
