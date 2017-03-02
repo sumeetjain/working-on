@@ -149,12 +149,6 @@ input[type="radio"] {
 	padding:2px 5px 2px 5px;
 	border-right: 3px solid #ccc;
 	padding-right:7px;
-<<<<<<< HEAD
-  	display: flex;
-  	flex-direction:column;
-  	width:20%;
-=======
->>>>>>> e586d2d4b82098fbe3631fab88ca83baf9c97ee4
 }
 
 .postname{
@@ -167,7 +161,6 @@ input[type="radio"] {
 	padding:0 0 0 0;
 	color: #b3b3b3;
 	font-size:12px;
-	text-align: right;
 }
 
 .post_info {
