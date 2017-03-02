@@ -53,20 +53,15 @@
 
 
 <div id="dailyFeed">
-	<%database = Database.new%>
-	<%database = database.posts_today%>
-	<%database.each do |base|%>
-		<%base = base.split(" ")%>
 
 	<div class ="post">
 		<div class = "postProfile">
-			<div><%=base[0]%></div>
-			<div><%=base[3]%></div>
+			<div>name</div>
+			<div>time</div>
 		</div>
 		<div
-			<div><%=base[4..-1].join(" ")%></div>
+			<div>comment</div>
 		</div>
-			<%end%>
 
 </div>
 
