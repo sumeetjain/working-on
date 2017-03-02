@@ -13,13 +13,6 @@ class Submission
     DATABASE.add(new_submission)
   end
 
-  # Get all submissions.
-  # 
-  # Returns an Array. NOT USED 
-  def Submission.all
-    DATABASE.everything
-  end
-
   # Gets all names available in database.
   def Submission.names
     DATABASE.get_items_by_header("name")

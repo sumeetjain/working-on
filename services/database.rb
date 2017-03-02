@@ -15,36 +15,6 @@ class Database
     end
   end
 
-  # Gets the csv file.
-  # 
-  # Builds hash of data for use on the site.
-  # 
-  # Returns a Hash of data. Not used
-  def everything()
-    submissions = {}
-
-    CSV.foreach('./public/database.csv', {headers:true}) do |row|
-      day = row["time"].to_i
-      date = Time.at(day).utc.yday
-      if !submissions[date]
-        submissions[date] = {}
-      end
-
-      student = row["name"]
-      if !submissions[date][student]
-        submissions[date][student] = []
-      end
-
-      post = {}
-      post[:time] = row["time"]
-      post[:interval] = row["interval"]
-      post[:stressLevel] = row["stressLevel"]
-      post[:submission] = row["submission"]
-      submissions[date][student] << post
-    end
-    return submissions
-  end
-
   # Get all rows through a particular filter.
   # 
   # key   - String of the column header to filter on.
