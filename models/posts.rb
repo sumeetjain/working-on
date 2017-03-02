@@ -1,3 +1,6 @@
+# This class is for functionality related to ALL of a student's posts. That is,
+# one object/instance of this class is ALL of a student's posts.
+
 class Posts
 	DATABASE = Database.new
 
@@ -9,9 +12,10 @@ class Posts
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = DATABASE.all_filtered("name", @student)
+		posts = DATABASE.all_by("name", @student)
 	end
 
+	# TODO Can this be consolidated into one method, since Database has something similar?
 	# Get all of the students' posts from the requested date.
 	#
 	# Returns an array of requested posts.

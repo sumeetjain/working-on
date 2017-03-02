@@ -1,3 +1,11 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html{
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -67,11 +75,9 @@ input[type="radio"] {
 
 	.topbar--textarea {
 		margin-top: 5px;
-		margin-right: 5px;
 		margin-bottom: 5px;
-		margin-left: 5px;
 		resize: none;
-		width: 80%;
+		width: 100%;
 		border-radius: 5px;
 		border: solid 2px black;
 	}
@@ -79,6 +85,7 @@ input[type="radio"] {
 	.topbar--submission_area{
 		color: white;
 		flex-grow: 1;
+		padding: 0 20px;
 	}
 
 	#topbar--submitButton {
@@ -119,15 +126,12 @@ input[type="radio"] {
 	}
 
 #dailyFeed{
+	width: 60%;
 	letter-spacing:0.05em;
 	font-size: 16px;
-	margin-top: 10px;
-	display: flex;
-	flex-direction: column-reverse;
-	align-items: center;
+	margin: 10px auto 0 auto;
 }
 .post{
-	width:70%; 
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 4px;
@@ -138,32 +142,32 @@ input[type="radio"] {
 	padding:4px;
 	padding-left:10px;
 	font-size:15px;
-	width:80%;
 /*	word-break:break-all;*/
 }
 
 .postProfile{
 	padding:2px 5px 2px 5px;
-	text-align: center;
-	box-shadow: 0px 0px 3px grey;
+	border-right: 3px solid #ccc;
 	padding-right:7px;
+<<<<<<< HEAD
   	display: flex;
   	flex-direction:column;
   	width:20%;
+=======
+>>>>>>> e586d2d4b82098fbe3631fab88ca83baf9c97ee4
 }
 
 .postname{
 	padding:0 0 0 0;
 	font-weight:800;
 	font-size:14px;
-	align-self:flex-start;
 }
 
 .postdate{
 	padding:0 0 0 0;
 	color: #b3b3b3;
 	font-size:12px;
-	align-self:flex-end;
+	text-align: right;
 }
 
 .post_info {
