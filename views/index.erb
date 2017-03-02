@@ -2,14 +2,12 @@
 	<%dailyPosts = Database.new%>
 	<%dailyPosts = dailyPosts.posts_today%>
 	<%dailyPosts.each do |post|%>
-	<div class ="post">
+	<div class ="post thinbluebox">
 		<div class = "postProfile">
-			<div><%=post[0]%></div>
-			<div><%=post[1]%></div>
+			<div class="postname"><%=post[0]%></div>
+			<div class="postdate"><%=post[1]%></div>
 		</div>
-		<div>
-			<div><%=post[2]%></div>
-		</div>
+		<div class="postsubmission"><%=post[2]%></div>
 	</div>
 	<%end%>
 </div>
