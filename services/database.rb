@@ -37,12 +37,12 @@ class Database
   # given todays year day, compares whether day in row is same as today
   ### returns an array of name, format time, submission
   def posts_today()
-  postCollection = []
-  todaysYearDay = Time.now.yday
-  CSV.foreach(@file, {headers:true}) do |row|
-    rowEpoch = Time.at(row["time"].to_i)
-    if rowEpoch.yday == todaysYearDay
-       postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
+    postCollection = []
+    todaysYearDay = Time.now.yday
+    CSV.foreach(@file, {headers:true}) do |row|
+      rowEpoch = Time.at(row["time"].to_i)
+      if rowEpoch.yday == todaysYearDay
+        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
       end
     end
 
