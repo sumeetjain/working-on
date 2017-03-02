@@ -16,5 +16,7 @@ post "/submit" do
 end
 
 get "/display" do
-  	@submissions = Submission.all
+  	data = Database.new
+    @submissions_today = data.posts_today
+    erb :display
 end

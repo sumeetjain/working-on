@@ -19,7 +19,7 @@ class Database
   # 
   # Builds hash of data for use on the site.
   # 
-  # Returns a Hash of data.
+  # Returns a Hash of data. Not used
   def everything()
     submissions = {}
 
@@ -61,22 +61,21 @@ class Database
 
     return list
   end
-
-  ### Grabs all the posts for today
+  ###Searches through all rows, given time
   #
-  ### 
-
+  # given todays year day, compares whether day in row is same as today
+  ### returns an array of name, format time, submission
   def posts_today()
-    postCollection = []
-    todaysYearDay = Time.now.yday
-    CSV.foreach(@file, {headers:true}) do |row|
-      rowEpoch = Time.at(row["time"].to_i)
-      if rowEpoch.yday == todaysYearDay
-        postCollection << row["name"] + " " + rowEpoch.strftime("%m/%d @ %I:%M%p") + " " + row["submission"]
+  postCollection = []
+  todaysYearDay = Time.now.yday
+  CSV.foreach(@file, {headers:true}) do |row|
+    rowEpoch = Time.at(row["time"].to_i)
+    if rowEpoch.yday == todaysYearDay
+       postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
       end
     end
 
     return postCollection
   end
-  
+
 end

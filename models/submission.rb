@@ -16,7 +16,7 @@ class Submission
 
   # Get all submissions.
   # 
-  # Returns an Array.
+  # Returns an Array. NOT USED 
   def Submission.all
     DATABASE.everything()
   end
