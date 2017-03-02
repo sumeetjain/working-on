@@ -61,10 +61,14 @@ body {
 	}
 
 	.topbar--adminButton{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
 	}
 
 	#adminKey{
 		color: white;
+		font-size: 30px;
 	}
 #dailyFeed{
 	margin-top: 10px;

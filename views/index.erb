@@ -4,6 +4,7 @@
 	<title>Submit what you are working on</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -52,20 +53,21 @@
 
 
 <div id="dailyFeed">
+	<%database = Database.new%>
+	<%database = database.posts_today%>
+	<%database.each do |base|%>
+		<%base = base.split(" ")%>
+
 	<div class ="post">
 		<div class = "postProfile">
-			<div>Bob</div>
-			<div>9:14</div>
+			<div><%=base[0]%></div>
+			<div><%=base[3]%></div>
 		</div>
-			<div>HELP OH GOD HELPPPP!!!! The EELS ARE EATING MY EYEBALlS</div>
-	</div>
-		<div class ="post">
-		<div class = "postProfile">
-			<div>Bob</div>
-			<div>9:14</div>
+		<div
+			<div><%=base[4..-1].join(" ")%></div>
 		</div>
-			<div>HELP OH GOD HELPPPP!!!! The EELS ARE EATING MY EYEBALlS</div>
-	</div>
+			<%end%>
+
 </div>
 
 </body>
