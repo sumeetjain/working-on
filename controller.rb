@@ -28,6 +28,7 @@ get "/admin" do
 end
 
 get "/display" do
+  # TODO Refactor the posts_today method; then replace this with new code.
   data = Database.new
   @submissions_today = data.posts_today
 end 
