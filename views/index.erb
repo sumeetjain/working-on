@@ -4,7 +4,6 @@
 	<title>Submit what you are working on</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
 
@@ -23,7 +22,7 @@
 			<% if @login == nil %>
 				<input type="text" name="name" class="topbar--name_box" placeholder="enter Name!"><br>
 			<%else%>
-				<div><%=@login%> Please Enter Your Status</div>
+				<div><span id="login_name"><%=@login%></span> Please Enter Your Status</div>
 				<input type="text" name="name" style="display: none" value=<%= @login %>>
 			<%end%>
 
