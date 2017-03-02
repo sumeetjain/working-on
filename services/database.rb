@@ -62,23 +62,6 @@ class Database
     return list
   end
 
-  ###Searches through all rows, given time
-  #
-  # given todays year day, compares whether day in row is same as today
-  ### returns an array of name, format time, submission
-  def posts_today()
-  postCollection = []
-  todaysYearDay = Time.now.yday
-  CSV.foreach(@file, {headers:true}) do |row|
-    rowEpoch = Time.at(row["time"].to_i)
-    if rowEpoch.yday == todaysYearDay
-       postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
-      end
-    end
-
-    return postCollection
-  end
-
   # Get all rows based on a requested header value
   #
   # Removes duplicate entries.
@@ -94,7 +77,25 @@ class Database
     list = list.uniq
     return list
   end
-  
+
+  # Gets all posts for today in an arrays of arrays ["name","date","submission"]
+  #
+  # compares today's day to row day
+  # if day is today in row, return rows ["name","date","submission"]
+  def posts_today()
+  postCollection = []
+  todaysYearDay = Time.now.yday
+  CSV.foreach(@file, {headers:true}) do |row|
+    rowEpoch = Time.at(row["time"].to_i)
+    if rowEpoch.yday == todaysYearDay
+       postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
+      end
+    end
+
+    return postCollection
+  end
+
+
   # Accepts an Array of all dates available. Dates are in EPOCH integer format.
   #
   # Converts EPOCH integer into MM/DD/YY.

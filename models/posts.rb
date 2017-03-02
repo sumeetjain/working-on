@@ -26,6 +26,24 @@ class Posts
 				requested_posts << date
 			end
 		end
+				binding.pry
 		return requested_posts
 	end
+
+	# Gets all posts for today in an arrays of arrays ["name","date","submission"]
+  #
+  # compares today's day to row day
+  # if day is today in row, return rows ["name","date","submission"]
+  def posts_today()
+  postCollection = []
+  todaysYearDay = Time.now.yday
+  CSV.foreach(@file, {headers:true}) do |row|
+    rowEpoch = Time.at(row["time"].to_i)
+    if rowEpoch.yday == todaysYearDay
+       postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
+      end
+    end
+
+    return postCollection
+  end
 end
