@@ -41,6 +41,7 @@ class Database
   #
   # given todays year day, compares whether day in row is same as today
   ### returns an array of name, format time, submission
+  # TODO Refactor this to use all_filtered.
   def posts_today()
     postCollection = []
     todaysYearDay = Time.now.yday
@@ -62,12 +63,9 @@ class Database
   def get_items_by_header(header)
     list = []
 
-    CSV.foreach(@file, {headers:true}) do |row|
-      item = row[header]
-      list << item
-    end
-    list = list.uniq
-    return list
+    CSV.foreach(@file, {headers:true}) { |row| list << row[header] }
+
+    return list.uniq
   end
   
   # Accepts an Array of all dates available. Dates are in EPOCH integer format.
