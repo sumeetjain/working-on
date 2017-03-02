@@ -1,15 +1,20 @@
 class Posts
 	DATABASE = Database.new
 
+	# Initialize based on the requested search parameters (student posts by date)
 	def initialize(params)
 		@student = params[:student]
 		@day = params[:day]
 	end
 
+	# Get all posts of the requested student.
 	def get_requested_posts_by_name
 		posts = DATABASE.all_filtered("name", @student)
 	end
 
+	# Get all of the students' posts from the requested date.
+	#
+	# Returns an array of requested posts.
 	def get_posts_by_date
 		posts = get_requested_posts_by_name
 		requested_posts = []

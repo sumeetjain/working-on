@@ -63,6 +63,11 @@ class Database
     return list
   end
 
+  # Get all rows based on a requested header value
+  #
+  # Removes duplicate entries.
+  #
+  # Returns an Array of Strings.
   def get_items_by_header(header)
     list = []
 
@@ -74,6 +79,12 @@ class Database
     return list
   end
   
+  # Accepts an Array of all dates available. Dates are in EPOCH integer format.
+  #
+  # Converts EPOCH integer into MM/DD/YY.
+  # Removes duplicate date entries.
+  #
+  # Returns an Array of formatted dates.
   def parseDates(array_of_epoch_time)
     new_time = []
     array_of_epoch_time.each do |time|
