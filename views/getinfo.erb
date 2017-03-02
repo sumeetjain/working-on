@@ -9,7 +9,15 @@
 				<div class="postdate"><%=date%></div>
 			</div>
 			<div class="postsubmission"><span class="post_info">Time since previous post: <%=current_row[1]%><br>
-				Stress Level: <%=current_row[3]%></span><br>
+				Stress Level: 
+					<% if current_row[3] == "1" %>
+						<i class="fa fa-smile-o" aria-hidden="true"></i>
+					<% elsif current_row[3] == "2" %>
+						<i class="fa fa-meh-o" aria-hidden="true"></i>
+					<% elsif current_row[3] == "3" %>
+						<i class="fa fa-frown-o" aria-hidden="true"></i>
+					<% end %>
+				</span><br>
 				<%=current_row[4]%>
 			</div>
 		</div>
