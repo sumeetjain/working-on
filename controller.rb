@@ -17,5 +17,4 @@ end
 
 get "/display" do
   	@submissions = Submission.all
-  	binding.pry
 end

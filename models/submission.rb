@@ -11,7 +11,6 @@ class Submission
     student = Student.new(params[:name])
 
     new_submission = "#{Time.now.to_i},#{student.last_submission_at},#{params[:name]},#{params[:stressLevel]},#{params[:submission]}\n"
-
     DATABASE.add(new_submission)
   end
 
