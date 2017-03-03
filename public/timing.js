@@ -1,7 +1,7 @@
 window.addEventListener("load", function(){
  	displayPosts();
 
- 	setInterval(function() { displayPosts(); }, 10000);
+ 	setInterval(displayPosts, 10000);
 });
 
 function displayPosts() {
