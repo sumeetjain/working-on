@@ -13,6 +13,7 @@ class TimeFormatter
     Time.at(@seconds).strftime("%D")
   end
 
+  # TODO Document method.
   def TimeFormatter.parseDates(array_of_epoch_time)
     list = array_of_epoch_time.map do |seconds|
       formatter = TimeFormatter.new(seconds)
