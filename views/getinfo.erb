@@ -2,7 +2,9 @@
 	<form method="get" action="/admin" class= "dropBox--holder">
 		<button type="submit" class ="dropBox--submit">Back</button>
 	</form>
+
 	<% @info.each do |post|
+		# TODO Don't define any of these vars in the view.
 		current_row = post.split(",")
 		date = current_row[0].to_i
 		date = Time.at(date).strftime('%x %I:%M:%S%p') %>
