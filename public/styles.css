@@ -91,7 +91,19 @@ input[type="radio"] {
 	#topbar--submitButton {
 		vertical-align: top;
 		margin-top: 9px;
-	}
+		border : solid 2px #ffffff;
+		border-radius : 8px;
+		moz-border-radius : 8px;
+		-webkit-box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
+		-moz-box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
+		box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
+		font-size : 20px;
+		font-family: 'Open Sans', sans-serif;
+		color : #1946eb;
+		padding : 1px 10px;
+		background-color : #fff5f5;
+
+}
 
 	.radio_button > input{
   		visibility: hidden;
@@ -142,6 +154,7 @@ input[type="radio"] {
 	padding:4px;
 	padding-left:10px;
 	font-size:15px;
+	width: 80%;
 /*	word-break:break-all;*/
 }
 
@@ -149,6 +162,7 @@ input[type="radio"] {
 	padding:2px 5px 2px 5px;
 	border-right: 3px solid #ccc;
 	padding-right:7px;
+	width: 20%;
 }
 
 .postname{
