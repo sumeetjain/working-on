@@ -2,8 +2,6 @@
 #
 # Sets @login session variable to store student's name for repeat visits.
 get "/" do
-  @dailyPosts = Database.new.posts_today
-
 	@login = session["login"]
 	erb :index
 end
