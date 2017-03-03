@@ -1,3 +1,7 @@
+# TODO - Refactor this entire class to not be limited to only getting 
+#        collections of posts for a specific user and date. Let is be a more
+#        generic PostCollection creator.
+
 # This class is for functionality related to ALL of a student's posts for a
 # particular day. That is, one object/instance of this class is ALL of a 
 # student's posts for one day.
