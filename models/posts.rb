@@ -15,7 +15,6 @@ class Posts
 		posts = DATABASE.all_by("name", @student)
 	end
 
-	# TODO Can this be consolidated into one method, since Database has something similar?
 	# Get all of the students' posts from the requested date.
 	#
 	# Returns an array of requested posts.

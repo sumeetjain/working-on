@@ -9,13 +9,13 @@ window.addEventListener("load", function(){
 function displayPosts() {
     var xhttp = new XMLHttpRequest();
     xhttp.open('GET', '/display')
-      xhttp.onload = function() {
+    xhttp.onload = function() {
         var dailyPosts = JSON.parse(xhttp.responseText);
         var feed = document.getElementById("dailyFeed");
         feed.innerHTML = "";
-      plugXpostsToFeed(dailyPosts,feed);
-      };
-      xhttp.send();
+    plugXpostsToFeed(dailyPosts,feed);
+    };
+    xhttp.send();
 }
 
 //  takes an array of posts, for each post constructs its HTML

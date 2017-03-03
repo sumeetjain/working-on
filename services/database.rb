@@ -15,10 +15,15 @@ class Database
     end
   end
 
+  def get_all_data
+    list = []
+    CSV.foreach(@file, {headers:true}) do |row|
+      list << row
+    end
+    return list
+  end
+
   # Get all rows through a particular filter.
-  # 
-  # key   - String of the column header to filter on.
-  # value - String of the value the column header must match.
   # 
   # Returns an Array of row Strings.
   def all_filtered(filter)
@@ -37,18 +42,17 @@ class Database
     all_filtered(filter)
   end
 
-  ###Searches through all rows, given time
+  # Searches through all rows, given time
   #
   # given todays year day, compares whether day in row is same as today
-  ### returns an array of name, format time, submission
-  # TODO Refactor this to use all_filtered.
+  # returns an array of name, format time, submission
   def posts_today()
     postCollection = []
     todaysYearDay = Time.now.yday
     CSV.foreach(@file, {headers:true}) do |row|
       rowEpoch = Time.at(row["time"].to_i)
       if rowEpoch.yday == todaysYearDay
-        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
+        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"),row["submission"]])
       end
     end
 
@@ -66,5 +70,19 @@ class Database
     CSV.foreach(@file, {headers:true}) { |row| list << row[header] }
 
     return list.uniq
+  end
+
+  ###
+  def stress_level_today()
+    postCollection = []
+    todaysYearDay = Time.now.yday
+    CSV.foreach(@file, {headers:true}) do |row|
+      rowEpoch = Time.at(row["time"].to_i)
+      if rowEpoch.yday == todaysYearDay
+        postCollection.push([row["name"],rowEpoch.strftime("%I"),row['stressLevel']])
+      end
+    end
+
+    return postCollection
   end
 end
