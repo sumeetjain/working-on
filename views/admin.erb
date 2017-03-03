@@ -1,17 +1,17 @@
 <p>
-<form method="get" action="/getinfo">
-	<select name="student">
+<form method="get" action="/getinfo" class= "dropBox--holder">
+	<select name="student" class ="dropBox">
 		<% @names.each do |name| %>
 		<option value=<%= name %>><%=name%></option>
 		<% end %>
 	</select>
 
-	<select name="day">
+	<select name="day" class = "dropBox">
 		<% @dates.each do |date| %>
 		<option value=<%= date %>><%=date%></option>
 		<% end %>
 	</select>
 
-	<button type="submit">Show Information</button>
+	<button type="submit" class ="dropBox--submit">Show Information</button>
 </form>
 </p>
