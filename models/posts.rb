@@ -1,5 +1,6 @@
-# This class is for functionality related to ALL of a student's posts. That is,
-# one object/instance of this class is ALL of a student's posts.
+# This class is for functionality related to ALL of a student's posts for a
+# particular day. That is, one object/instance of this class is ALL of a 
+# student's posts for one day.
 
 class Posts
 	DATABASE = Database.new
