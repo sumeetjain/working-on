@@ -97,6 +97,7 @@ input[type="radio"] {
 		padding: 0 20px;
 	}
 
+	/*// TODO DRY this up, since other elements use at least some of these styles.*/
 	#topbar--submitButton {
 		vertical-align: top;
 		margin-top: 9px;
@@ -191,6 +192,7 @@ input[type="radio"] {
 	text-align: center;
 	margin-top: 10px;
 }
+/*// TODO DRY this up, since other elements use at least some of these styles.*/
 .dropBox{
 		border : solid 2px #ffffff;
 		border-radius : 15px;
@@ -202,6 +204,7 @@ input[type="radio"] {
 		background-color : #fff5f5;
 }
 
+/*// TODO DRY this up, since other elements use at least some of these styles.*/
 .dropBox--submit{
 		border : solid 2px #ffffff;
 		border-radius : 10px;
