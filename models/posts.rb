@@ -7,7 +7,6 @@
 # student's posts for one day.
 
 class Posts
-	DATABASE = Database.new
 
 	# Initialize based on the requested search parameters (student posts by date)
 	def initialize(params)
@@ -22,7 +21,7 @@ class Posts
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = DATABASE.all_by("name", @student)
+		posts = $database.all_by("name", @student)
 	end
 
 	# TODO Can this be consolidated into one method, since Database has something similar?

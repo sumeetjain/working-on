@@ -10,25 +10,24 @@ require 'pry'
 RSpec.describe(Database, '#get_items_by_header') do
   it("creates an Array by loading all the unique items of a specific header catagory") do
     # Setup
-    database = Database.new
+    test_database = $database
 
     # Exercise
-    database = database.get_items_by_header("name")
+    test_database.get_items_by_header("name")
 
     # Verify
-    expect(database.class == Array)
+    expect(test_database.class == Array)
   end
  end
 
  RSpec.describe(Database, '#posts_today') do
     it("Loads data, specifically posts from today,from the storage CSV into an Array for use") do
     # Setup
-    database = Database.new
-
+    test_database = $database
     # Exercise
-    database = database.posts_today
+    test_database.posts_today
 
     # Verify
-    expect(database.class == Array)
+    expect(test_database.class == Array)
   end
 end
