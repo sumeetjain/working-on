@@ -30,7 +30,7 @@ input[type="radio"] {
 	text-align: center;
 }
 
-.thinbluebox{
+.thinBox{
 	border:solid;
 	border-color: black;
 	border-width:2px;
@@ -214,4 +214,18 @@ input[type="radio"] {
 		color : #1946eb;
 		padding : 1px 10px;
 		background-color : #fff5f5;
+}
+.stickyTop{
+ 	position: fixed;
+	top: 0px;
+	left : 0px;
+	width: 100%;
+	background-color: rgb(25, 70, 235);
+	text-align: center;
+	border-bottom: solid;
+	border-color: silver;
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 20px;
 }

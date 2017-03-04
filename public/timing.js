@@ -1,8 +1,6 @@
-window.dailyFeed = document.getElementById("dailyFeed");
-
 window.addEventListener("load", function(){
- 	displayPosts();
-
+  window.dailyFeed = document.getElementById("dailyFeed");
+  displayPosts();
  	setInterval(displayPosts, 10000);
 });
 
@@ -13,12 +11,12 @@ function displayPosts() {
   xhttp.onload = function() {
     var dailyPosts = JSON.parse(xhttp.responseText);
 
-    window.dailyFeed.innerHTML = "";
+    dailyFeed.innerHTML = "";
     
     for (x = 0; x < dailyPosts.length; x++) {
-      var html = "<div class=\"post thinbluebox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts[x][0] + "</div><div class=\"postdate\">" + dailyPosts[x][1] + "</div></div><div class=\"postsubmission\">" + dailyPosts[x][2] + "</div></div></div>";
+      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts[x][0] + "</div><div class=\"postdate\">" + dailyPosts[x][1] + "</div></div><div class=\"postsubmission\">" + dailyPosts[x][2] + "</div></div></div>";
 
-    	window.dailyFeed.insertAdjacentHTML("afterbegin", html);
+    dailyFeed.insertAdjacentHTML("afterbegin", html);
     }
   };
 
