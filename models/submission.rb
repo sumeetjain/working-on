@@ -1,6 +1,4 @@
 class Submission
-  
-  DATABASE = Database.new
 
   # Create a submission.
   # 
@@ -10,19 +8,19 @@ class Submission
   def create(params)
     student = Student.new(params[:name])
     new_submission = "#{Time.now.to_i},#{student.last_submission_at},#{params[:name]},#{params[:stressLevel]},#{params[:submission]}\n"
-    DATABASE.add(new_submission)
+    $database.add(new_submission)
   end
 
   # Gets all names available in database.
   def Submission.names
-    DATABASE.get_items_by_header("name")
+    $database.get_items_by_header("name")
   end
 
   # Gets all dates available in database in EPOCH time.
   #
   # Converts EPOCH integer to MM/DD/YY.
   def Submission.dates
-    array = DATABASE.get_items_by_header("time")
+    array = $database.get_items_by_header("time")
     TimeFormatter.parseDates(array)
   end
 end

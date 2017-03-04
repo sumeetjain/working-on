@@ -1,13 +1,16 @@
 window.addEventListener("load", function(){
   window.dailyFeed = document.getElementById("dailyFeed");
+
   displayPosts();
+
  	setInterval(displayPosts, 10000);
+  
 });
 
 function displayPosts() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', '/display');
-  	
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('GET', '/display');
+    
   xhttp.onload = function() {
     var dailyPosts = JSON.parse(xhttp.responseText);
 
