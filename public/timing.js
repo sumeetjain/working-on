@@ -1,6 +1,6 @@
-window.dailyFeed = document.getElementById("dailyFeed");
-
 window.addEventListener("load", function(){
+  window.dailyFeed = document.getElementById("dailyFeed");
+
  	displayPosts();
 
  	setInterval(displayPosts, 10000);
