@@ -1,8 +1,12 @@
-# This class is for functionality related to ALL of a student's posts. That is,
-# one object/instance of this class is ALL of a student's posts.
+# TODO - Refactor this entire class to not be limited to only getting 
+#        collections of posts for a specific user and date. Let is be a more
+#        generic PostCollection creator.
+
+# This class is for functionality related to ALL of a student's posts for a
+# particular day. That is, one object/instance of this class is ALL of a 
+# student's posts for one day.
 
 class Posts
-	DATABASE = Database.new
 
 	# Initialize based on the requested search parameters (student posts by date)
 	def initialize(params)
@@ -12,7 +16,7 @@ class Posts
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = DATABASE.all_by("name", @student)
+		posts = $database.all_by("name", @student)
 	end
 
 	# TODO Can this be consolidated into one method, since Database has something similar?
