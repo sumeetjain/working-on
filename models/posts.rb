@@ -57,6 +57,7 @@ class Posts
 	def Posts.a_days_post_info(day=Time.now)
 		post_info = []
 		@posts = $database.by_day(day)
+		binding.pry
 		post_info = @posts.each {|row_string| post_info.push(row_string)}
 
 		# post_info.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])

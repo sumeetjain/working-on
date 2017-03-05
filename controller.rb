@@ -28,7 +28,7 @@ end
 get "/display" do
 
 	@dailyPosts = Posts.a_days_post_info
-
+	binding.pry
   # TODO Move all DB functionality into a model/service, e.g.:
   # @dailyPosts = Post.today
   
