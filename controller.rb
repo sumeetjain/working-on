@@ -27,7 +27,7 @@ end
 
 get "/display" do
 
-	@dailyPosts = $database.posts_today
+	@dailyPosts = Posts.posts_today
 
   # TODO Move all DB functionality into a model/service, e.g.:
   # @dailyPosts = Post.today
@@ -39,7 +39,7 @@ end
 #
 # Sends admin to getinfo page with their selected search params.
 get "/getinfo" do
-	@info = Posts.new(params)
-	@info = @info.get_posts_by_date
+	@info = Posts.new
+	@info = @info.sort_by_date(params[:day],params[:name])
   erb :getinfo
 end
