@@ -11,13 +11,12 @@ RSpec.describe(Database, '#get_items_by_header') do
   end
  end
 
- RSpec.describe(Database, '#posts_today') do
-    it("Loads data, specifically posts from today,from the storage CSV into an Array for use") do
+ RSpec.describe(Database, '#a_days_post_info') do
+    it("Gets CSV rows if they happened today, gets them ready for HTML") do
     # Setup
 
-
     # Exercise
-    $database = $database.posts_today
+    $database = $database.a_days_post_info
 
     # Verify
     expect($database.class == Array)

@@ -2,6 +2,8 @@
 
 class Database
 
+  HEADERS = ["time","interval","name","stressLevel","submission"]
+
   def initialize(file='./public/database.csv')
     @file = file
   end
@@ -15,6 +17,26 @@ class Database
     end
   end
 
+  # given a CSV row, build an array for that row based on headers
+  #
+  # returns array of arrays
+  def buildArrayByHeader(array_of_headers,this_row)
+    arrayBuilder = []
+    array_of_headers.each do |this_header|
+      arrayBuilder.push(this_row[this_header])
+    end
+    return arrayBuilder
+  end
+
+  # Splits CSV collection of strings to collection of Arrays
+  #
+  # TODO: think about how commas in the data affect this
+  def splitStrsToArrs(array_of_csv_strings)
+    array_of_csv_strings.each{|rowString| rowString.split(",")}
+  end
+
+  ## It would be nice perhaps to do a collection of key values instead
+
   # Get all rows through a particular filter if that filter returns true
   # 
   # Returns an Array of row Strings.
@@ -22,10 +44,10 @@ class Database
     list = []
     CSV.foreach(@file, {headers:true}) do |row|
       if filter.call(row) == true
-        list << row.to_s
+        list << buildArrayByHeader(HEADERS,row)
       end
     end
-
+    binding.pry
     return list
   end
 
@@ -45,7 +67,7 @@ class Database
   # a_day - a time object in Epoch format
   #
   # returns an array of CSV rows as strings
-  def day_is(a_day)
+  def by_day(a_day)
     filter = Proc.new {|row| Time.at(row["time"].to_i).yday == a_day.yday}
     all_filtered(filter)
   end
@@ -62,4 +84,5 @@ class Database
 
     return list.uniq
   end
+
 end

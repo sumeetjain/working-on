@@ -2,7 +2,6 @@
 #
 # Sets @login session variable to store student's name for repeat visits.
 get "/" do
-	binding.pry
 	@login = session["login"]
 	erb :index
 end
@@ -28,7 +27,7 @@ end
 
 get "/display" do
 
-	@dailyPosts = Posts.posts_today
+	@dailyPosts = Posts.a_days_post_info
 
   # TODO Move all DB functionality into a model/service, e.g.:
   # @dailyPosts = Post.today

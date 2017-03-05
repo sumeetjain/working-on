@@ -41,26 +41,26 @@ class Posts
 		return requested_posts
 	end
 
-	def posts_today_new()
-		today = Time.now.yday
-		today_posts = $database.all_by("time",today)
-	end
+    # For a collection of arrays, subtracts all but the indices of each array
+    #
+    #
+    def drop(indices)
 
-	###Searches through all rows, given time
+    end
+
+	# Gets CSV rows if they happened today, collects names, dates, and submissions
 	#
-	# given todays year day, compares whether day in row is same as today
-	### returns an array of name, format time, submission
-	# TODO Refactor this to use all_filtered.
-	def Posts.posts_today()
-		postCollection = []
-		todaysYearDay = Time.now.yday
-		CSV.foreach('./public/database.csv', {headers:true}) do |row|
-			rowEpoch = Time.at(row["time"].to_i)
-			if rowEpoch.yday == todaysYearDay
-				postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
-			end
-		end
+	# day - Time in EPOCH format.  default is Time.now
+	# 
+	# returns an array of arrays where an array element is
+	# name, format time, submission
+	def Posts.a_days_post_info(day=Time.now)
+		post_info = []
+		@posts = $database.by_day(day)
+		post_info = @posts.each {|row_string| post_info.push(row_string)}
 
-    return postCollection
+		# post_info.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
+
+    return post_info
 	end
 end
