@@ -14,7 +14,7 @@ html{
 
 body{
 	margin:0px;
-	background-color: rgb(227,27,35);
+	background-color: rgb(255,177,0);
 }
 
 input[type="radio"] {
@@ -30,7 +30,7 @@ input[type="radio"] {
 	text-align: center;
 }
 
-.thinbluebox{
+.thinBox{
 	border:solid;
 	border-color: black;
 	border-width:2px;
@@ -97,19 +97,20 @@ input[type="radio"] {
 		padding: 0 20px;
 	}
 
-	/*// TODO DRY this up, since other elements use at least some of these styles.*/
-	#topbar--submitButton {
-		vertical-align: top;
-		margin-top: 9px;
+	.submit-an--drop{
 		border : solid 2px #ffffff;
-		border-radius : 8px;
 		box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
-		font-size : 20px;
 		font-family: 'Open Sans', sans-serif;
 		color : #1946eb;
 		padding : 1px 10px;
 		background-color : #fff5f5;
+	}
 
+	#topbar--submitButton {
+		vertical-align: top;
+		margin-top: 9px;
+		border-radius : 8px;
+		font-size : 20px;
 }
 
 	.radio_button > input{
@@ -192,26 +193,25 @@ input[type="radio"] {
 	text-align: center;
 	margin-top: 10px;
 }
-/*// TODO DRY this up, since other elements use at least some of these styles.*/
-.dropBox{
-		border : solid 2px #ffffff;
+#dropBox{
 		border-radius : 15px;
-		box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
 		font-size : 15px;
-		font-family: 'Open Sans', sans-serif;
-		color : #1946eb;
-		padding : 1px 10px;
-		background-color : #fff5f5;
 }
-
-/*// TODO DRY this up, since other elements use at least some of these styles.*/
-.dropBox--submit{
-		border : solid 2px #ffffff;
+#dropBox--submit{
 		border-radius : 10px;
-		box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
 		font-size : 15px;
-		font-family: 'Open Sans', sans-serif;
-		color : #1946eb;
-		padding : 1px 10px;
-		background-color : #fff5f5;
+}
+.stickyTop{
+ 	position: fixed;
+	top: 0px;
+	left : 0px;
+	width: 100%;
+	background-color: rgb(25, 70, 235);
+	text-align: center;
+	border-bottom: solid;
+	border-color: silver;
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 20px;
 }
