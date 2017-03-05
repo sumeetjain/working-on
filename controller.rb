@@ -6,6 +6,11 @@ get "/" do
 	erb :index
 end
 
+get "/reset" do
+	session.delete("login")
+	erb :index
+end
+
 # Sends user submission info as params to the Submission class.
 #
 # Redirects back to homepage.

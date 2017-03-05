@@ -10,7 +10,6 @@ function getStressLevel() {
   xhr.onload = function() {
     var names = [];
     var time = []
-    var sLevel = [];
     response = JSON.parse(xhr.responseText);
     for (var x = 0; x < response.length; x++) {
       if (names.indexOf(response[x][0]) === -1) {
@@ -28,26 +27,34 @@ function getStressLevel() {
 }
 
 function drawChart(response, names, time) {
+  debugger;
   var data = new google.visualization.DataTable();
   data.addColumn('timeofday', 'Hour');
   for (var x = 0; x < names.length; x++) {
     data.addColumn('number', names[x]);
   }
 
-  var addArray = [];
-  for (var x = 0; x < time.length; x++) {
-    var new_time = parseInt(time[x]);
-    var formatted_time = [new_time + 6, 00, 0]
-    if (addArray.indexOf(formatted_time) === -1) {
-      addArray.push(formatted_time);
-    }
-    debugger;
-  }
-
-  // for (var x = 0, x < addArray.length; x++) {
-
+  // var addArray = [];
+  // for (var x = 0; x < time.length; x++) {
+  //   var new_time = parseInt(time[x]);
+  //   var formatted_time = [new_time + 6, 00, 0]
+  //   if (addArray.indexOf(formatted_time) === -1) {
+  //     addArray.push(formatted_time);
+  //   }
   // }
 
+  // var dataArray = [];
+  // for (var x = 0, x < response.length; x++) {
+  //   var name = response[x][0]
+  //   var time = [response[x][2] + 6, 00, 0];
+  //   for (var i = 0; i < addArray.length; i++) {
+  //     for (var j = 0; j < names.length; j++) {
+  //       if (name === names[j]) {
+
+  //       }
+  //     }
+  //   }
+  // }
 
   // data.addRows([
   //   [[16, 00, 0], 1],
@@ -59,6 +66,8 @@ function drawChart(response, names, time) {
   //   [[22, 00, 0], 3],
   //   [[23, 00, 0], 3]
   // ]);
+
+  data.google.visualization.arrayToDataTable(response, false);
 
   var options = {
   chart: {
