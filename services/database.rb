@@ -85,7 +85,7 @@ class Database
   # returns an Array of Arrays
   def by_day(a_day)
     filter = Proc.new {|row| Time.at(row["time"].to_i).yday == a_day.yday}
-    @rows = all_filtered(filter)
+    @rows = all_filtered(filter, method(:returnArray))
   end
 
   # Get all rows based on a requested header value

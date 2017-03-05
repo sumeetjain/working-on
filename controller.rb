@@ -20,7 +20,7 @@ end
 #
 # Builds dropdown menus of available student names and dates using the Submission class.
 get "/admin" do
-	@names = Submission.names
+  @names = Submission.names
   @dates = Submission.dates
   erb :admin
 end
@@ -28,7 +28,6 @@ end
 get "/display" do
 
 	@dailyPosts = Posts.a_days_post_info
-	binding.pry
   # TODO Move all DB functionality into a model/service, e.g.:
   # @dailyPosts = Post.today
   
