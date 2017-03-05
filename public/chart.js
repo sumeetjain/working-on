@@ -27,7 +27,6 @@ function getStressLevel() {
 }
 
 function drawChart(response, names, time) {
-  debugger;
   var data = new google.visualization.DataTable();
   data.addColumn('timeofday', 'Hour');
   for (var x = 0; x < names.length; x++) {
@@ -56,18 +55,16 @@ function drawChart(response, names, time) {
   //   }
   // }
 
-  // data.addRows([
-  //   [[16, 00, 0], 1],
-  //   [[17, 00, 0], 2],
-  //   [[18, 00, 0], 2],
-  //   [[19, 00, 0], 3],
-  //   [[20, 00, 0], 2],
-  //   [[21, 00, 0], 1],
-  //   [[22, 00, 0], 3],
-  //   [[23, 00, 0], 3]
-  // ]);
-
-  data.google.visualization.arrayToDataTable(response, false);
+  data.addRows([
+    [[16, 00, 0], 1, 1, 2, 1],
+    [[17, 00, 0], 2, 3, 2, 3],
+    [[18, 00, 0], 2, 2, 3, 1],
+    [[19, 00, 0], 3, 1, 2, 3],
+    [[20, 00, 0], 2, 3, 3, 1],
+    [[21, 00, 0], 1, 2, 2, 3],
+    [[22, 00, 0], 3, 1, 3, 1],
+    [[23, 00, 0], 3, 2, 2, 3]
+  ]);
 
   var options = {
   chart: {
@@ -79,6 +76,8 @@ function drawChart(response, names, time) {
   };
 
   var chart = new google.charts.Line(document.getElementById('chart'));
+  var test = data.toJSON();
+  debugger;
 
   chart.draw(data, options);
 }
