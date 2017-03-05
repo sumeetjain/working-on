@@ -17,34 +17,34 @@ class Database
     end
   end
 
+  # given a CSV row, build a hash for that row based on headers
+  #
+  # returns hash
+  def buildHashByHeaders(array_of_headers,this_row)
+    hashBuilder = {}
+    array_of_headers.each { |this_header| hashBuilder.merge!(this_header => this_row[this_header]) }
+    return hashBuilder
+  end
+
   # given a CSV row, build an array for that row based on headers
   #
   # returns array of arrays
-  def buildArrayByHeader(array_of_headers,this_row)
+  def buildArrayByHeaders(array_of_headers,this_row)
     arrayBuilder = []
-    array_of_headers.each do |this_header|
-      arrayBuilder.push(this_row[this_header])
-    end
+    array_of_headers.each { |this_header| arrayBuilder.push(this_row[this_header]) }
     return arrayBuilder
-  end
-
-  # Splits CSV collection of strings to collection of Arrays
-  #
-  # TODO: think about how commas in the data affect this
-  def splitStrsToArrs(array_of_csv_strings)
-    array_of_csv_strings.each{|rowString| rowString.split(",")}
   end
 
   ## It would be nice perhaps to do a collection of key values instead
 
   # Get all rows through a particular filter if that filter returns true
   # 
-  # Returns an Array of row Strings.
+  # Returns Array of Arrays
   def all_filtered(filter)
     list = []
     CSV.foreach(@file, {headers:true}) do |row|
       if filter.call(row) == true
-        list << buildArrayByHeader(HEADERS,row)
+        list << buildHashByHeaders(HEADERS,row)
       end
     end
     binding.pry
@@ -56,7 +56,7 @@ class Database
   # key   - String of the column header to filter on.
   # value - String of the value the column header must match.
   #
-  #returns an array of CSV rows as strings
+  #returns an Array of Arrays
   def all_by(key, value)
     filter = Proc.new { |row| row[key] == value }
     all_filtered(filter)
@@ -66,7 +66,7 @@ class Database
   #
   # a_day - a time object in Epoch format
   #
-  # returns an array of CSV rows as strings
+  # returns an Array of Arrays
   def by_day(a_day)
     filter = Proc.new {|row| Time.at(row["time"].to_i).yday == a_day.yday}
     all_filtered(filter)
