@@ -3,27 +3,23 @@
 		<button type="submit" class ="submit-an--drop" id="dropBox--submit">Back</button>
 	</form>
 
-	<% @info.each do |post|
-		# TODO Don't define any of these vars in the view.
-		postobject = Post.new
-		current_row = postobject.splitRow(post)
-		date = postobject.getDate(current_row)%>
+	<% @info.each do |post|%>
 		<div class ="post thinBox">
 			<div class = "postProfile">
-				<div class="postname"><%=current_row[2]%></div>
-				<div class="postdate"><%=date%></div>
+				<div class="postname"><%=Post.new.splitRow(post)[2]%></div>
+				<div class="postdate"><%=Post.new.getDate(Post.new.splitRow(post))%></div>
 			</div>
-			<div class="postsubmission"><span class="post_info">Time since previous post: <%=current_row[1]%><br>
+			<div class="postsubmission"><span class="post_info">Time since previous post: <%=Post.new.splitRow(post)[1]%><br>
 				Stress Level: 
-					<% if current_row[3] == "1" %>
+					<% if Post.new.splitRow(post)[3] == "1" %>
 						<i class="fa fa-smile-o" aria-hidden="true"></i>
-					<% elsif current_row[3] == "2" %>
+					<% elsif Post.new.splitRow(post)[3] == "2" %>
 						<i class="fa fa-meh-o" aria-hidden="true"></i>
-					<% elsif current_row[3] == "3" %>
+					<% elsif Post.new.splitRow(post)[3] == "3" %>
 						<i class="fa fa-frown-o" aria-hidden="true"></i>
 					<% end %>
 				</span><br>
-				<%=current_row[4]%>
+				<%=Post.new.splitRow(post)[4]%>
 			</div>
 		</div>
 	<%end%>
