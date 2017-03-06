@@ -1,9 +1,14 @@
 window.addEventListener("load", function(){
   window.dailyFeed = document.getElementById("dailyFeed");
+
   displayPosts();
- 	// setInterval(displayPosts, 10000);
+
+ 	setInterval(displayPosts, 10000);
 });
 
+//  sends request to server for data, parses array of daily posts to JSON
+//
+//  calls function to plug HTML into the page for all the posts in JSON
 function displayPosts() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('GET', '/display');

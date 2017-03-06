@@ -1,3 +1,5 @@
+# Contains all functionality for time formatting.
+
 class TimeFormatter
   def initialize(seconds)
     @seconds = seconds.to_i
@@ -13,7 +15,9 @@ class TimeFormatter
     Time.at(@seconds).strftime("%D")
   end
 
-  # TODO Document method.
+  # Converts array of EPOCH time into individual dates.
+  #
+  # Returns a unique list of available dates.
   def TimeFormatter.parseDates(array_of_epoch_time)
     list = array_of_epoch_time.map do |seconds|
       formatter = TimeFormatter.new(seconds)
