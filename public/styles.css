@@ -14,7 +14,7 @@ html{
 
 body{
 	margin:0px;
-	background-color: rgb(255,177,0);
+	background-color: rgba(241, 111, 0, 0.62);
 }
 
 input[type="radio"] {
@@ -85,10 +85,11 @@ input[type="radio"] {
 	.topbar--textarea {
 		margin-top: 5px;
 		margin-bottom: 5px;
+		padding:2px;
 		resize: none;
 		width: 100%;
 		border-radius: 5px;
-		border: solid 2px black;
+		border:none;
 	}
 
 	.topbar--submission_area{

@@ -1,9 +1,27 @@
-# Contains all functionality for interacting with the database.
+# Contains all functionality for interacting a file in the database.
+# operations on the CSV and on CSV rows
+
+# @rows - an array of CSV rows - default is all the rows from the file in an array
+# @file - the file location - default is database.csv
+# @headers - the headers of the CSV file given
 
 class Database
 
-  def initialize(file='./public/database.csv')
+  def initialize(file='./public/database.csv',rows = [])
     @file = file
+    if rows != []
+      @rows = rows
+    else
+      @rows = self.all
+    end
+    @headers = CSV.table(@file).headers().map {|i| i.to_s}
+  end
+
+  attr_accessor :file, :rows, :headers
+
+  def all(returnType = method(:returnRow))
+    filter = Proc.new { true }
+    return all_filtered(filter,returnType)
   end
 
   # Adds a row to the database.
@@ -15,44 +33,58 @@ class Database
     end
   end
 
-  # Get all rows through a particular filter.
+  # For a column header in @rows, modifies those values on filter
+  #
+  # returns @rows as an array of CSV rows
+  # def mod_column_entries(header, filter)
+  #   rows = @rows
+  #   rows.each {|row| filter.call(row[header].to_i)}
+  #   binding.pry
+  #   return rows
+  # end
+
+  def mod_column_entries(header, filter)
+    rows = @rows
+    rows.each {|row| row[header] = filter.call(row[header].to_i)}
+    binding.pry
+    return rows
+  end
+
+  # Get all rows through a particular filter if that filter returns true
+  #
+  # default return style is to return CSV Rows.  Can pass alternate paramaters: returnArray, returnHash
   # 
-  # key   - String of the column header to filter on.
-  # value - String of the value the column header must match.
-  # 
-  # Returns an Array of row Strings.
-  def all_filtered(filter)
+  # Returns Array of Arrays
+  def all_filtered(filter, returnType = method(:returnRow))
     list = []
     CSV.foreach(@file, {headers:true}) do |row|
       if filter.call(row) == true
-        list << row.to_s
+        list << returnType.call(@headers,row)
       end
     end
-
     return list
   end
 
+  #Given a particular key and value, filters csv rows where that columns entry = value
+  #
+  # key   - String of the column header to filter on.
+  # value - String of the value the column header must match.
+  #
+  #returns an Array of Arrays
   def all_by(key, value)
     filter = Proc.new { |row| row[key] == value }
-    all_filtered(filter)
+    @rows = all_filtered(filter)
   end
 
-  ###Searches through all rows, given time
+  # TODO This belongs in the posts class
+  # Given a time, filters csv based on the day value in time column
   #
-  # given todays year day, compares whether day in row is same as today
-  ### returns an array of name, format time, submission
-  # TODO Refactor this to use all_filtered.
-  def posts_today()
-    postCollection = []
-    todaysYearDay = Time.now.yday
-    CSV.foreach(@file, {headers:true}) do |row|
-      rowEpoch = Time.at(row["time"].to_i)
-      if rowEpoch.yday == todaysYearDay
-        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
-      end
-    end
-
-    return postCollection
+  # a_day - a time object in Epoch format
+  #
+  # returns an Array of Arrays
+  def by_day(a_day)
+    filter = Proc.new {|row| Time.at(row["time"].to_i).yday == a_day.yday}
+    @rows = all_filtered(filter, method(:returnArray))
   end
 
   # Get all rows based on a requested header value
@@ -67,4 +99,30 @@ class Database
 
     return list.uniq
   end
+
+  # TODO : The following methods need to be adjusted so that they cannot be called
+  # outside the class, but I am not sure how
+  #
+  # given a CSV row, build a hash for that row based on headers
+  #
+  # returns hash
+  def returnHash(arr_headers,csv_row)
+    hashBuilder = {}
+    arr_headers.each { |this_header| hashBuilder.merge!(this_header => csv_row[this_header]) }
+    return hashBuilder
+  end
+
+  # given a CSV csv_row, build an array for that csv_row based on headers
+  #
+  # returns array of arrays
+  def returnArray(arr_headers,csv_row)
+    arrayBuilder = []
+    arr_headers.each { |this_header| arrayBuilder.push(csv_row[this_header]) }
+    return arrayBuilder
+  end
+
+  def returnRow(arr_headers, csv_row)
+    return csv_row
+  end
+
 end

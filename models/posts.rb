@@ -7,34 +7,60 @@
 # student's posts for one day.
 
 class Posts
-	DATABASE = Database.new
 
 	# Initialize based on the requested search parameters (student posts by date)
-	def initialize(params)
-		@student = params[:student]
-		@day = params[:day]
+	# @posts = array of CSV rows
+	def initialize(post_collection=$database.all)
+		@posts = post_collection
 	end
 
-	# Get all posts of the requested student.
-	def get_requested_posts_by_name
-		posts = DATABASE.all_by("name", @student)
+	attr_accessor :posts
+
+	# Filter @posts for just the student_name
+	# @posts = array of CSV rows
+	def sort_by_name(student_name)
+		@posts = Database.new('./public/database.csv', @posts ).all_by("name", student_name)
 	end
 
-	# TODO Can this be consolidated into one method, since Database has something similar?
-	# Get all of the students' posts from the requested date.
+	# Filter @posts to posts of a provided day
 	#
-	# Returns an array of requested posts.
-	def get_posts_by_date
-		posts = get_requested_posts_by_name
-		requested_posts = []
-		posts.each do |date|
-			post_day = date.split(",")
-			post_day = post_day[0].to_i
-			post_day = Time.at(post_day).strftime("%D")
-			if post_day == @day
-				requested_posts << date
-			end
-		end
-		return requested_posts
+	# @posts = array of arrays with strings as elements.  
+	def sort_by_date(day = Time.now)
+		return Database.new('./public/database.csv', @posts).by_day(day)
+	end
+
+	# can't get this to work for some reason
+	def format_dates()
+		filter = Proc.new{ |val| TimeFormatter.parseDate(val) }
+		Database.new('./public/database.csv', @posts).mod_column_entries("time", filter)
+	end
+
+	# # TODO Can this be consolidated into one method, since Database has something similar?
+	# # Get all of the students' posts from the requested date.
+	# #
+	# # Returns an array of requested posts.
+	# def sort_by_date(given_day,student_name)
+	# 	posts = sort_by_name(student_name)
+	# 	requested_posts = []
+	# 	posts.each do |date|
+	# 		post_day = date.split(",")
+	# 		post_day = post_day[0].to_i
+	# 		post_day = Time.at(post_day).strftime("%D")
+	# 		if post_day == given_day
+	# 			requested_posts << date
+	# 		end
+	# 	end
+	# 	return requested_posts
+	# end
+
+	# Gets CSV rows if they happened today, collects names, dates, and submissions
+	#
+	# day - Time in EPOCH format.  default is Time.now
+	# 
+	# returns an array of arrays where an array element is
+	# name, format time, submission
+	def Posts.a_days_post_info(day=Time.now)
+		@posts = Database.new('./public/database.csv', @posts ).by_day(day)
+    return @posts
 	end
 end

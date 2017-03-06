@@ -1,6 +1,5 @@
 class Student
-  DATABASE = Database.new
-
+  
   def initialize(name)
     @name = name
   end
@@ -19,8 +18,7 @@ class Student
 
   # Returns the student's last submission row String.
   def last_submission
-    submissions = DATABASE.all_by("name", @name)
-
+    submissions = $database.all_by("name", @name)
     submissions.last
   end 
 
@@ -33,7 +31,7 @@ class Student
 
   # Returns Integer EPOCH time of last submission.
   def last_checkin_at
-    last_submission.split(",")[0].to_i
+    last_submission["time"].to_i
   end
 
   # Checks to see if last student submission was NOT today.

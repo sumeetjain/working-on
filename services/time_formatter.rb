@@ -9,6 +9,10 @@ class TimeFormatter
   # Removes duplicate date entries.
   #
   # Returns an Array of formatted dates.
+  def TimeFormatter.parseDate(seconds)
+    Time.at(seconds).strftime("%D")
+  end
+
   def parseDate
     Time.at(@seconds).strftime("%D")
   end
