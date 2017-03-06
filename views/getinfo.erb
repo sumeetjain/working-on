@@ -5,9 +5,9 @@
 
 	<% @info.each do |post|
 		# TODO Don't define any of these vars in the view.
-		current_row = post.split(",")
-		date = current_row[0].to_i
-		date = Time.at(date).strftime('%x %I:%M:%S%p') %>
+		postobject = Post.new
+		current_row = postobject.splitRow(post)
+		date = postobject.getDate(current_row)%>
 		<div class ="post thinBox">
 			<div class = "postProfile">
 				<div class="postname"><%=current_row[2]%></div>

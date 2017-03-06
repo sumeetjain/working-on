@@ -1,7 +1,6 @@
 class Submission
   
   DATABASE = Database.new
-
   # Create a submission.
   # 
   # params - Hash of attributes for the submission to be created.

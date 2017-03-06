@@ -20,7 +20,7 @@ class Student
   # Returns the student's last submission row String.
   def last_submission
     submissions = DATABASE.all_by("name", @name)
-
+    
     submissions.last
   end 
 

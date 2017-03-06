@@ -1,7 +1,6 @@
 # Contains all functionality for interacting with the database.
 
 class Database
-
   def initialize(file='./public/testibase.csv')
     @file = file
   end
