@@ -1,7 +1,3 @@
-# TODO - Refactor this entire class to not be limited to only getting 
-#        collections of posts for a specific user and date. Let is be a more
-#        generic PostCollection creator.
-
 # This class is for functionality related to ALL of a student's posts for a
 # particular day. That is, one object/instance of this class is ALL of a 
 # student's posts for one day.
@@ -42,15 +38,9 @@ class Posts
 	def Posts.today
 
 	    today_filter = Proc.new {|row| Time.at(row["time"].to_i).yday == Time.now.yday}
-	    $database.all_filtered(today_filter)
 
-	    # postCollection = []
-	    # CSV.foreach('./public/database.csv', {headers:true}) do |row|
-	    #   rowEpoch = Time.at(row["time"].to_i)
-	    #   if rowEpoch.yday == todaysYearDay
-	    #     postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
-	    #   end
-	    # end
+	    rows = $database.all_filtered(today_filter)
+	    rows.map {|row| row.split(",")}
 
 	end
 end
