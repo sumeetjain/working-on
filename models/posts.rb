@@ -42,7 +42,7 @@ class Posts
 	def Posts.today
 	    postCollection = []
 	    todaysYearDay = Time.now.yday
-	    CSV.foreach(@file, {headers:true}) do |row|
+	    CSV.foreach('./public/database.csv', {headers:true}) do |row|
 	      rowEpoch = Time.at(row["time"].to_i)
 	      if rowEpoch.yday == todaysYearDay
 	        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
