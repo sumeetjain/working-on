@@ -3,26 +3,24 @@
 		<button type="submit" class ="submit-an--drop" id="dropBox--submit">Back</button>
 	</form>
 
-	<% @info.each do |post|
-		post.each do |element| %>
+	<% @info.each do |post| %>
 		<div class ="post thinBox">
 			<div class = "postProfile">
-				<div class="postname"><%= element[0] %></div>
-				<div class="postdate"><%= element[1] %></div>
+				<div class="postname"><%= post[0] %></div>
+				<div class="postdate"><%= post[1] %></div>
 			</div>
-			<div class="postsubmission"><span class="post_info">Time since previous post: <%= element[2] %><br>
+			<div class="postsubmission"><span class="post_info">Time since previous post: <%= post[2] %><br>
 				Stress Level: 
-					<% if element[3] == "1" %>
+					<% if post[3] == "1" %>
 						<i class="fa fa-smile-o" aria-hidden="true"></i>
-					<% elsif element[3] == "2" %>
+					<% elsif post[3] == "2" %>
 						<i class="fa fa-meh-o" aria-hidden="true"></i>
-					<% elsif element[3] == "3" %>
+					<% elsif post[3] == "3" %>
 						<i class="fa fa-frown-o" aria-hidden="true"></i>
 					<% end %>
 				</span><br>
-				<%= element[4] %>
+				<%= post[4] %>
 			</div>
 		</div>
-	<%end%>
 	<%end%>
 </div>

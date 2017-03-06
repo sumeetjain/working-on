@@ -1,7 +1,7 @@
 require 'spec_helper.rb'
 require './services/database.rb'
 
-$database = Database.new("./spec/test_file/test_database.csv")
+$database = Database.new("./database/test/test_database.csv")
 
 require './services/time_formatter.rb'
 require './models/student.rb'

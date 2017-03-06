@@ -2,7 +2,7 @@
 
 class Database
 
-  def initialize(file='./public/database.csv')
+  def initialize(file='./database/database.csv')
     @file = file
   end
 
@@ -15,12 +15,13 @@ class Database
     end
   end
 
-  def get_all_data
-    list = []
-    CSV.foreach(@file, {headers:true}) do |row|
-      list << row
-    end
-    return list
+  # Returns all data in the CSV.
+  #
+  # Reurns an Array of row Strings.
+  def all
+    all_posts = []
+    CSV.foreach(@file, {headers:true}) { |row| all_posts << row.to_s }
+    return all_posts
   end
 
   # Get all rows through a particular filter.
@@ -37,17 +38,9 @@ class Database
     return list
   end
 
-  ###
   def all_by(key, value)
     filter = Proc.new { |row| row[key] == value }
     all_filtered(filter)
-  end
-
-  ###
-  def all
-    all_posts = []
-    CSV.foreach(@file, {headers:true}) { |row| all_posts << row.to_s }
-    return all_posts
   end
 
   # Get all rows based on a requested header value
