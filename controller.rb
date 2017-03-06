@@ -26,7 +26,8 @@ get "/admin" do
 end
 
 get "/display" do
-  @dailyPosts = Posts.today
+	binding.pry
+  @dailyPosts = Post.today
 	@dailyPosts.to_json
 end
 
