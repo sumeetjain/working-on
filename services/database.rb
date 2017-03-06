@@ -6,8 +6,6 @@
 
 class Database
 
-  HEADERS = ["time","interval","name","stressLevel","submission"]
-
   def initialize(file='./public/database.csv',rows = [])
     @file = file
     if rows != []
@@ -15,16 +13,10 @@ class Database
     else
       @rows = self.all
     end
+    @headers = CSV.table(@file).headers().map {|i| i.to_s}
   end
 
-  ## there is another syntax for these simple returns, but I don't recall it
-  def file
-    return @file
-  end
-
-  def rows
-    return @rows
-  end
+  attr_accessor :file, :rows, :headers
 
   def all(returnType = method(:returnRow))
     filter = Proc.new { true }
@@ -40,28 +32,6 @@ class Database
     end
   end
 
-  # given a CSV row, build a hash for that row based on headers
-  #
-  # returns hash
-  def returnHash(array_of_headers,this_row)
-    hashBuilder = {}
-    array_of_headers.each { |this_header| hashBuilder.merge!(this_header => this_row[this_header]) }
-    return hashBuilder
-  end
-
-  # given a CSV row, build an array for that row based on headers
-  #
-  # returns array of arrays
-  def returnArray(array_of_headers,this_row)
-    arrayBuilder = []
-    array_of_headers.each { |this_header| arrayBuilder.push(this_row[this_header]) }
-    return arrayBuilder
-  end
-
-  def returnRow(array_of_headers, this_row)
-    return this_row
-  end
-
   # Get all rows through a particular filter if that filter returns true
   #
   # default return style is to return CSV Rows.  Can pass alternate paramaters: returnArray, returnHash
@@ -71,7 +41,7 @@ class Database
     list = []
     CSV.foreach(@file, {headers:true}) do |row|
       if filter.call(row) == true
-        list << returnType.call(HEADERS,row)
+        list << returnType.call(@headers,row)
       end
     end
     return list
@@ -110,6 +80,31 @@ class Database
     CSV.foreach(@file, {headers:true}) { |row| list << row[header] }
 
     return list.uniq
+  end
+
+  # TODO : The following methods need to be adjusted so that they cannot be called
+  # outside the class, but I am not sure how
+  #
+  # given a CSV row, build a hash for that row based on headers
+  #
+  # returns hash
+  def returnHash(arr_headers,csv_row)
+    hashBuilder = {}
+    arr_headers.each { |this_header| hashBuilder.merge!(this_header => csv_row[this_header]) }
+    return hashBuilder
+  end
+
+  # given a CSV csv_row, build an array for that csv_row based on headers
+  #
+  # returns array of arrays
+  def returnArray(arr_headers,csv_row)
+    arrayBuilder = []
+    arr_headers.each { |this_header| arrayBuilder.push(csv_row[this_header]) }
+    return arrayBuilder
+  end
+
+  def returnRow(arr_headers, csv_row)
+    return csv_row
   end
 
 end
