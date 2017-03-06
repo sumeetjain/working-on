@@ -1,5 +1,15 @@
 # Contains all functionality for interacting with the database.
 
+# Here are some specific things the Database class should NOT know about:
+# 
+# 1. It should not have any hard-coded table names.
+# 2. It should not have any hard-coded column names.
+# 3. Even if a function in this class is only used once somewhere else, that 
+#    function should still be generically written so it could be used in other
+#    contexts. E.g. a `users_rows` function would be better as a 
+#    `rows_where_key_is_value(key, value)` function, since that satisfies the
+#    specific requirement and can be re-used in other contexts.
+
 class Database
 
   def initialize(file='./database/database.csv')

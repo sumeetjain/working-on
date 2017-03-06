@@ -17,9 +17,9 @@ end
 # Redirects back to homepage.
 post "/submit" do
 	session["login"] = params["name"]
-  	submission = Submission.new
-  	submission.create(params)
-  	redirect("/")
+	submission = Submission.new
+	submission.create(params)
+	redirect("/")
 end
 
 # Loads the admin page.
@@ -33,6 +33,9 @@ end
 
 # Front page display, gets all posts for current day and formats correctly.
 get "/display" do
+	# TODO Consider whether or not to use this instead:
+  # @dailyPosts = Post.today.to_json
+
 	dailyPosts = $database.all
 	todays_posts = Posts.new({:day=>Time.now.strftime("%D")}).get_requested_posts_by_date(dailyPosts)
 	@return_posts = Post.new(todays_posts).format_post_front_page

@@ -1,6 +1,7 @@
 # Contains all functionality relating to student tracking.
 
 class Student
+
   def initialize(name)
     @name = name
   end

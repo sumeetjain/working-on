@@ -1,6 +1,11 @@
+# This class is for functionality related to ALL of a student's posts for a
+# particular day. That is, one object/instance of this class is ALL of a 
+# student's posts for one day.
+
 # Contains all functionality relating to groupings of posts.
 
 class Posts
+
 	# Initialize based on the requested search parameters (student posts by date)
 	def initialize(params)
 		@student = params[:student]
