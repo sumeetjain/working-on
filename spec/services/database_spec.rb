@@ -1,4 +1,4 @@
- RSpec.describe(Database, '#all_by') do
+RSpec.describe(Database, '#all_by') do
     it("displays the last item in Database") do
         #all_by calls all_filtered, so this is inharently testing all_filtered.
         # Setup & Exercise
@@ -15,4 +15,4 @@
        # Verify
        expect(test).to eq(["Ben"])
     end     
-  end
+end
