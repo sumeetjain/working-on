@@ -3,7 +3,7 @@ require 'csv'
 require 'json'
 require './services/database.rb'
 
-$database = Database.new('./public/testibase.csv')
+$database = Database.new('./database/test/testibase.csv')
 
 require './services/time_formatter.rb'
 require './models/student.rb'
