@@ -26,7 +26,7 @@ get "/admin" do
 end
 
 get "/display" do
-  @dailyPosts = Post.today
+  @dailyPosts = Posts.today
   
 	@dailyPosts.to_json
 end

@@ -35,4 +35,7 @@ class Posts
 		end
 		return requested_posts
 	end
+
+	def Posts.today
+	end
 end
