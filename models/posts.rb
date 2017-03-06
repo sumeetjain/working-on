@@ -41,7 +41,7 @@ class Posts
 	# Returns an Array of posts.
 	def Posts.today
 
-	    today_filter = Proc.new {|row| row["time"].yday = Time.now.yday}
+	    today_filter = Proc.new {|row| Time.at(row["time"].to_i).yday == Time.now.yday}
 	    $database.all_filtered(today_filter)
 
 	    # postCollection = []
@@ -52,6 +52,5 @@ class Posts
 	    #   end
 	    # end
 
-	    return
 	end
 end
