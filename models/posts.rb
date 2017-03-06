@@ -7,8 +7,6 @@
 # student's posts for one day.
 
 class Posts
-	DATABASE = Database.new
-
 	# Initialize based on the requested search parameters (student posts by date)
 	def initialize(params)
 		@student = params[:student]
@@ -17,7 +15,8 @@ class Posts
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = DATABASE.all_by("name", @student)
+		binding.pry
+		posts = $database.all_by("name", @student)
 	end
 
 	# Get all of the students' posts from the requested date.

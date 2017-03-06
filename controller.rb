@@ -6,6 +6,7 @@ get "/" do
 	erb :index
 end
 
+# Temporary controller. Reserts the login session variable for testing.
 get "/reset" do
 	session.delete("login")
 	erb :index
@@ -31,7 +32,7 @@ get "/admin" do
 end
 
 get "/display" do
-	@dailyPosts = Database.new.posts_today
+	@dailyPosts = $database.posts_today
 
   # TODO Move all DB functionality into a model/service, e.g.:
   # @dailyPosts = Post.today
