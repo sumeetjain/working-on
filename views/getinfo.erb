@@ -4,6 +4,7 @@
 	</form>
 
 	<% @info.each do |post|%>
+	<% binding.pry%>
 		<div class ="post thinBox">
 			<div class = "postProfile">
 				<div class="postname"><%=Post.new.splitRow(post)[2]%></div>
