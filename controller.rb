@@ -26,11 +26,7 @@ get "/admin" do
 end
 
 get "/display" do
-
-	@dailyPosts = $database.posts_today
-
-  # TODO Move all DB functionality into a model/service, e.g.:
-  # @dailyPosts = Post.today
+  @dailyPosts = Post.today
   
 	@dailyPosts.to_json
 end
