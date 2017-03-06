@@ -40,6 +40,6 @@ end
 # Sends admin to getinfo page with their selected search params.
 get "/getinfo" do
 	@info = Posts.new(params)
-	@info = @info.get_posts_by_dates
+	@info = @info.get_posts_by_date
   erb :getinfo
 end
