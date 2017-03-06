@@ -37,5 +37,6 @@ class Posts
 	end
 
 	def Posts.today
+		$database.posts_today
 	end
 end
