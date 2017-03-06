@@ -71,21 +71,4 @@ class Database
 
     return list.uniq
   end
-
-  ###
-#   def stress_level_today()
-#     postCollection = []
-#     todaysYearDay = Time.now.yday
-#     CSV.foreach(@file, {headers:true}) do |row|
-#       rowEpoch = Time.at(row["time"].to_i)
-#       if rowEpoch.yday == todaysYearDay
-#         postCollection.push([row["name"],rowEpoch.strftime("%I"),row['stressLevel']])
-#       end
-#     end
-
-#     return postCollection
-#   end
-# end
-
-  def stress_level_today()
-    
+end

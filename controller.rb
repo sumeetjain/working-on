@@ -43,7 +43,3 @@ get "/getinfo" do
 	@info = @info.get_posts_by_date
   erb :getinfo
 end
-
-get "/stressLevel" do
-	@stressLevel = Database.new.stress_level_today.to_json
-end
