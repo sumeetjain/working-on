@@ -36,6 +36,9 @@ class Posts
 		return requested_posts
 	end
 
+	# Get all of today's posts.
+	# 
+	# Returns an Array of posts.
 	def Posts.today
 		$database.posts_today
 	end
