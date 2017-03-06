@@ -40,16 +40,6 @@ class Posts
 	# 
 	# Returns an Array of posts.
 	def Posts.today
-		$database.posts_today
-	end
-
-	
-	  ###Searches through all rows, given time
-	  #
-	  # given todays year day, compares whether day in row is same as today
-	  ### returns an array of name, format time, submission
-	  # TODO Refactor this to use all_filtered.
-	  def posts_today()
 	    postCollection = []
 	    todaysYearDay = Time.now.yday
 	    CSV.foreach(@file, {headers:true}) do |row|
@@ -60,5 +50,5 @@ class Posts
 	    end
 
 	    return postCollection
-	  end
+	end
 end
