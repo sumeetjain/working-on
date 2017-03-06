@@ -1,19 +1,25 @@
-RSpec.describe(Database, '#all_by') do
-	it("displays the last item in Database") do
-	  	#all_by calls all_filtered, so this is inharently testing all_filtered.
-	    # Setup & Exercise
-	    test = $database.all_by("name", "Ben")
-	    # Verify
-	    expect(test.last).to eq("1488668340,02:24:33,Ben,1,What is this dude talking about?\n")
-	end 	
-end
-
 RSpec.describe(Database, '#get_items_by_header') do
-	it("displays a list of unique headers") do
-	  
-	    # Setup & Exercise
-	    test = $database.get_items_by_header("name")
-	    # Verify
-	    expect(test).to eq(["Ben"])
-	end 	
+  it("creates an Array by loading all the unique items of a specific header catagory") do
+    # Setup
+    database = Database.new
+
+    # Exercise
+    database = database.get_items_by_header("name")
+
+    # Verify
+    expect(database.class == Array)
+  end
+ end
+
+ RSpec.describe(Database, '#posts_today') do
+    it("Loads data, specifically posts from today,from the storage CSV into an Array for use") do
+    # Setup
+    database = Database.new
+
+    # Exercise
+    database = database.posts_today
+
+    # Verify
+    expect(database.class == Array)
+  end
 end

@@ -55,9 +55,6 @@ input[type="radio"] {
 	align-items: center;
 	padding: 20px;
 }
-.topbar>*{
-	flex-basis: 33.3%;
-}
 
 	#imgOCS{
 		height: 90px;
@@ -86,7 +83,7 @@ input[type="radio"] {
 		margin-top: 5px;
 		margin-bottom: 5px;
 		resize: none;
-		width: 100%;
+		width: 80%;
 		border-radius: 5px;
 		border: solid 2px black;
 	}
@@ -111,7 +108,7 @@ input[type="radio"] {
 		margin-top: 9px;
 		border-radius : 8px;
 		font-size : 20px;
-}
+	}
 
 	.radio_button > input{
   		visibility: hidden;
@@ -151,6 +148,7 @@ input[type="radio"] {
 	font-size: 16px;
 	margin: 10px auto 0 auto;
 }
+
 .post{
 	display: flex;
 	flex-direction: row;
@@ -189,29 +187,31 @@ input[type="radio"] {
 	border-bottom: solid;
 	border-color: silver;
 }
+
 .dropBox--holder{
 	text-align: center;
 	margin-top: 10px;
 }
+
 #dropBox{
 		border-radius : 15px;
 		font-size : 15px;
 }
+
 #dropBox--submit{
 		border-radius : 10px;
 		font-size : 15px;
 }
-.stickyTop{
- 	position: fixed;
-	top: 0px;
-	left : 0px;
-	width: 100%;
-	background-color: rgb(25, 70, 235);
-	text-align: center;
-	border-bottom: solid;
-	border-color: silver;
-	display:flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 20px;
+
+/* Chart Containers */
+#chart {
+	position: relative;
+	border: 2px solid black;
+	right: -50%;
+}
+
+#chart_container {
+	position: absolute;
+	top: 30%;
+	right: 50%;
 }

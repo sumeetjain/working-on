@@ -2,7 +2,7 @@
 
 class Database
 
-  def initialize(file='./public/database.csv')
+  def initialize(file='./database/database.csv')
     @file = file
   end
 
@@ -15,10 +15,16 @@ class Database
     end
   end
 
+  # Returns all data in the CSV.
+  #
+  # Reurns an Array of row Strings.
+  def all
+    all_posts = []
+    CSV.foreach(@file, {headers:true}) { |row| all_posts << row.to_s }
+    return all_posts
+  end
+
   # Get all rows through a particular filter.
-  # 
-  # key   - String of the column header to filter on.
-  # value - String of the value the column header must match.
   # 
   # Returns an Array of row Strings.
   def all_filtered(filter)
@@ -35,24 +41,6 @@ class Database
   def all_by(key, value)
     filter = Proc.new { |row| row[key] == value }
     all_filtered(filter)
-  end
-
-  ###Searches through all rows, given time
-  #
-  # given todays year day, compares whether day in row is same as today
-  ### returns an array of name, format time, submission
-  # TODO Refactor this to use all_filtered.
-  def posts_today()
-    postCollection = []
-    todaysYearDay = Time.now.yday
-    CSV.foreach(@file, {headers:true}) do |row|
-      rowEpoch = Time.at(row["time"].to_i)
-      if rowEpoch.yday == todaysYearDay
-        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
-      end
-    end
-
-    return postCollection
   end
 
   # Get all rows based on a requested header value

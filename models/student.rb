@@ -1,3 +1,5 @@
+# Contains all functionality relating to student tracking.
+
 class Student
   def initialize(name)
     @name = name
@@ -18,6 +20,7 @@ class Student
   # Returns the student's last submission row String.
   def last_submission
     submissions = $database.all_by("name", @name)
+    
     submissions.last
   end 
 
