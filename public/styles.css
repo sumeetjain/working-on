@@ -14,6 +14,7 @@ html{
 
 body{
 	margin:0px;
+	background-color: rgb(255,177,0);
 }
 
 input[type="radio"] {
@@ -29,11 +30,19 @@ input[type="radio"] {
 	text-align: center;
 }
 
-.thinbluebox{
+.thinBox{
 	border:solid;
-	border-color: rgb(25, 70, 235);
+	border-color: black;
 	border-width:2px;
 	border-radius:2px;
+	background-color: white;
+
+}
+
+.blur {
+  box-shadow:
+    0 0 0 .5px hsl(0, 0%, 20%),
+    0 0 0 1px hsl(0, 0%, 40%);
 }
 
 .topbar {
@@ -88,21 +97,20 @@ input[type="radio"] {
 		padding: 0 20px;
 	}
 
-	#topbar--submitButton {
-		vertical-align: top;
-		margin-top: 9px;
+	.submit-an--drop{
 		border : solid 2px #ffffff;
-		border-radius : 8px;
-		moz-border-radius : 8px;
-		-webkit-box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
-		-moz-box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
 		box-shadow : inset 0px 0px 5px rgba(25,70,235,1.0);
-		font-size : 20px;
 		font-family: 'Open Sans', sans-serif;
 		color : #1946eb;
 		padding : 1px 10px;
 		background-color : #fff5f5;
+	}
 
+	#topbar--submitButton {
+		vertical-align: top;
+		margin-top: 9px;
+		border-radius : 8px;
+		font-size : 20px;
 }
 
 	.radio_button > input{
@@ -155,7 +163,6 @@ input[type="radio"] {
 	padding-left:10px;
 	font-size:15px;
 	width: 80%;
-/*	word-break:break-all;*/
 }
 
 .postProfile{
@@ -179,4 +186,32 @@ input[type="radio"] {
 
 .post_info {
 	font-size: 13px;
+	border-bottom: solid;
+	border-color: silver;
+}
+.dropBox--holder{
+	text-align: center;
+	margin-top: 10px;
+}
+#dropBox{
+		border-radius : 15px;
+		font-size : 15px;
+}
+#dropBox--submit{
+		border-radius : 10px;
+		font-size : 15px;
+}
+.stickyTop{
+ 	position: fixed;
+	top: 0px;
+	left : 0px;
+	width: 100%;
+	background-color: rgb(25, 70, 235);
+	text-align: center;
+	border-bottom: solid;
+	border-color: silver;
+	display:flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 20px;
 }

@@ -4,6 +4,7 @@ window.addEventListener("load", function() {
 
 google.charts.load('current', {'packages':['line']});
 
+<<<<<<< HEAD
 // function getStressLevel() {
 //   xhr = new XMLHttpRequest();
 //   xhr.open('GET', '/stressLevel');
@@ -53,6 +54,7 @@ function drawChart() {
   width: 700,
   height: 300
   };
+
   var chart = new google.charts.Line(document.getElementById('chart'));
   chart.draw(data, options);
 }

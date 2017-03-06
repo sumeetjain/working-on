@@ -16,9 +16,9 @@ end
 # Redirects back to homepage.
 post "/submit" do
 	session["login"] = params["name"]
-  submission = Submission.new
-  submission.create(params)
-  redirect("/")
+  	submission = Submission.new
+  	submission.create(params)
+  	redirect("/")
 end
 
 # Loads the admin page.
@@ -26,12 +26,17 @@ end
 # Builds dropdown menus of available student names and dates using the Submission class.
 get "/admin" do
 	@names = Submission.names
-  @dates = Submission.dates
-  erb :admin
+  	@dates = Submission.dates
+  	erb :admin
 end
 
 get "/display" do
+
 	@dailyPosts = Database.new.posts_today
+
+  # TODO Move all DB functionality into a model/service, e.g.:
+  # @dailyPosts = Post.today
+  
 	@dailyPosts.to_json
 end
 
@@ -40,6 +45,6 @@ end
 # Sends admin to getinfo page with their selected search params.
 get "/getinfo" do
 	@info = Posts.new(params)
-	@info = @info.get_posts_by_date
+	@info = @info.get_posts_by_dates
   erb :getinfo
 end
