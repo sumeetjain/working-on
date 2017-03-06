@@ -1,10 +1,4 @@
-# TODO - Refactor this entire class to not be limited to only getting 
-#        collections of posts for a specific user and date. Let is be a more
-#        generic PostCollection creator.
-
-# This class is for functionality related to ALL of a student's posts for a
-# particular day. That is, one object/instance of this class is ALL of a 
-# student's posts for one day.
+# Contains all functionality relating to groupings of posts.
 
 class Posts
 
@@ -14,24 +8,32 @@ class Posts
 		@day = params[:day]
 	end
 
+	# Splits array of posts passed in as array of strings into 2D array.
+	def split_post_strings(posts)
+		split_posts = []
+		posts.each do |post|
+			post = post.split(",")
+			split_posts << post
+		end
+		return split_posts
+	end
+
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
 		posts = $database.all_by("name", @student)
 	end
 
-	# TODO Can this be consolidated into one method, since Database has something similar?
 	# Get all of the students' posts from the requested date.
 	#
 	# Returns an array of requested posts.
-	def get_posts_by_date
-		posts = get_requested_posts_by_name
+	def get_requested_posts_by_date(posts)
+		posts = split_post_strings(posts)
 		requested_posts = []
-		posts.each do |date|
-			post_day = date.split(",")
-			post_day = post_day[0].to_i
+		posts.each do |post|
+			post_day = post[0].to_i
 			post_day = Time.at(post_day).strftime("%D")
 			if post_day == @day
-				requested_posts << date
+				requested_posts << post
 			end
 		end
 		return requested_posts

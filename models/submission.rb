@@ -1,3 +1,5 @@
+# Contains all functionality relating to the submission of update posts.
+
 class Submission
   # Create a submission.
   # 
