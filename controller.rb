@@ -44,9 +44,10 @@ end
 # Sends admin to getinfo page with their selected search params.
 get "/getinfo" do
 	@names = Submission.names
-  	@dates = Submission.dates
+  @dates = Submission.dates
 	posts = Posts.new(params)
-	posts = posts.get_requested_posts_by_name.get_requested_posts_by_date(posts)
+	posts = posts.get_requested_posts_by_name
+	posts_by_day = posts.get_requested_posts_by_date(posts)
 	@info = Post.new(posts).format_post_admin_page
-  	erb :getinfo, :layout => :admin_layout
+  erb :getinfo, :layout => :admin_layout
 end
