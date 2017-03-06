@@ -9,18 +9,27 @@
 class Posts
 
 	# Initialize based on the requested search parameters (student posts by date)
+	# @posts = array of CSV rows
 	def initialize(post_collection=$database.all)
 		@posts = post_collection
 	end
 
-	# Get all posts of the requested student.
+	# Filter @posts for just the student_name
+	# @posts = array of CSV rows
 	def sort_by_name(student_name)
 		@posts = Database.new('./public/database.csv', @posts ).all_by("name", student_name)
 	end
 
+	# Filter @posts to posts of a provided day
 	#
+	# @posts = array of arrays with strings as elements.  
 	def sort_by_date(day)
-		@posts = Database.new('./public/database.csv', @posts ).by_day(day)
+		return Database.new('./public/database.csv', @posts).by_day(day)
+	end
+
+	def format_dates()
+		filter = Proc.new{ |val| TimeFormatter.new(val["time"].to_i).parseDate }
+		Database.new('./public/database.csv', @posts).mod_column_entries("time", filter)
 	end
 
 	# # TODO Can this be consolidated into one method, since Database has something similar?
@@ -48,7 +57,6 @@ class Posts
 	# returns an array of arrays where an array element is
 	# name, format time, submission
 	def Posts.a_days_post_info(day=Time.now)
-		post_info = []
 		@posts = Database.new('./public/database.csv', @posts ).by_day(day)
     return @posts
 	end

@@ -31,7 +31,7 @@ end
 get "/display" do
 	# @dailyPosts = Posts.new.todays.fixdates.to_json
 	binding.pry
-	@dailyPosts = Posts.a_days_post_info.to_json
+	@dailyPosts = Posts.new.format_dates.sort_by_date(Time.now).to_json
 end
 
 # Sends these params into the Posts class to grab the requested posts for display.

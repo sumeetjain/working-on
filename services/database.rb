@@ -1,8 +1,9 @@
 # Contains all functionality for interacting a file in the database.
 # operations on the CSV and on CSV rows
 
-# @rows - an array of CSV rows
-# @file - the file location
+# @rows - an array of CSV rows - default is all the rows from the file in an array
+# @file - the file location - default is database.csv
+# @headers - the headers of the CSV file given
 
 class Database
 
@@ -30,6 +31,13 @@ class Database
     File.open(@file, 'a+') do |file|
       file << row
     end
+  end
+
+  # For a column header in @rows, modifies those values on filter
+  #
+  # returns @rows as an array of CSV rows
+  def mod_column_entries(header, filter)
+    @rows.map {|column_val| filter.call(column_val)}
   end
 
   # Get all rows through a particular filter if that filter returns true
