@@ -31,7 +31,7 @@ end
 get "/display" do
 	# @dailyPosts = Posts.new.todays.fixdates.to_json
 	binding.pry
-	@dailyPosts = Posts.new.format_dates.sort_by_date(Time.now).to_json
+	@dailyPosts = Posts.new.sort_by_date.to_json
 end
 
 # Sends these params into the Posts class to grab the requested posts for display.
@@ -39,6 +39,6 @@ end
 # Sends admin to getinfo page with their selected search params.
 get "/getinfo" do
 	@info = Posts.new
-	@info = @info.sort_by_date(params[:day],params[:name])
+	@info = @info.sort_by_date(params[:day].sort_by_name(:name))
   erb :getinfo
 end

@@ -14,6 +14,8 @@ class Posts
 		@posts = post_collection
 	end
 
+	attr_accessor :posts
+
 	# Filter @posts for just the student_name
 	# @posts = array of CSV rows
 	def sort_by_name(student_name)
@@ -23,12 +25,13 @@ class Posts
 	# Filter @posts to posts of a provided day
 	#
 	# @posts = array of arrays with strings as elements.  
-	def sort_by_date(day)
+	def sort_by_date(day = Time.now)
 		return Database.new('./public/database.csv', @posts).by_day(day)
 	end
 
+	# can't get this to work for some reason
 	def format_dates()
-		filter = Proc.new{ |val| TimeFormatter.new(val["time"].to_i).parseDate }
+		filter = Proc.new{ |val| TimeFormatter.parseDate(val) }
 		Database.new('./public/database.csv', @posts).mod_column_entries("time", filter)
 	end
 

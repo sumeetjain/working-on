@@ -36,8 +36,18 @@ class Database
   # For a column header in @rows, modifies those values on filter
   #
   # returns @rows as an array of CSV rows
+  # def mod_column_entries(header, filter)
+  #   rows = @rows
+  #   rows.each {|row| filter.call(row[header].to_i)}
+  #   binding.pry
+  #   return rows
+  # end
+
   def mod_column_entries(header, filter)
-    @rows.map {|column_val| filter.call(column_val)}
+    rows = @rows
+    rows.each {|row| row[header] = filter.call(row[header].to_i)}
+    binding.pry
+    return rows
   end
 
   # Get all rows through a particular filter if that filter returns true
