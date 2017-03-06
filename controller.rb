@@ -31,13 +31,12 @@ get "/admin" do
   	erb :admin, :layout => :admin_layout
 end
 
+# Front page display, gets all posts for current day and formats correctly.
 get "/display" do
-	@dailyPosts = $database.posts_today
-
-  # TODO Move all DB functionality into a model/service, e.g.:
-  # @dailyPosts = Post.today
-  
-	@dailyPosts.to_json
+	dailyPosts = $database.all
+	todays_posts = Posts.new({:day=>Time.now.yday}).get_requested_posts_by_date(dailyPosts)
+	@return_posts = Post.new(todays_posts).format_post_front_page
+	@return_posts.to_json
 end
 
 # Sends these params into the Posts class to grab the requested posts for display.
@@ -46,7 +45,8 @@ end
 get "/getinfo" do
 	@names = Submission.names
   	@dates = Submission.dates
-	@info = Posts.new(params)
-	@info = @info.get_posts_by_date
+	posts = Posts.new(params)
+	posts = posts.get_requested_posts_by_name.get_requested_posts_by_date(posts)
+	@info = Post.new(posts).format_post_admin_page
   	erb :getinfo, :layout => :admin_layout
 end
