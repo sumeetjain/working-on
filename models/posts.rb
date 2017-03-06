@@ -15,7 +15,6 @@ class Posts
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		binding.pry
 		posts = $database.all_by("name", @student)
 	end
 
