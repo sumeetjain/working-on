@@ -40,15 +40,18 @@ class Posts
 	# 
 	# Returns an Array of posts.
 	def Posts.today
-	    postCollection = []
-	    todaysYearDay = Time.now.yday
-	    CSV.foreach('./public/database.csv', {headers:true}) do |row|
-	      rowEpoch = Time.at(row["time"].to_i)
-	      if rowEpoch.yday == todaysYearDay
-	        postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
-	      end
-	    end
 
-	    return postCollection
+	    today_filter = Proc.new {|row| row["time"].yday = Time.now.yday}
+	    $database.all_filtered(today_filter)
+
+	    # postCollection = []
+	    # CSV.foreach('./public/database.csv', {headers:true}) do |row|
+	    #   rowEpoch = Time.at(row["time"].to_i)
+	    #   if rowEpoch.yday == todaysYearDay
+	    #     postCollection.push([row["name"],rowEpoch.strftime("%m/%d @ %I:%M%p"), row["submission"]])
+	    #   end
+	    # end
+
+	    return
 	end
 end
