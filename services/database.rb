@@ -1,15 +1,23 @@
-# Contains all functionality for interacting with the database.
+# Contains all functionality for interacting a file in the database.
 # operations on the CSV and on CSV rows
+
+# @rows - an array of CSV rows
+# @file - the file location
 
 class Database
 
   HEADERS = ["time","interval","name","stressLevel","submission"]
 
-  def initialize(file='./public/database.csv')
+  def initialize(file='./public/database.csv',rows = [])
     @file = file
-    @rows = self.all
+    if rows != []
+      @rows = rows
+    else
+      @rows = self.all
+    end
   end
 
+  ## there is another syntax for these simple returns, but I don't recall it
   def file
     return @file
   end
@@ -18,9 +26,9 @@ class Database
     return @rows
   end
 
-  def all
+  def all(returnType = method(:returnRow))
     filter = Proc.new { true }
-    return all_filtered(filter)
+    return all_filtered(filter,returnType)
   end
 
   # Adds a row to the database.
@@ -55,6 +63,8 @@ class Database
   end
 
   # Get all rows through a particular filter if that filter returns true
+  #
+  # default return style is to return CSV Rows.  Can pass alternate paramaters: returnArray, returnHash
   # 
   # Returns Array of Arrays
   def all_filtered(filter, returnType = method(:returnRow))
@@ -78,7 +88,8 @@ class Database
     @rows = all_filtered(filter)
   end
 
-  #Given a time, filters csv based on the day value in time column
+  # TODO This belongs in the posts class
+  # Given a time, filters csv based on the day value in time column
   #
   # a_day - a time object in Epoch format
   #

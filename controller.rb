@@ -10,7 +10,7 @@ end
 #
 # Redirects back to homepage.
 post "/submit" do
-	session["login"] = params["name"]
+  session["login"] = params["name"]
   submission = Submission.new
   submission.create(params)
   redirect("/")
@@ -25,13 +25,13 @@ get "/admin" do
   erb :admin
 end
 
+# request from JS to get this for displaying todays posts
+#
+# 
 get "/display" do
-
-	@dailyPosts = Posts.a_days_post_info
-  # TODO Move all DB functionality into a model/service, e.g.:
-  # @dailyPosts = Post.today
-  
-	@dailyPosts.to_json
+	# @dailyPosts = Posts.new.todays.fixdates.to_json
+	binding.pry
+	@dailyPosts = Posts.a_days_post_info.to_json
 end
 
 # Sends these params into the Posts class to grab the requested posts for display.
