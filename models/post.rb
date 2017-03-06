@@ -27,7 +27,7 @@ class Post
 		post_array = []
 		@posts.each do |post|
 			formatted_time = post[0].to_i
-			formatted_time = Time.at(formatted_time).strftime("%x %I:%M:&S%p")
+			formatted_time = Time.at(formatted_time).strftime("%x %I:%M%p")
 			post_array.push([post[2], formatted_time, post[1], post[3], post[4]])
 		end
 		return post_array
