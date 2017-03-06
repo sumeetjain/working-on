@@ -1,24 +1,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="chart.js"></script>
 
-<p>
-<form method="get" action="/getinfo" class= "dropBox--holder">
-	<select name="student" class="submit-an--drop" id="dropBox">
-		<% @names.each do |name| %>
-		<option value=<%= name %>><%=name%></option>
-		<% end %>
-	</select>
-
-	<select name="day" class ="submit-an--drop" id ="dropBox">
-		<% @dates.each do |date| %>
-		<option value=<%= date %>><%=date%></option>
-		<% end %>
-	</select>
-
-	<button type="submit" class="submit-an--drop" id="dropBox--submit">Show Information</button>
-</form>
-</p>
-
-<p>
-<div id="chart"></div>
-</p>
+<div id="chart_container">
+	<div id="chart"></div>
+</div>

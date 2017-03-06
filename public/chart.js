@@ -4,7 +4,6 @@ window.addEventListener("load", function() {
 
 google.charts.load('current', {'packages':['line']});
 
-<<<<<<< HEAD
 // function getStressLevel() {
 //   xhr = new XMLHttpRequest();
 //   xhr.open('GET', '/stressLevel');
