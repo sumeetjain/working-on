@@ -5,14 +5,14 @@
 
 # -----------------------------------------------------------------------------
 
+# require "pg"
 
+# # # When you need to set up the database, just UNCOMMENT the below.
+# # # # Remember to comment it back out when you're done.
 
-# # When you need to set up the database, just UNCOMMENT the below.
-# # Remember to comment it back out when you're done.
-
-# conn = PG.connect( dbname: 'postgres' )
-# conn.exec("CREATE DATABASE working_on_development")
-# conn.exec("CREATE DATABASE working_on_test")
+# # conn = PG.connect( dbname: 'postgres' )
+# # conn.exec("CREATE DATABASE working_on_development")
+# # conn.exec("CREATE DATABASE working_on_test")
 
 # conn = PG.connect( dbname: 'working_on_development' )
 

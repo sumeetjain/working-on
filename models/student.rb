@@ -9,7 +9,7 @@ class Student
   # Gets the time of the student's last checkin.
   # 
   # Returns Integer EPOCH time.
-  def last_submission_at    
+  def last_submission_at 
     if last_submission.nil? || last_submission_was_not_today?
       return "first_of_day"
     else
@@ -21,7 +21,7 @@ class Student
   # Returns the student's last submission row String.
   def last_submission
     submissions = $database.all_by("name", @name)
-    
+    binding.pry
     submissions.last
   end 
 
@@ -34,7 +34,7 @@ class Student
 
   # Returns Integer EPOCH time of last submission.
   def last_checkin_at
-    last_submission.split(",")[0].to_i
+    last_submission.split(",")[1].to_i
   end
 
   # Checks to see if last student submission was NOT today.

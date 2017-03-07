@@ -38,20 +38,24 @@ class Database
   # Get all rows through a particular filter.
   # 
   # Returns an Array of row Strings.
-  def all_filtered(filter)
-    list = []
-    CSV.foreach(@file, {headers:true}) do |row|
-      if filter.call(row) == true
-        list << row.to_s
-      end
-    end
+  # def all_filtered(filter)
+  #   list = []
+  #   CSV.foreach(@file, {headers:true}) do |row|
+  #     if filter.call(row) == true
+  #       list << row.to_s
+  #     end
+  #   end
 
-    return list
-  end
+  #   return list
+  # end
 
   def all_by(key, value)
-    filter = Proc.new { |row| row[key] == value }
-    all_filtered(filter)
+    list = []
+    all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
+    all_posts.each do |row|
+      list << row.values.join(",")
+    end
+    return list
   end
 
   # Get all rows based on a requested header value
@@ -61,8 +65,7 @@ class Database
   # Returns an Array of Strings.
   def get_items_by_header(header)
     list = []
-
-    CSV.foreach(@file, {headers:true}) { |row| list << row[header] }
+    all_items = @conn.exec("SELECT #{header} FROM submissons WHERE **")
 
     return list.uniq
   end
