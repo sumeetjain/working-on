@@ -4,13 +4,16 @@ class Student
 
   def initialize(name)
     @name = name
+    @conn = PG.connect( dbname: 'working_on_development' )
   end
 
   # adds name of student to our student table
   #
   # only adds if the name is unique
   def addname
-    
+    binding.pry
+    student_name =@name
+    @conn.exec("INSERT INTO students (name) VALUES(#{@name})")
   end
 
   # Gets the time of the student's last checkin.
