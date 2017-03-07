@@ -5,9 +5,10 @@ class Submission
   # 
   # params - Hash of attributes for the submission to be created.
   #
-  # Finds time differene between current post and previous post in EPOCH time.
+  # Finds time difference between current post and previous post in EPOCH time.
   def create(params)
     student = Student.new(params[:name])
+    student.addname
     new_submission = "'#{Time.now.strftime("%x")}','#{Time.now.to_i}','#{student.last_submission_at}','#{params[:name]}','#{params[:stressLevel]}','#{params[:submission]}'"
     $database.add(new_submission)
   end

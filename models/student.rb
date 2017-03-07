@@ -6,6 +6,13 @@ class Student
     @name = name
   end
 
+  # adds name of student to our student table
+  #
+  # only adds if the name is unique
+  def addname
+    
+  end
+
   # Gets the time of the student's last checkin.
   # 
   # Returns Integer EPOCH time.
