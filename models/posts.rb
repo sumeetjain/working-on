@@ -34,7 +34,7 @@ class Posts
 		posts = split_post_strings(posts)
 		requested_posts = []
 		posts.each do |post|
-			post_day = post[0].to_i
+			post_day = post[1].to_i
 			post_day = Time.at(post_day).strftime("%D")
 			if post_day == @day
 				requested_posts << post
