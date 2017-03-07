@@ -35,6 +35,9 @@ class Database
     return post_array
   end
 
+  # Returns all data from the database based on a key, value pair.
+  #
+  # Returns an Array of row Strings.
   def all_by(key, value)
     list = []
     all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
