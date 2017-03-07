@@ -5,7 +5,7 @@
 
 # -----------------------------------------------------------------------------
 
-# require "pg"
+
 
 # # When you need to set up the database, just UNCOMMENT the below.
 # # Remember to comment it back out when you're done.

@@ -18,23 +18,21 @@ class Database
 
   # Adds a row to the database.
   # 
-  # row - String to append.
+  # row - String to append. "nama, sekng, kjg"
   def add(row)
-    # @conn.exec("INSERT INTO submissions (date, time, name, stressLevel) VALUES ('11-23-17', '14:36', 'Beth Haubert', 2)")
-
-    File.open(@file, 'a+') do |file|
-      file << row
-    end
+    @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
   end
 
   # Returns all data in the CSV.
   #
   # Reurns an Array of row Strings.
   def all
-    # results = @conn.exec("SELECT * FROM submissions").to_a
-    all_posts = []
-    CSV.foreach(@file, {headers:true}) { |row| all_posts << row.to_s }
-    return all_posts
+    all_posts = @conn.exec("SELECT * FROM submissions")
+    post_array = []
+    all_posts.each do |row| 
+      post_array.push(row.values.join(","))
+    end
+    return post_array
   end
 
   # Get all rows through a particular filter.
