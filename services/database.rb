@@ -18,7 +18,7 @@ class Database
 
   # Adds a row to the database.
   # 
-  # row - String to append. "nama, sekng, kjg"
+  # row - String to append.
   def add(row)
     @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
   end
@@ -35,7 +35,7 @@ class Database
     return list
   end
 
-  # Get all rows based on a requested header value
+  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
   #
   # Removes duplicate entries.
   #
