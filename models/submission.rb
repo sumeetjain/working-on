@@ -8,13 +8,18 @@ class Submission
   # Finds time differene between current post and previous post in EPOCH time.
   def create(params)
     student = Student.new(params[:name])
-    new_submission = "#{Time.now.strftime("%x")},#{Time.now.to_i},#{student.last_submission_at},#{params[:name]},#{params[:stressLevel]},#{params[:submission]}\n"
+    new_submission = "'#{Time.now.strftime("%x")}','#{Time.now.to_i}','#{student.last_submission_at}','#{params[:name]}',#{params[:stressLevel]},'#{params[:submission]}'"
     $database.add(new_submission)
   end
 
   # Gets all names available in database.
   def Submission.names
-    $database.get_items_by_header("name")
+    names = $database.get_items_by_header("name")
+    newnames = []
+    names.each do |name|
+      newnames << name[0]
+    end
+    return newnames
   end
 
   # Gets all dates available in database in EPOCH time.

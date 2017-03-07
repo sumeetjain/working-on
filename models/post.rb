@@ -24,6 +24,7 @@ class Post
 	def format_post_front_page
 		post_array = []
 		@posts.each do |post|
+			post = post.split(",")
 			formatted_time = post[1].to_i
 			formatted_time = Time.at(formatted_time).strftime("%m/%d @ %I:%M%p")
 			post_array.push([post[3],formatted_time,post[5]])

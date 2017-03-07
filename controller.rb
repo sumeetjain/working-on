@@ -27,18 +27,14 @@ end
 # Builds dropdown menus of available student names and dates using the Submission class.
 get "/admin" do
 	@names = Submission.names
-  @dates = Submission.dates
-  erb :admin, :layout => :admin_layout
+  	@dates = Submission.dates
+  	erb :admin, :layout => :admin_layout
 end
 
 # Front page display, gets all posts for current day and formats correctly.
 get "/display" do
-	# TODO Consider whether or not to use this instead:
-  # @dailyPosts = Post.today.to_json
-
-	dailyPosts = $database.all
-	todays_posts = Posts.new({:day=>Time.now.strftime("%D")}).get_requested_posts_by_date(dailyPosts)
-	@return_posts = Post.new(todays_posts).format_post_front_page
+	dailyPosts = $database.all_by("date", Time.now.strftime("%D"))
+	@return_posts = Post.new(dailyPosts).format_post_front_page
 	@return_posts.to_json
 end
 

@@ -12,45 +12,39 @@
 
 class Database
 
-  def initialize(file='./database/database.csv')
-    @file = file
+  def initialize(db_name='working_on_development')
+    @conn = PG.connect( dbname: db_name )
   end
 
   # Adds a row to the database.
   # 
-  # row - String to append.
+  # row - String to append. "nama, sekng, kjg"
   def add(row)
-    File.open(@file, 'a+') do |file|
-      file << row
-    end
+    @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
   end
 
   # Returns all data in the CSV.
   #
   # Reurns an Array of row Strings.
   def all
-    all_posts = []
-    CSV.foreach(@file, {headers:true}) { |row| all_posts << row.to_s }
-    return all_posts
-  end
-
-  # Get all rows through a particular filter.
-  # 
-  # Returns an Array of row Strings.
-  def all_filtered(filter)
-    list = []
-    CSV.foreach(@file, {headers:true}) do |row|
-      if filter.call(row) == true
-        list << row.to_s
-      end
+    all_posts = @conn.exec("SELECT * FROM submissions")
+    post_array = []
+    all_posts.each do |row| 
+      post_array.push(row.values.join(","))
     end
-
-    return list
+    return post_array
   end
 
+  # Returns all data from the database based on a key, value pair.
+  #
+  # Returns an Array of row Strings.
   def all_by(key, value)
-    filter = Proc.new { |row| row[key] == value }
-    all_filtered(filter)
+    list = []
+    all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
+    all_posts.each do |row|
+      list << row.values.join(",")
+    end
+    return list
   end
 
   # Get all rows based on a requested header value
@@ -60,9 +54,10 @@ class Database
   # Returns an Array of Strings.
   def get_items_by_header(header)
     list = []
-
-    CSV.foreach(@file, {headers:true}) { |row| list << row[header] }
-
+    all_items = @conn.exec("SELECT #{header} FROM submissions")
+    all_items.each do |row|
+      list << row.values
+    end
     return list.uniq
   end
 end

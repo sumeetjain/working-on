@@ -2,7 +2,11 @@
 
 class TimeFormatter
   def initialize(seconds)
-    @seconds = seconds.to_i
+    if seconds.kind_of?(Array)
+      @seconds = seconds[0].to_i
+    else
+      @seconds = seconds.to_i
+    end
   end
 
   # Accepts an Array of all dates available. Dates are in EPOCH integer format.
@@ -33,6 +37,8 @@ class TimeFormatter
   # 
   # Returns String of the time amount as HH:MM:SS.
   def time_as_hms
-    Time.at(@seconds).utc.strftime("%H:%M:%S")
+    t = Time.at(@seconds).utc.strftime("%H:%M:%S")
+    binding.pry
+    return t
   end
 end
