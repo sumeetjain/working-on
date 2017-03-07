@@ -14,7 +14,7 @@ html{
 
 body{
 	margin:0px;
-	background-color: rgb(255,177,0);
+	background-color: rgba(241, 111, 0, 0.62);
 }
 
 input[type="radio"] {

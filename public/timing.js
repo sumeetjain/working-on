@@ -19,7 +19,7 @@ function displayPosts() {
     dailyFeed.innerHTML = "";
     
     for (x = 0; x < dailyPosts.length; x++) {
-      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts[x][2] + "</div><div class=\"postdate\">" + dailyPosts[x][0] + "</div></div><div class=\"postsubmission\">" + dailyPosts[x][4] + "</div></div></div>";
+      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts[x][0] + "</div><div class=\"postdate\">" + dailyPosts[x][1] + "</div></div><div class=\"postsubmission\">" + dailyPosts[x][2] + "</div></div></div>";
 
     dailyFeed.insertAdjacentHTML("afterbegin", html);
     }
