@@ -35,20 +35,6 @@ class Database
     return post_array
   end
 
-  # Get all rows through a particular filter.
-  # 
-  # Returns an Array of row Strings.
-  # def all_filtered(filter)
-  #   list = []
-  #   CSV.foreach(@file, {headers:true}) do |row|
-  #     if filter.call(row) == true
-  #       list << row.to_s
-  #     end
-  #   end
-
-  #   return list
-  # end
-
   def all_by(key, value)
     list = []
     all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
@@ -65,8 +51,10 @@ class Database
   # Returns an Array of Strings.
   def get_items_by_header(header)
     list = []
-    all_items = @conn.exec("SELECT #{header} FROM submissons WHERE **")
-
+    all_items = @conn.exec("SELECT #{header} FROM submissions")
+    all_items.each do |row|
+      list << row.values
+    end
     return list.uniq
   end
 end

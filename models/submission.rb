@@ -14,7 +14,12 @@ class Submission
 
   # Gets all names available in database.
   def Submission.names
-    $database.get_items_by_header("name")
+    names = $database.get_items_by_header("name")
+    newnames = []
+    names.each do |name|
+      newnames << name[0]
+    end
+    return newnames
   end
 
   # Gets all dates available in database in EPOCH time.

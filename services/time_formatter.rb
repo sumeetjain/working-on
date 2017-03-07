@@ -2,7 +2,7 @@
 
 class TimeFormatter
   def initialize(seconds)
-    @seconds = seconds.to_i
+    @seconds = seconds[0].to_i
   end
 
   # Accepts an Array of all dates available. Dates are in EPOCH integer format.

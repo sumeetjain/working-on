@@ -21,7 +21,6 @@ class Student
   # Returns the student's last submission row String.
   def last_submission
     submissions = $database.all_by("name", @name)
-    binding.pry
     submissions.last
   end 
 
