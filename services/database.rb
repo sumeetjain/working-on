@@ -12,14 +12,16 @@
 
 class Database
 
-  def initialize(file='./database/database.csv')
-    @file = file
+  def initialize(db_name='working_on_development')
+    @conn = PG.connect( dbname: db_name )
   end
 
   # Adds a row to the database.
   # 
   # row - String to append.
   def add(row)
+    # @conn.exec("INSERT INTO submissions (date, time, name, stressLevel) VALUES ('11-23-17', '14:36', 'Beth Haubert', 2)")
+
     File.open(@file, 'a+') do |file|
       file << row
     end
@@ -29,6 +31,7 @@ class Database
   #
   # Reurns an Array of row Strings.
   def all
+    # results = @conn.exec("SELECT * FROM submissions").to_a
     all_posts = []
     CSV.foreach(@file, {headers:true}) { |row| all_posts << row.to_s }
     return all_posts

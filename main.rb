@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pg'
 require 'pry'
 require 'csv'
 require 'json'
