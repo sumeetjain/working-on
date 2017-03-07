@@ -18,21 +18,9 @@ class Database
 
   # Adds a row to the database.
   # 
-  # row - String to append. "nama, sekng, kjg"
+  # row - String to append.
   def add(row)
     @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
-  end
-
-  # Returns all data in the CSV.
-  #
-  # Reurns an Array of row Strings.
-  def all
-    all_posts = @conn.exec("SELECT * FROM submissions")
-    post_array = []
-    all_posts.each do |row| 
-      post_array.push(row.values.join(","))
-    end
-    return post_array
   end
 
   # Returns all data from the database based on a key, value pair.
@@ -47,7 +35,7 @@ class Database
     return list
   end
 
-  # Get all rows based on a requested header value
+  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
   #
   # Removes duplicate entries.
   #
@@ -59,5 +47,17 @@ class Database
       list << row.values
     end
     return list.uniq
+  end
+
+  # Returns all data in the database. ** NOT CURRENTLY USED
+  # 
+  # Reurns an Array of row Strings.
+  def all
+    all_posts = @conn.exec("SELECT * FROM submissions")
+    post_array = []
+    all_posts.each do |row| 
+      post_array.push(row.values.join(","))
+    end
+    return post_array
   end
 end

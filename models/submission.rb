@@ -1,4 +1,4 @@
-# Contains all functionality relating to the submission of update posts.
+# Contains all functionality relating to the submission of posts.
 
 class Submission
   # Create a submission.
@@ -13,6 +13,8 @@ class Submission
   end
 
   # Gets all names available in database.
+  #
+  # Used for printing out list of available names to search in dropdown box on Admin page.
   def Submission.names
     names = $database.get_items_by_header("name")
     newnames = []
@@ -25,6 +27,8 @@ class Submission
   # Gets all dates available in database in EPOCH time.
   #
   # Converts EPOCH integer to MM/DD/YY.
+  #
+  # Used for printing out list of available dates to search in dropdown box on Admin page.
   def Submission.dates
     array = $database.get_items_by_header("time")
     TimeFormatter.parseDates(array)

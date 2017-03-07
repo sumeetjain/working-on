@@ -29,7 +29,7 @@ class Posts
 
 	# Get all of the students' posts from the requested date.
 	#
-	# Returns an array of requested posts.
+	# Returns an Array of row strings containing requested posts.
 	def get_requested_posts_by_date(posts)
 		posts = split_post_strings(posts)
 		requested_posts = []

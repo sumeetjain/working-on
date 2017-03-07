@@ -2,7 +2,9 @@
 
 class Post
 
-	# Initializes the Post class with an inputted Array of posts.
+	# Initializes the Post class with a requested Array of posts.
+  #
+  # With current functionality, this will be either all of today's posts or posts by student on a certain day.
 	def initialize(array_of_posts)
 		@posts = array_of_posts
 	end
@@ -11,16 +13,16 @@ class Post
 	# 
 	# Returns an Array of posts.
 	def Post.today
-	    today_filter = Proc.new {|row| Time.at(row["time"].to_i).yday == Time.now.yday}
-	    rows = $database.all_filtered(today_filter)
-	    rows = rows.map {|row| row.split(",")}
-	    rows = rows.each {|arr| arr[0] = Time.at(arr[0].to_i).strftime("%D")}
-	    return rows
+    today_filter = Proc.new {|row| Time.at(row["time"].to_i).yday == Time.now.yday}
+    rows = $database.all_filtered(today_filter)
+    rows = rows.map {|row| row.split(",")}
+    rows = rows.each {|arr| arr[0] = Time.at(arr[0].to_i).strftime("%D")}
+	  return rows
 	end
 
 	# Formats posts for the front page.
 	#
-	# Returns an Array of formatted posts.
+	# Returns a two-dimensional Array of formatted posts.
 	def format_post_front_page
 		post_array = []
 		@posts.each do |post|
@@ -34,7 +36,7 @@ class Post
 
 	# Formats posts for the admin page.
 	#
-	# Returns an Array of formatted posts.
+	# Returns a two-dimensional Array of formatted posts.
 	def format_post_admin_page
 		post_array = []
 		@posts.each do |post|
