@@ -55,6 +55,20 @@ input[type="radio"] {
 	align-items: center;
 	padding: 20px;
 }
+.stickyTop{
+ 	position: fixed;
+ 	top: 0px;
+ 	left : 0px;
+ 	width: 100%;
+ 	background-color: rgb(25, 70, 235);
+ 	text-align: center;
+ 	border-bottom: solid;
+ 	border-color: silver;
+ 	display:flex;
+ 	flex-direction: row;
+ 	align-items: center;
+ 	padding: 20px;
+  } 
 
 	#imgOCS{
 		height: 90px;

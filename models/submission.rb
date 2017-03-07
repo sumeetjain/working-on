@@ -8,7 +8,7 @@ class Submission
   # Finds time differene between current post and previous post in EPOCH time.
   def create(params)
     student = Student.new(params[:name])
-    new_submission = "#{Time.now.to_i},#{student.last_submission_at},#{params[:name]},#{params[:stressLevel]},#{params[:submission]}\n"
+    new_submission = "#{Time.now.strftime("%x")},#{Time.now.to_i},#{student.last_submission_at},#{params[:name]},#{params[:stressLevel]},#{params[:submission]}\n"
     $database.add(new_submission)
   end
 
