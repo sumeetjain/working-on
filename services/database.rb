@@ -23,18 +23,6 @@ class Database
     @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
   end
 
-  # Returns all data in the CSV.
-  #
-  # Reurns an Array of row Strings.
-  def all
-    all_posts = @conn.exec("SELECT * FROM submissions")
-    post_array = []
-    all_posts.each do |row| 
-      post_array.push(row.values.join(","))
-    end
-    return post_array
-  end
-
   # Returns all data from the database based on a key, value pair.
   #
   # Returns an Array of row Strings.
@@ -59,5 +47,17 @@ class Database
       list << row.values
     end
     return list.uniq
+  end
+
+  # Returns all data in the database. ** NOT CURRENTLY USED
+  # 
+  # Reurns an Array of row Strings.
+  def all
+    all_posts = @conn.exec("SELECT * FROM submissions")
+    post_array = []
+    all_posts.each do |row| 
+      post_array.push(row.values.join(","))
+    end
+    return post_array
   end
 end
