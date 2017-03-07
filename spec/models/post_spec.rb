@@ -20,6 +20,5 @@ RSpec.describe(Post, '#format_post_admin_page') do
 
 	    # Verify
 	    expect(student).to eq([["Ben","03/04/17 04:59PM", "02:24:33", "1", "What is this dude talking about?\n"]])
-
-	end 	
+	end
 end
