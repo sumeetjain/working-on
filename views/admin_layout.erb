@@ -16,6 +16,7 @@
 	</div>
 
 	<div class="topbar--submission_area">
+		<div>Welcome <strong><%= @admin %></strong>!</div>
 		<form method="get" action="/getinfo" class= "dropBox--holder">
 			<select name="student" class="submit-an--drop" id="dropBox">
 			<% @names.each do |name| %>
@@ -34,7 +35,7 @@
 	</div>
 
 	<div class= "topbar--adminButton">
-		<a href="/admin"><i class="fa fa-key" aria-hidden="true" id="adminKey"></a></i>
+		<a href="/admin_logout"><i class="fa fa-sign-out" aria-hidden="true" id="adminKey"></i></a></i>
 	</div>
 </div>
 

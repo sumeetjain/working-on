@@ -1,6 +1,23 @@
 <script type="text/javascript" src="timing.js"></script>
+<script type="text/javascript" src="modal.js"></script>
 
 <div id="dailyFeed">
 </div>
 
 <a href="/reset" style="color: black">Logout & Reset User</a>
+
+<div id="modal_background">
+</div>
+
+<div id="admin_login_modal">
+	<div id="close"><a href="javascript:;">X</a></div>
+	<div id="title"><strong>Administration Login</strong></div>
+	<div id="login">
+		<form action="/admin_login" method="post">
+			<input type="text" name="username" placeholder="Username" required>
+			<input type="password" name="password" placeholder="Password" required>
+			<input type="submit">
+		</form>
+	</div>
+</div>
+>>>>>>> admin_login
