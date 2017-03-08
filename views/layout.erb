@@ -6,7 +6,6 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-	<script type="text/javascript" src="scripts.js"></script>
 </head>
 <body>
 
@@ -35,7 +34,12 @@
 	</div>
 
 	<div class= "topbar--adminButton">
-		<a href="javascript:;"><i class="fa fa-key" aria-hidden="true" id="adminKey"></a></i>
+		<% if @login == nil %>
+			<script type="text/javascript" src="scripts.js"></script>
+			<a href="javascript:;"><i class="fa fa-key" aria-hidden="true" id="adminKey"></a></i>
+		<% else %>
+			<a href="/admin_logout"><i class="fa fa-sign-out" aria-hidden="true" id="adminKey"></i></a></i>
+		<% end %>
 	</div>
 </div>
 
