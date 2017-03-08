@@ -22,6 +22,7 @@ post "/submit" do
 	redirect("/")
 end
 
+###
 get "/admin_login" do
 	erb :admin_login
 end
