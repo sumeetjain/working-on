@@ -60,8 +60,8 @@ get "/admin" do
 	redirect "/" unless session[:admin]
 	@admin = session[:admin]
 	@names = Submission.names
-  	@dates = Submission.dates
-  	erb :admin, :layout => :admin_layout
+  @dates = Submission.dates
+  erb :admin, :layout => :admin_layout
 end
 
 # For admin, gets all posts based on requested search params (student name by date).
@@ -71,8 +71,8 @@ get "/getinfo" do
 	redirect "/" unless session[:admin]
 	@admin = session[:admin]
 	@names = Submission.names
-  	@dates = Submission.dates
+  @dates = Submission.dates
 	posts = Posts.new(params).get_search_posts
-  	@info = Post.new(posts).format_post_admin_page
-  	erb :getinfo, :layout => :admin_layout
+  @info = Post.new(posts).format_post_admin_page
+  erb :getinfo, :layout => :admin_layout
 end
