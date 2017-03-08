@@ -18,13 +18,39 @@ class Database
 
   # Adds a row to the database.
   # 
-  # row - String to append. "nama, sekng, kjg"
+  # row - String to append.
   def add(row)
     @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
   end
 
-  # Returns all data in the CSV.
+  # Returns all data from the database based on a key, value pair.
   #
+  # Returns an Array of row Strings.
+  def all_by(key, value)
+    list = []
+    all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
+    all_posts.each do |row|
+      list << row.values.join(",")
+    end
+    return list
+  end
+
+  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
+  #
+  # Removes duplicate entries.
+  #
+  # Returns an Array of Strings.
+  def get_items_by_header(header)
+    list = []
+    all_items = @conn.exec("SELECT #{header} FROM submissions")
+    all_items.each do |row|
+      list << row.values
+    end
+    return list.uniq
+  end
+
+  # Returns all data in the database. ** NOT CURRENTLY USED
+  # 
   # Reurns an Array of row Strings.
   def all
     all_posts = @conn.exec("SELECT * FROM submissions")
@@ -33,37 +59,5 @@ class Database
       post_array.push(row.values.join(","))
     end
     return post_array
-  end
-
-  # Get all rows through a particular filter.
-  # 
-  # Returns an Array of row Strings.
-  def all_filtered(filter)
-    list = []
-    CSV.foreach(@file, {headers:true}) do |row|
-      if filter.call(row) == true
-        list << row.to_s
-      end
-    end
-
-    return list
-  end
-
-  def all_by(key, value)
-    filter = Proc.new { |row| row[key] == value }
-    all_filtered(filter)
-  end
-
-  # Get all rows based on a requested header value
-  #
-  # Removes duplicate entries.
-  #
-  # Returns an Array of Strings.
-  def get_items_by_header(header)
-    list = []
-
-    CSV.foreach(@file, {headers:true}) { |row| list << row[header] }
-
-    return list.uniq
   end
 end

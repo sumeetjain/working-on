@@ -10,7 +10,12 @@
 				<div class="postname"><%= post[0] %></div>
 				<div class="postdate"><%= post[1] %></div>
 			</div>
-			<div class="postsubmission"><span class="post_info">Time since previous post: <%= post[2] %><br>
+			<div class="postsubmission"><span class="post_info"> 
+			<% if post[2] != "first_of_day" %> 
+				Time since previous post: <%= post[2] %><br>
+			<% else %>
+				This is the student's first post today <br>
+			<% end %>
 				Stress Level: 
 					<% if post[3] == "1" %>
 						<i class="fa fa-smile-o" aria-hidden="true"></i>
