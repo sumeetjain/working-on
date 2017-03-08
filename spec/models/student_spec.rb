@@ -2,7 +2,7 @@ RSpec.describe(Student, '#last_submission') do
 	it("displays the last item in Database") do
 	    # Setup
 	    row = "1488668340,02:24:33,Ben,1,What is this dude talking about?\n"
-	    $database.add(row)
+	    # $database.add(row)
 	    student = Student.new("Ben")
 	    # Exercise
 	    student = student.last_submission
