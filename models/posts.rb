@@ -30,11 +30,15 @@ class Posts
 		posts = get_requested_posts_by_date(names)
 	end
 
+	def get_front_page_posts
+		posts = $database.all_by("submissions", "date", @day)
+	end
+
 	private
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = $database.all_by("name", @student)
+		posts = $database.all_by("submissions", "name", @student)
 	end
 
 	# Get all of the students' posts from the requested date.
