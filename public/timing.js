@@ -18,11 +18,11 @@ function displayPosts() {
 
     dailyFeed.innerHTML = "";
     
-    for (x = 0; x < dailyPosts.length; x++) {
-      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts[x][0] + "</div><div class=\"postdate\">" + dailyPosts[x][1] + "</div></div><div class=\"postsubmission\">" + dailyPosts[x][2] + "</div></div></div>";
+    // for (x = 0; x < dailyPosts.length; x++) {
+      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + dailyPosts.name + "</div><div class=\"postdate\">" + dailyPosts.time + "</div></div><div class=\"postsubmission\">" + dailyPosts.submission + "</div></div></div>";
 
     dailyFeed.insertAdjacentHTML("afterbegin", html);
-    }
+    // }
   };
 
   xhttp.send();

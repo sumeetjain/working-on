@@ -30,6 +30,16 @@ class Posts
 		posts = get_requested_posts_by_date(names)
 	end
 
+	def hold_posts
+		posts = get_search_posts
+		post_holder = []
+			posts.each do |post|
+			post_holder << Post.new(post)
+			end
+			return post_holder
+	end	
+end
+
 	private
 
 	# Get all posts of the requested student.
@@ -41,10 +51,9 @@ class Posts
 	#
 	# Returns an Array of row strings containing requested posts.
 	def get_requested_posts_by_date(posts)
-		posts = split_post_strings(posts)
 		requested_posts = []
 		posts.each do |post|
-			post_day = post[1].to_i
+			post_day = post["time"].to_i
 			post_day = Time.at(post_day).strftime("%D")
 			if post_day == @day
 				requested_posts << post
@@ -52,4 +61,3 @@ class Posts
 		end
 		return requested_posts
 	end
-end

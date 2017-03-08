@@ -29,8 +29,10 @@ end
 # Post content is returned to JavaScript as JSON through an AJAX request.
 get "/display" do
 	dailyPosts = $database.all_by("date", Time.now.strftime("%D"))
-	@return_posts = Post.new(dailyPosts).format_post_front_page
-	@return_posts.to_json
+	dailyPosts.each do |post|
+		@return_posts = Post.new(post)
+		@return_posts.to_json
+	end
 end
 
 # Checks username and password against the database (admin table) to verify users'
@@ -71,7 +73,6 @@ get "/getinfo" do
 	@admin = session[:admin]
 	@names = Submission.names
   	@dates = Submission.dates
-	posts = Posts.new(params).get_search_posts
-  	@info = Post.new(posts).format_post_admin_page
+  	@info = Posts.new(params).hold_posts		
   	erb :getinfo, :layout => :admin_layout
 end

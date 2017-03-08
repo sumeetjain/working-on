@@ -27,12 +27,7 @@ class Database
   #
   # Returns an Array of row Strings.
   def all_by(key, value)
-    list = []
     all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
-    all_posts.each do |row|
-      list << row.values.join(",")
-    end
-    return list
   end
 
   # Get all rows based on a requested header value (EX: header => "names" only returns all names)
