@@ -11,8 +11,10 @@ class Student
   #
   # only adds if the name is unique
   def addname
+    all_students = @conn.exec("SELECT * FROM students")
+    student_name = @name
+    @conn.exec("INSERT INTO students (name) VALUES('#{@name}')")
     binding.pry
-    @conn.exec("INSERT INTO students (name) VALUES(#{@name})")
   end
 
   # Gets the time of the student's last checkin.
