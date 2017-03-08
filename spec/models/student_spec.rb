@@ -30,3 +30,33 @@ RSpec.describe(Student, '#last_submission_at') do
 	end
 end
 
+RSpec.describe(Student, '#name_is_new') do
+	it "returns false if a name isn't new" do
+		# Setup
+		student = Student.new("Mike")
+
+		# TODO Add a "Mike" student to the 'students' table.
+
+		# Exercise/Verify
+		expect(student.name_is_new).to be_false
+	end
+
+	it "returns true if a name is new" do
+		# AT THIS MOMENT, THE TABLE (IN FACT, THE ENTIRE DATABASE) MIGHT AS
+		# WELL BE TOTALLY EMPTY.
+
+		# Setup
+		student = Student.new("Mike")
+
+		# Exercise/Verify
+		expect(student.name_is_new).to be_true
+
+		# Teardown
+		# 
+		# AT THIS MOMENT, THE TABLE (IN FACT, THE ENTIRE DATABASE) MIGHT AS
+		# WELL BE TOTALLY EMPTY.
+	end
+end
+
+
+
