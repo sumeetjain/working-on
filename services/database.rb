@@ -23,6 +23,8 @@ class Database
     @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
   end
 
+  
+
   # Returns all data from the database based on a key, value pair.
   #
   # Returns an Array of row Strings.
