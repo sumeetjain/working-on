@@ -9,7 +9,7 @@ class Student
   # adds name of student to our student table
   def addname
     student_name = @name
-    $database.insert_val_to_table_column(@name, name, students)
+    $database.insert_val_to_table_column(@name, 'name', 'students')
   end
 
   # determines if a students name is already on the table
