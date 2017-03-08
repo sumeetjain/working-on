@@ -4,23 +4,24 @@ class Student
 
   def initialize(name)
     @name = name
-    @conn = PG.connect( dbname: 'working_on_development' )
   end
 
   # adds name of student to our student table
-  #
-  # only adds if the name is unique
   def addname
-    all_students = @conn.exec("SELECT * FROM students")
     student_name = @name
-    @conn.exec("INSERT INTO students (name) VALUES('#{@name}')")
+    $database.insert_val_to_table_column(@name, name, students)
+  end
+
+  # determines if a students name is already on the table
+  def name_is_new
     binding.pry
+    return !($database.table_items_by_header('name','students').include? @name)
   end
 
   # Gets the time of the student's last checkin.
   # 
   # Returns Integer EPOCH time.
-  def last_submission_at 
+  def last_submission_at
     if last_submission.nil? || last_submission_was_not_today?
       return "first_of_day"
     else

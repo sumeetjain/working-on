@@ -49,6 +49,20 @@ class Database
     return list.uniq
   end
 
+  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
+  #
+  # Removes duplicate entries.
+  #
+  # Returns an Array of Strings.
+  def table_items_by_header(header, table)
+    list = []
+    all_items = @conn.exec("SELECT #{header} FROM #{table}")
+    all_items.each do |row|
+      list << row.values[0]
+    end
+    return list.uniq
+  end
+
   # Returns all data in the database. ** NOT CURRENTLY USED
   # 
   # Reurns an Array of row Strings.
@@ -59,5 +73,9 @@ class Database
       post_array.push(row.values.join(","))
     end
     return post_array
+  end
+
+  def insert_val_to_table_column(val, column, table)
+    @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
   end
 end
