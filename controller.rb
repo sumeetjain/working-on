@@ -27,8 +27,7 @@ get "/admin_login" do
 end
 
 post "/admin_login" do
-	stuff = Admin.new(params)
-	whatever = stuff.check_valid_login
+	login_status = Admin.new(params).check_valid_login
 	binding.pry
 end
 
