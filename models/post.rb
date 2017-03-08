@@ -1,3 +1,9 @@
+# TODO Use this class for all Post-related DB lookups. Use class methods when
+#      you want to get back a collection. Use instance methods when you want
+#      information about a single post. In general, think of a single Post
+#      object as a single Post row from the DB. Then build functionality
+#      around that as needed.
+
 # Contains all functionality relating to formatting individual posts.
 
 class Post
