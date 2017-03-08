@@ -1,20 +1,20 @@
-# To install Postgres and the Ruby Postgres adapter:
+# # To install Postgres and the Ruby Postgres adapter:
 
-# brew install postgresql
-# gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# # brew install postgresql
+# # gem install pg -- --with-pg-config=/usr/local/bin/pg_config
 
-# -----------------------------------------------------------------------------
+# # -----------------------------------------------------------------------------
 
 # require "pg"
 
-# # # When you need to set up the database, just UNCOMMENT the below.
-# # # # Remember to comment it back out when you're done.
+# # # # # When you need to set up the database, just UNCOMMENT the below.
+# # # # # # Remember to comment it back out when you're done.
 
-# # conn = PG.connect( dbname: 'postgres' )
-# # conn.exec("CREATE DATABASE working_on_development")
-# # conn.exec("CREATE DATABASE working_on_test")
+# # # # conn = PG.connect( dbname: 'postgres' )
+# # # # conn.exec("CREATE DATABASE working_on_development")
+# # # # conn.exec("CREATE DATABASE working_on_test")
 
-# conn = PG.connect( dbname: 'working_on_development' )
+# conn = PG.connect( dbname: 'working_on_test' )
 
 # # And create tables...
 # conn.exec("CREATE TABLE submissions (
@@ -24,4 +24,4 @@
 #   name        VARCHAR(255), 
 #   stressLevel INTEGER, 
 #   submission  TEXT
-# )")
+#  )")

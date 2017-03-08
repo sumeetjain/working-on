@@ -1,14 +1,15 @@
 RSpec.describe(Student, '#last_submission') do
 	it("displays the last item in Database") do
 	    # Setup
-	    row = "1488668340,02:24:33,Ben,1,What is this dude talking about?\n"
-	    # $database.add(row)
+	    row = "'07/08/88','1488668340','02:24:33','Ben','1','What is this dude talking about?'"
+	    $database.add(row)
 	    student = Student.new("Ben")
+	    
 	    # Exercise
 	    student = student.last_submission
+	    
 	    # Verify
-	    expect(student).to eq("1488668340,02:24:33,Ben,1,What is this dude talking about?\n")
-
+	    expect(student).to eq("07/08/88,1488668340,02:24:33,Ben,1,What is this dude talking about?")
 
 	end 	
 end
@@ -17,7 +18,7 @@ end
 	it("checks to see if a user exists and has posted today, and finding that they do exist but have not posted, says so") do
 	    # Setup
 	    student = Student.new("Ben")
-	    row = "1488668340,02:24:33,Ben,1,What is this dude talking about?\n"
+	    row = "'07/08/88','1488668340','02:24:33','Ben','1','What is this dude talking about?'"
 	    $database.add(row)
 	    
 	    # Exercise
@@ -25,7 +26,6 @@ end
 	    
 	    # Verify
 	    expect(student).to eq("first_of_day")
-
 
 	end
 end
