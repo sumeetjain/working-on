@@ -1,4 +1,7 @@
-require 'pry'
+require "rubygems"
+require "bundler"
+Bundler.require(:default)
+
 require 'csv'
 require 'json'
 require './services/database.rb'
