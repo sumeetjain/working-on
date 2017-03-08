@@ -12,7 +12,6 @@ class Student
   # only adds if the name is unique
   def addname
     binding.pry
-    student_name =@name
     @conn.exec("INSERT INTO students (name) VALUES(#{@name})")
   end
 
