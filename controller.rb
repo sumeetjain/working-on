@@ -28,6 +28,7 @@ end
 # 
 # Post content is returned to JavaScript as JSON through an AJAX request.
 get "/display" do
+	# TODO Move any calls to $database to some Model's method.
 	dailyPosts = $database.all_by("date", Time.now.strftime("%D"))
 	@return_posts = Post.new(dailyPosts).format_post_front_page
 	@return_posts.to_json
