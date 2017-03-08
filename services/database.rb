@@ -63,6 +63,10 @@ class Database
     return list.uniq
   end
 
+  def get_login_database
+    login_items = @conn.exec("SELECT * FROM admin")
+  end
+
   # Returns all data in the database. ** NOT CURRENTLY USED
   # 
   # Reurns an Array of row Strings.

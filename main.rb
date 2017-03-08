@@ -1,6 +1,7 @@
-require 'sinatra'
-require 'pg'
-require 'pry'
+require "rubygems"
+require "bundler"
+Bundler.require(:default)
+
 require 'csv'
 require 'json'
 require './services/database.rb'
@@ -10,6 +11,7 @@ require './models/student.rb'
 require './models/submission.rb'
 require './models/posts.rb'
 require './models/post.rb'
+require './services/admin.rb'
 
 enable :sessions
 
