@@ -2,7 +2,7 @@
 #
 # Sets @login session variable to store student's name for repeat visits.
 get "/" do
-	@login = session["login"]
+	@login = session[:login]
 	erb :index
 end
 
@@ -16,29 +16,10 @@ end
 #
 # Redirects back to homepage.
 post "/submit" do
-	session["login"] = params["name"]
+	session[:login] = params["name"]
 	submission = Submission.new
 	submission.create(params)
 	redirect("/")
-end
-
-###
-get "/admin_login" do
-	erb :admin_login
-end
-
-post "/admin_login" do
-	login_status = Admin.new(params).check_valid_login
-	binding.pry
-end
-
-# Loads the admin page.
-#
-# Builds dropdown menus of available student names and dates using the Submission class.
-get "/admin" do
-	@names = Submission.names
-  	@dates = Submission.dates
-  	erb :admin, :layout => :admin_layout
 end
 
 # Front page display, gets all posts for current day and formats correctly.
@@ -52,15 +33,45 @@ get "/display" do
 	@return_posts.to_json
 end
 
+# Checks username and password against the database (admin table) to verify users'
+# login info. If true, username is stored as a session variable to allow access to
+# admin pages.
+post "/admin_login" do
+	login_status = Admin.new(params).check_valid_login
+	if login_status == true
+		session[:admin] = params[:username]
+		redirect("/admin")
+	else
+		redirect("/")
+	end
+end
+
+# Deletes admin session variable and returns user to the homepage.
+get "/admin_logout" do
+	session.delete("admin")
+	erb :index
+end
+
+# Loads the admin page.
+#
+# Builds dropdown menus of available student names and dates using the Submission class.
+get "/admin" do
+	redirect "/" unless session[:admin]
+	@admin = session[:admin]
+	@names = Submission.names
+  	@dates = Submission.dates
+  	erb :admin, :layout => :admin_layout
+end
+
 # For admin, gets all posts based on requested search params (student name by date).
 #
 # Loads getinfo page with the selected search posts.
 get "/getinfo" do
+	redirect "/" unless session[:admin]
+	@admin = session[:admin]
 	@names = Submission.names
   	@dates = Submission.dates
-	posts = Posts.new(params)
-	names = posts.get_requested_posts_by_name
-	posts = posts.get_requested_posts_by_date(names)
+	posts = Posts.new(params).get_search_posts
   	@info = Post.new(posts).format_post_admin_page
   	erb :getinfo, :layout => :admin_layout
 end

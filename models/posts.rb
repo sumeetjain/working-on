@@ -22,6 +22,16 @@ class Posts
 		return split_posts
 	end
 
+	# Grabs requested posts based on the search parameters entered (student posts by date)
+	#
+	# Returns an Array of row strings containing requested posts.
+	def get_search_posts
+		names = get_requested_posts_by_name
+		posts = get_requested_posts_by_date(names)
+	end
+
+	private
+
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
 		posts = $database.all_by("name", @student)
