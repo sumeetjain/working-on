@@ -4,7 +4,7 @@ RSpec.describe(Database, '#all_by') do
         # Setup & Exercise
         test = $database.all_by("name", "Ben")
         # Verify
-        expect(test.last).to eq("1488668340,02:24:33,Ben,1,What is this dude talking about?\n")
+        expect(test.last).to eq("07/08/88,1488668340,02:24:33,Ben,1,What is this dude talking about?")
    end     
  end
 
@@ -13,6 +13,6 @@ RSpec.describe(Database, '#all_by') do
        # Setup & Exercise
        test = $database.get_items_by_header("name")
        # Verify
-       expect(test).to eq(["Ben"])
+       expect(test).to eq([["Ben"]])
     end     
 end

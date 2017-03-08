@@ -5,10 +5,10 @@ Bundler.require(:default)
 require 'csv'
 require 'json'
 require './services/database.rb'
+require 'pg'
 
-$database = Database.new('./database/test/testibase.csv')
+$database = Database.new(db_name='working_on_test')
 
-require 'spec_helper.rb'
 require './services/time_formatter.rb'
 require './models/student.rb'
 require './models/submission.rb'

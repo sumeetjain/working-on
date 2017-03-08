@@ -14,11 +14,11 @@ end
 RSpec.describe(Posts, '#get_requested_posts_by_date') do
 	it("takes an array of posts by name and returns an array of posts by date") do
 	    # Setup
-	    row = ["1488668340,02:24:33,Ben,1,What is this dude talking about?\n"]
+	    row = ["1488668340,02:24:33,Ben,1,What is this dude talking about?"]
 	    # Exercise
 	    student = Posts.new({:student=>"Ben", :day=>"03/04/17"}).get_requested_posts_by_date(row)
 	    # Verify
-	    expect(student).to eq([["1488668340", "02:24:33", "Ben", "1", "What is this dude talking about?\n"]])
+	    expect(student).to eq([["1488668340", "02:24:33", "Ben", "1", "What is this dude talking about?"]])
 
 	end 	
 end
