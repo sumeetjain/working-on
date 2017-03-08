@@ -25,3 +25,8 @@
 #   stressLevel INTEGER, 
 #   submission  TEXT
 # )")
+# 
+# conn.exec("CREATE TABLE admin (
+#   username    VARCHAR(10), 
+#   password    VARCHAR(10)
+# )")
