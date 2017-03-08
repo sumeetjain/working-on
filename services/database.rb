@@ -1,3 +1,5 @@
+# TODO Factor out the name of the table (submissions) and columns.
+
 # Contains all functionality for interacting with the database.
 
 # Here are some specific things the Database class should NOT know about:
@@ -35,6 +37,10 @@ class Database
     return list
   end
 
+  # TODO This currently returns an Array of Arrays (of Strings). There should
+  #      be a way to get the Array of Strings directly and return that. It
+  #      should allow you to remove a loop from this method.
+  # 
   # Get all rows based on a requested header value (EX: header => "names" only returns all names)
   #
   # Removes duplicate entries.
@@ -49,6 +55,7 @@ class Database
     return list.uniq
   end
 
+  # TODO Factor this into the `all` method.
   def get_login_database
     login_items = @conn.exec("SELECT * FROM admin")
   end
