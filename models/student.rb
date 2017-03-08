@@ -1,4 +1,4 @@
-# Contains all functionality relating to student tracking.
+# Contains all functionality relating to interacting with 'students' table.
 
 class Student
 
