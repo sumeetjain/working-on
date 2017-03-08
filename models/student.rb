@@ -11,9 +11,11 @@ class Student
   # Returns Integer EPOCH time.
   def last_submission_at 
     if last_submission.nil? || last_submission_was_not_today?
+      binding.pry
       return "first_of_day"
     else
       formatter = TimeFormatter.new(time_since_last_checkin)
+      binding.pry
       return formatter.time_as_hms
     end
   end
@@ -39,5 +41,6 @@ class Student
   # Checks to see if last student submission was NOT today.
   def last_submission_was_not_today?
     Time.at(last_checkin_at).utc.day != Time.now.day
+    binding.pry
   end
 end
