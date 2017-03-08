@@ -3,6 +3,7 @@
 # Sets @login session variable to store student's name for repeat visits.
 get "/" do
 	@login = session[:login]
+	@admin = session[:admin]
 	erb :index
 end
 
