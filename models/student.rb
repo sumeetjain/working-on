@@ -14,7 +14,6 @@ class Student
 
   # determines if a students name is already on the table
   def name_is_new
-    binding.pry
     return !($database.table_items_by_header('name','students').include? @name)
   end
 

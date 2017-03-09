@@ -34,11 +34,11 @@ RSpec.describe(Student, '#name_is_new') do
 	it "returns false if a name isn't new" do
 		# Setup
 		student = Student.new("Mike")
-
-		# TODO Add a "Mike" student to the 'students' table.
-
+		binding.pry
+		student.addname
 		# Exercise/Verify
-		expect(student.name_is_new).to be_false
+		expect(student.name_is_new).to be false
+
 	end
 
 	it "returns true if a name is new" do
@@ -47,9 +47,8 @@ RSpec.describe(Student, '#name_is_new') do
 
 		# Setup
 		student = Student.new("Mike")
-
 		# Exercise/Verify
-		expect(student.name_is_new).to be_true
+		expect(student.name_is_new).to be true
 
 		# Teardown
 		# 

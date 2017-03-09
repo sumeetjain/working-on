@@ -8,7 +8,6 @@ class Submission
   # Finds time difference between current post and previous post in EPOCH time.
   def create(params)
     student = Student.new(params[:name])
-
     if student.name_is_new
       student.addname
     end
