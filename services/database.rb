@@ -22,8 +22,13 @@ class Database
 
   #For a given table, returns
   def get_last(key1, key2, value, table)
-    @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} 
-      DESC LIMIT 1").values[0][0]
+    data = @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} DESC LIMIT 1")
+    if data.ntuples != 0
+      binding.pry
+      return data.values[0][0]
+    else
+      return nil
+    end
   end
   
   # Get all rows based on a requested header value (EX: header => "names" only returns all names)
