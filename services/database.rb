@@ -19,16 +19,16 @@ class Database
   # Adds a row to the database.
   # 
   # row - String to append.
-  def add(row)
-    @conn.exec("INSERT INTO submissions (date, time, interval, name, stressLevel, submission) VALUES (#{row})")
+  def add(table, columns, row)
+    @conn.exec("INSERT INTO #{table} #{columns} VALUES (#{row})")
   end
 
   # Returns all data from the database based on a key, value pair.
   #
   # Returns an Array of row Strings.
-  def all_by(key, value)
+  def all_by(table, key, value)
     list = []
-    all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
+    all_posts = @conn.exec("SELECT * FROM #{table} WHERE #{key}='#{value}'")
     all_posts.each do |row|
       list << row.values.join(",")
     end
@@ -40,14 +40,6 @@ class Database
   # Removes duplicate entries.
   #
   # Returns an Array of Strings.
-  def get_items_by_header(header)
-    list = []
-    all_items = @conn.exec("SELECT #{header} FROM submissions")
-    all_items.each do |row|
-      list << row.values
-    end
-    return list.uniq
-  end
 
   # Get all rows based on a requested header value (EX: header => "names" only returns all names)
   #
@@ -69,18 +61,16 @@ class Database
 
   def get_login_database
     login_items = @conn.exec("SELECT * FROM admin")
-  end
-
-  # Returns all data in the database. ** NOT CURRENTLY USED
+    
+  def get_items_by_header(header, table)
+    all_items = @conn.exec("SELECT #{header} FROM #{table}").map { |key| key.values[0] }
+    return all_items.uniq
+  
+  # Returns all data in the database.
   # 
-  # Reurns an Array of row Strings.
-  def all
-    all_posts = @conn.exec("SELECT * FROM submissions")
-    post_array = []
-    all_posts.each do |row| 
-      post_array.push(row.values.join(","))
-    end
-    return post_array
+  # Returns a Hash of table row data.
+  def get_all_from_table(table)
+    @conn.exec("SELECT * FROM #{table}")
   end
 
   def insert_val_to_table_column(val, column, table)

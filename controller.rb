@@ -3,6 +3,7 @@
 # Sets @login session variable to store student's name for repeat visits.
 get "/" do
 	@login = session[:login]
+	@admin = session[:admin]
 	erb :index
 end
 
@@ -28,7 +29,7 @@ end
 # 
 # Post content is returned to JavaScript as JSON through an AJAX request.
 get "/display" do
-	dailyPosts = $database.all_by("date", Time.now.strftime("%D"))
+	dailyPosts = Posts.new({:day => Time.now.strftime("%D")}).get_front_page_posts
 	@return_posts = Post.new(dailyPosts).format_post_front_page
 	@return_posts.to_json
 end
@@ -59,8 +60,8 @@ get "/admin" do
 	redirect "/" unless session[:admin]
 	@admin = session[:admin]
 	@names = Submission.names
-  	@dates = Submission.dates
-  	erb :admin, :layout => :admin_layout
+  @dates = Submission.dates
+  erb :admin, :layout => :admin_layout
 end
 
 # For admin, gets all posts based on requested search params (student name by date).
@@ -70,8 +71,8 @@ get "/getinfo" do
 	redirect "/" unless session[:admin]
 	@admin = session[:admin]
 	@names = Submission.names
-  	@dates = Submission.dates
+  @dates = Submission.dates
 	posts = Posts.new(params).get_search_posts
-  	@info = Post.new(posts).format_post_admin_page
-  	erb :getinfo, :layout => :admin_layout
+  @info = Post.new(posts).format_post_admin_page
+  erb :getinfo, :layout => :admin_layout
 end

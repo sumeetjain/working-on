@@ -6,7 +6,7 @@ class Admin
 	end
 
 	def check_valid_login
-		login_database = $database.get_login_database
+		login_database = $database.get_all_from_table("admin")
 		login_status = false
 		login_database.each do |login|
 			if login["username"].include?(@user) && login["password"].include?(@pass)
