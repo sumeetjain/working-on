@@ -63,6 +63,10 @@ class Database
     return list.uniq
   end
 
+  def erase_row_by_column_value(val,col, table)
+    @conn.exec("DELETE FROM #{table} WHERE #{col}='#{val}' ")
+  end
+
   def get_login_database
     login_items = @conn.exec("SELECT * FROM admin")
   end

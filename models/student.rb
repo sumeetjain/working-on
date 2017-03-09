@@ -6,15 +6,22 @@ class Student
     @name = name
   end
 
-  # adds name of student to our student table
+  # adds @name of student to 'students' table
   def addname
     student_name = @name
     $database.insert_val_to_table_column(@name, 'name', 'students')
   end
 
-  # determines if a students name is already on the table
+  # determines if a students @name is already in 'students' table
   def name_is_new
     return !($database.table_items_by_header('name','students').include? @name)
+  end
+
+  # for a given student, deletes their name from the 'students' table
+  #
+  # this is built for teardown but Sumeet told us if we need it for teardown we should write it!
+  def remove_name
+    $database.erase_row_by_column_value(@name,'name', 'students')
   end
 
   # Gets the time of the student's last checkin.

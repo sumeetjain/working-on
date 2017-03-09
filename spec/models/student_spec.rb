@@ -33,27 +33,30 @@ end
 RSpec.describe(Student, '#name_is_new') do
 	it "returns false if a name isn't new" do
 		# Setup
-		student = Student.new("Mike")
-		binding.pry
-		student.addname
-		# Exercise/Verify
-		expect(student.name_is_new).to be false
-
-	end
-
-	it "returns true if a name is new" do
-		# AT THIS MOMENT, THE TABLE (IN FACT, THE ENTIRE DATABASE) MIGHT AS
-		# WELL BE TOTALLY EMPTY.
-
-		# Setup
-		student = Student.new("Mike")
+		student = Student.new("Worf")
 		# Exercise/Verify
 		expect(student.name_is_new).to be true
+	end
 
-		# Teardown
-		# 
-		# AT THIS MOMENT, THE TABLE (IN FACT, THE ENTIRE DATABASE) MIGHT AS
-		# WELL BE TOTALLY EMPTY.
+	it "returns false if name has been added" do
+		# Setup
+		student = Student.new("Kenny")
+		# Exercise
+		student.addname
+		# Verify
+		expect(student.name_is_new).to be false
+		# Teardown/Exercise
+		student.remove_name
+	end
+
+	it "returns true if added student name has been removed" do
+		# Setup
+		student = Student.new("Dingo Dog")
+		student.addname
+		# Exercise
+		student.remove_name
+		# Verify
+		expect(student.name_is_new).to be true
 	end
 end
 
