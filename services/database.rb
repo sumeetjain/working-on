@@ -30,6 +30,11 @@ class Database
     all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
   end
 
+  def get_last(key1, key2, value, table)
+    @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} 
+      DESC LIMIT 1").values[0][0]
+  end
+  
   # Get all rows based on a requested header value (EX: header => "names" only returns all names)
   #
   # Removes duplicate entries.

@@ -30,6 +30,7 @@ class Posts
 		posts = get_requested_posts_by_date(names)
 	end
 
+	###
 	def hold_posts
 		posts = get_search_posts
 		post_holder = []
@@ -38,7 +39,18 @@ class Posts
 			end
 			return post_holder
 	end	
-end
+
+	###
+	def front_page_json(posts)
+      post_array = []
+      posts.each do |post|
+      	formatted_time = Time.at(post["time"].to_i).strftime("%m/%d @ %I:%M%p")
+      	json_post = post["name"] + "," + formatted_time + "," + post["submission"]
+      	post_array << json_post
+      end
+      binding.pry
+      return post_array.to_json
+    end
 
 	private
 
@@ -61,3 +73,4 @@ end
 		end
 		return requested_posts
 	end
+end

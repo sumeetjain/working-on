@@ -29,10 +29,9 @@ end
 # Post content is returned to JavaScript as JSON through an AJAX request.
 get "/display" do
 	dailyPosts = $database.all_by("date", Time.now.strftime("%D"))
-	dailyPosts.each do |post|
-		@return_posts = Post.new(post)
-		@return_posts.to_json
-	end
+	@returnPosts = Posts.new({:username => "mike"}).front_page_json(dailyPosts)
+	binding.pry
+	return @returnPosts
 end
 
 # Checks username and password against the database (admin table) to verify users'
