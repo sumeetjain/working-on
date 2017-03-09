@@ -23,9 +23,9 @@ class Student
     $database.erase_row_by_column_value(@name,'name', 'students')
   end
 
+  # Retrieves key corresponding to name column in students table
   def getKey
-    data = $database.table_item_by_col_and_val('id','students','name',@name)
-    return data[0]["id"]
+    data = $database.table_item_by_col_and_val('id','students','name',@name)[0]["id"]
   end
 
   # Gets the time of the student's last checkin.

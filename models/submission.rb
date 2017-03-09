@@ -25,9 +25,9 @@ class Submission
   #
   # Used for printing out list of available names to search in dropdown box on Admin page.
   def Submission.names
-    $database.get_items_by_header("name", "submissions")
+    $database.get_items_by_header("name", "students")
   end
-
+  
   # Gets all dates available in database.
   #
   # Used for printing out list of available dates to search in dropdown box on Admin page.
