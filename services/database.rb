@@ -35,28 +35,11 @@ class Database
     return list
   end
 
-  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
-  #
-  # Removes duplicate entries.
-  #
-  # Returns an Array of Strings.
-  def table_items_by_header(header, table)
-    list = []
-    all_items = @conn.exec("SELECT #{header} FROM #{table}")
-    all_items.each do |row|
-      list << row.values[0]
-    end
-    return list.uniq
-  end
-
-  def erase_row_by_column_value(val,col, table)
-    @conn.exec("DELETE FROM #{table} WHERE #{col}='#{val}' ")
-  end
-
   def get_login_database
     login_items = @conn.exec("SELECT * FROM admin")
   end
 
+  #For a given table, returns
   def get_items_by_header(header, table)
     all_items = @conn.exec("SELECT #{header} FROM #{table}").map { |key| key.values[0] }
     return all_items.uniq
@@ -69,6 +52,7 @@ class Database
     @conn.exec("SELECT * FROM #{table}")
   end
 
+  # Inserts a value into a table for a particular column
   def insert_val_to_table_column(val, column, table)
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
   end
