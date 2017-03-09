@@ -30,33 +30,40 @@ RSpec.describe(Student, '#last_submission_at') do
 	end
 end
 
-RSpec.describe(Student, '#name_is_new') do
+RSpec.describe(Student, '#valid?') do
 	it "returns false if a name isn't new" do
+		# TODO Run all tests in isolation, meaning that each test case starts from
+		#      an empty "universe"--build everything the test case needs from 
+		#      scratch.
+
 		# Setup
 		student = Student.new("Worf")
 		# Exercise/Verify
-		expect(student.name_is_new).to be true
+		expect(student.valid?).to be true
 	end
 
 	it "returns false if name has been added" do
 		# Setup
 		student = Student.new("Kenny")
-		# Exercise
-		student.addname
-		# Verify
-		expect(student.name_is_new).to be false
-		# Teardown/Exercise
-		student.remove_name
+		student.save
+
+		# Exercise/Verify
+		expect(student.valid?).to be false
+		
+		# Teardown
+		student.remove
 	end
 
+	# TODO No need for this test. Make a new 'describe' section
+	#      for Student#remove.
 	it "returns true if added student name has been removed" do
 		# Setup
 		student = Student.new("Dingo Dog")
-		student.addname
+		student.save
 		# Exercise
-		student.remove_name
+		student.remove
 		# Verify
-		expect(student.name_is_new).to be true
+		expect(student.valid?).to be true
 	end
 end
 

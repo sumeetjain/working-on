@@ -9,7 +9,6 @@ class TimeFormatter
   #
   # Returns String of the time amount as HH:MM:SS.
   def time_as_hms
-    t = Time.at(@seconds).utc.strftime("%H:%M:%S")
-    return t
+    Time.at(@seconds).utc.strftime("%H:%M:%S")
   end
 end

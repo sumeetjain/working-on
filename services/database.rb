@@ -1,3 +1,6 @@
+# TODO Make sure docs for methods correspond *exactly* to TomDoc.
+#      Specifically for descriptions of each method's args.
+
 # Contains all functionality for interacting with the database.
 
 class Database
@@ -20,10 +23,12 @@ class Database
     all_posts = @conn.exec("SELECT * FROM #{table} WHERE #{key}='#{value}'")
   end
 
+  # TODO Needs docs.
   #For a given table, returns
   def get_last(key1, key2, value, table)
     data = @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} DESC LIMIT 1")
     if data.ntuples != 0
+      # TODO Fetch from `data` by `key` instead of by the 0-index.
       return data.values[0][0]
     else
       return nil
