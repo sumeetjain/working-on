@@ -36,6 +36,7 @@
 
 	<div class= "topbar--adminButton">
 		<% if @admin == nil %>
+			<!-- TODO Use event.preventDefault() instead of a null HREF. -->
 			<a href="javascript:;"><i class="fa fa-key" aria-hidden="true" id="adminKey"></a></i>
 		<% else %>
 			<a href="/admin"><i class="fa fa-tachometer" aria-hidden="true" id="dashboard"></i></a>
