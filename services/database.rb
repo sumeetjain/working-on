@@ -26,8 +26,8 @@ class Database
   # Returns all data from the database based on a key, value pair.
   #
   # Returns an Array of row Strings.
-  def all_by(key, value)
-    all_posts = @conn.exec("SELECT * FROM submissions WHERE #{key}='#{value}'")
+  def all_by(table, key, value)
+    all_posts = @conn.exec("SELECT * FROM #{table} WHERE #{key}='#{value}'")
   end
 
   def get_last(key1, key2, value, table)
