@@ -30,7 +30,6 @@ end
 get "/display" do
 	dailyPosts = $database.all_by("date", Time.now.strftime("%D"))
 	@returnPosts = Posts.new({:username => "mike"}).front_page_json(dailyPosts)
-	binding.pry
 	return @returnPosts
 end
 

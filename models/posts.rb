@@ -48,7 +48,6 @@ class Posts
       	json_post = post["name"] + "," + formatted_time + "," + post["submission"]
       	post_array << json_post
       end
-      binding.pry
       return post_array.to_json
     end
 
