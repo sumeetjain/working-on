@@ -40,12 +40,6 @@ class Database
   # Removes duplicate entries.
   #
   # Returns an Array of Strings.
-
-  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
-  #
-  # Removes duplicate entries.
-  #
-  # Returns an Array of Strings.
   def table_items_by_header(header, table)
     list = []
     all_items = @conn.exec("SELECT #{header} FROM #{table}")
@@ -61,10 +55,12 @@ class Database
 
   def get_login_database
     login_items = @conn.exec("SELECT * FROM admin")
-    
+  end
+
   def get_items_by_header(header, table)
     all_items = @conn.exec("SELECT #{header} FROM #{table}").map { |key| key.values[0] }
     return all_items.uniq
+  end
   
   # Returns all data in the database.
   # 
