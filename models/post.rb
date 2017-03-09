@@ -2,9 +2,9 @@
 
 class Post
 
-	# Initializes the Post class with a requested Array of posts.
+	# Initializes the Post class with a pg object held inside
   #
-  # With current functionality, this will be either all of today's posts or posts by student on a certain day.
+  # returns @post ready for calling out specific portions of the pg object.
 	def initialize(post)	
 	@post = post
 	end
