@@ -154,7 +154,20 @@ input[type="radio"] {
 	a:hover #adminKey {
 		color: silver;
 		transition: color 1s ease;
-	}
+  }
+
+  #dashboard{
+    font-size: 40px;
+  }
+
+  a:link, a:visited #dashboard {
+    color: white;
+  }
+
+  a:hover #dashboard {
+    color: silver;
+    transition: color 1s ease;
+  }
 
 #dailyFeed{
 	width: 60%;
