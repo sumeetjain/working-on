@@ -1,15 +1,5 @@
 # Contains all functionality for interacting with the database.
 
-# Here are some specific things the Database class should NOT know about:
-# 
-# 1. It should not have any hard-coded table names.
-# 2. It should not have any hard-coded column names.
-# 3. Even if a function in this class is only used once somewhere else, that 
-#    function should still be generically written so it could be used in other
-#    contexts. E.g. a `users_rows` function would be better as a 
-#    `rows_where_key_is_value(key, value)` function, since that satisfies the
-#    specific requirement and can be re-used in other contexts.
-
 class Database
 
   def initialize(db_name='working_on_development')
@@ -32,8 +22,12 @@ class Database
 
   #For a given table, returns
   def get_last(key1, key2, value, table)
-    @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} 
-      DESC LIMIT 1").values[0][0]
+    data = @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} DESC LIMIT 1")
+    if data.ntuples != 0
+      return data.values[0][0]
+    else
+      return nil
+    end
   end
   
   # Get all rows based on a requested header value (EX: header => "names" only returns all names)

@@ -12,16 +12,6 @@ class Posts
 		@day = params[:day]
 	end
 
-	# Splits array of posts passed in as array of strings into 2D array.
-	def split_post_strings(posts)
-		split_posts = []
-		posts.each do |post|
-			post = post.split(",")
-			split_posts << post
-		end
-		return split_posts
-	end
-
 	# Grabs requested posts based on the search parameters entered (student posts by date)
 	#
 	# Returns an Array of row strings containing requested posts.
@@ -30,7 +20,9 @@ class Posts
 		posts = get_requested_posts_by_date(names)
 	end
 
-	###
+	# Creates an Array of new Post Objects 
+	#
+	# Returns an Array of Post Objects
 	def hold_posts
 		posts = get_search_posts
 		post_holder = []
@@ -40,7 +32,11 @@ class Posts
 			return post_holder
 	end	
 
-	###
+	# Creates an Array, splits up posts, modifies the "time" section of posts,
+	# concatinates it all into a string.  This string is shoved into the array
+	# and put into JSON format.
+	#
+	# returns an AJAX request.  
 	def front_page_json(posts)
       post_array = []
       posts.each do |post|
