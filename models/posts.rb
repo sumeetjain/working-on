@@ -30,9 +30,26 @@ class Posts
 		posts = get_requested_posts_by_date(names)
 	end
 
-	def get_front_page_posts
-		posts = $database.all_by("submissions", "date", @day)
-	end
+	###
+	def hold_posts
+		posts = get_search_posts
+		post_holder = []
+			posts.each do |post|
+			post_holder << Post.new(post)
+			end
+			return post_holder
+	end	
+
+	###
+	def front_page_json(posts)
+      post_array = []
+      posts.each do |post|
+      	formatted_time = Time.at(post["time"].to_i).strftime("%m/%d @ %I:%M%p")
+      	json_post = post["name"] + "," + formatted_time + "," + post["submission"]
+      	post_array << json_post
+      end
+      return post_array.to_json
+  end
 
 	private
 
@@ -45,10 +62,9 @@ class Posts
 	#
 	# Returns an Array of row strings containing requested posts.
 	def get_requested_posts_by_date(posts)
-		posts = split_post_strings(posts)
 		requested_posts = []
 		posts.each do |post|
-			post_day = post[1].to_i
+			post_day = post["time"].to_i
 			post_day = Time.at(post_day).strftime("%D")
 			if post_day == @day
 				requested_posts << post

@@ -27,19 +27,20 @@ class Database
   #
   # Returns an Array of row Strings.
   def all_by(table, key, value)
-    list = []
     all_posts = @conn.exec("SELECT * FROM #{table} WHERE #{key}='#{value}'")
-    all_posts.each do |row|
-      list << row.values.join(",")
-    end
-    return list
-  end
-
-  def get_login_database
-    login_items = @conn.exec("SELECT * FROM admin")
   end
 
   #For a given table, returns
+  def get_last(key1, key2, value, table)
+    @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} 
+      DESC LIMIT 1").values[0][0]
+  end
+  
+  # Get all rows based on a requested header value (EX: header => "names" only returns all names)
+  #
+  # Removes duplicate entries.
+  #
+  # Returns an Array of Strings.
   def get_items_by_header(header, table)
     all_items = @conn.exec("SELECT #{header} FROM #{table}").map { |key| key.values[0] }
     return all_items.uniq
