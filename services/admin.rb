@@ -5,6 +5,9 @@ class Admin
 		@pass = params[:password]
 	end
 
+	# Checks is username and password exist together in the admin table.
+	#
+	# Returns true/false boolean.
 	def check_valid_login
 		login_database = $database.get_all_from_table("admin")
 		login_status = false
