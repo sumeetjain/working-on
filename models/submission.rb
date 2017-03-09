@@ -1,3 +1,5 @@
+# TODO **Eventually** consolidate Post and Posts into this class.
+
 # Contains all functionality relating to the submission of posts.
 
 class Submission
