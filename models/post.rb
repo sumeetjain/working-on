@@ -26,7 +26,7 @@ class Post
 	end
 
 	def stressLevel
-		@post["stressLevel"]
+		@post["stresslevel"]
 	end
 
 	def submission
