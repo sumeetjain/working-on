@@ -15,7 +15,6 @@ function displayPosts() {
   	
   xhttp.onload = function() {
     var dailyPosts = JSON.parse(xhttp.responseText);
-    debugger;
     dailyFeed.innerHTML = "";
     
     for (x = 0; x < dailyPosts.length; x++) {
