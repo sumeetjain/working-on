@@ -14,7 +14,7 @@
 # # # # conn.exec("CREATE DATABASE working_on_development")
 # # # # conn.exec("CREATE DATABASE working_on_test")
 
-# conn = PG.connect( dbname: 'working_on_test' )
+# conn = PG.connect( dbname: 'working_on_development' )
 
 # # And create tables...
 # conn.exec("CREATE TABLE submissions (
