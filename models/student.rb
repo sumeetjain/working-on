@@ -14,7 +14,7 @@ class Student
 
   # determines if a students @name is already in 'students' table
   def name_is_new
-    return !($database.table_items_by_header('name','students').include? @name)
+    return !($database.get_items_by_header('name','students').include? @name)
   end
 
   # for a given student, deletes their name from the 'students' table
