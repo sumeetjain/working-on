@@ -1,3 +1,6 @@
+# TODO Set @date (and the rest) in the constructor, and then use attr_reader
+#      to create getter methods for each attribute.
+
 # Contains all functionality relating to formatting individual posts.
 
 class Post
@@ -6,7 +9,7 @@ class Post
   #
   # returns @post ready for calling out specific portions of the pg object.
 	def initialize(post)	
-	@post = post
+		@post = post
 	end
 
 	def date
