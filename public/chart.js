@@ -1,38 +1,28 @@
 window.addEventListener("load", function() {
-  drawChart();
+  getStressLevel();
 });
 
 google.charts.load('current', {'packages':['line']});
 
-// function getStressLevel() {
-//   xhr = new XMLHttpRequest();
-//   xhr.open('GET', '/stressLevel');
-//   xhr.onload = function() {
-//     var names = [];
-//     var time = []
-//     response = JSON.parse(xhr.responseText);
-//     for (var x = 0; x < response.length; x++) {
-//       if (names.indexOf(response[x][0]) === -1) {
-//         names.push(response[x][0]);
-//       }
-//     }
-//     for (var x = 0; x < response.length; x++) {
-//       if (time.indexOf(response[x][1]) === -1) {
-//         time.push(response[x][1]);
-//       }
-//     }
-//     drawChart(response, names, time);
-//   }
-//   xhr.send();
-// }
+function getStressLevel() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/stressLevel');
+  xhr.onload = function() {
+    response = JSON.parse(xhr.responseText);
+    debugger;
+    // drawChart(response);
+  }
+  xhr.send();
+}
 
-function drawChart() {
+function drawChart(data) {
   var data = new google.visualization.DataTable();
+  var no_of_students = Object.keys(data).length
   data.addColumn('timeofday', 'Hour');
-  data.addColumn('number', 'Student #1');
-  data.addColumn('number', 'Student #2');
-  data.addColumn('number', 'Student #3');
-  data.addColumn('number', 'Student #4');
+  // data.addColumn('number', 'Student #1');
+  // data.addColumn('number', 'Student #2');
+  // data.addColumn('number', 'Student #3');
+  // data.addColumn('number', 'Student #4');
 
   data.addRows([
     [[16], 1, 1, 2, 1],

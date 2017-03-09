@@ -51,4 +51,11 @@ class Database
   def insert_val_to_table_column(val, column, table)
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
   end
+
+  def get_stress_for_graph
+    bigthings = { students: {} }
+    stuff = @conn.exec("SELECT submissions.name, submissions.time, submissions.stresslevel FROM submissions WHERE date='#{Time.now.strftime("%D")}'")
+    
+    return bigthings.to_json
+  end
 end

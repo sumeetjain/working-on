@@ -75,3 +75,8 @@ get "/getinfo" do
   @info = Posts.new(params).hold_posts		
   erb :getinfo, :layout => :admin_layout
 end
+
+###
+get "/stressLevel" do
+	$database.get_stress_for_graph
+end
