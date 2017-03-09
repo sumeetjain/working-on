@@ -24,7 +24,6 @@ class Database
   def get_last(key1, key2, value, table)
     data = @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} DESC LIMIT 1")
     if data.ntuples != 0
-      binding.pry
       return data.values[0][0]
     else
       return nil
