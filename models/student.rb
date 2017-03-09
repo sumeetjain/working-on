@@ -6,21 +6,20 @@ class Student
     @name = name
   end
 
-  # adds @name of student to 'students' table
-  def addname
-    student_name = @name
-    $database.insert_val_to_table_column(@name, 'name', 'students')
+  # Saves the Student record.
+  def save
+    if valid?
+      $database.insert_val_to_table_column(@name, 'name', 'students')
+    end
   end
 
-  # determines if a students @name is already in 'students' table
-  def name_is_new
-    return !($database.get_items_by_header('name','students').include? @name)
+  # Returns True if the record is valid and OK to save.
+  def valid?
+    name_is_new?
   end
 
-  # for a given student, deletes their name from the 'students' table
-  #
-  # this is built for teardown but Sumeet told us if we need it for teardown we should write it!
-  def remove_name
+  # Deletes this student.
+  def remove
     $database.erase_row_by_column_value(@name,'name', 'students')
   end
 
@@ -36,9 +35,9 @@ class Student
     end
   end
 
-  # Returns the student's last submission row String.
+  # Returns the student's last EPOCH Time.
   def last_submission
-   $database.get_last("time","name",@name,"submissions")
+    $database.get_last("time","name",@name,"submissions")
   end 
 
   private
@@ -56,5 +55,10 @@ class Student
   # Checks to see if last student submission was NOT today.
   def last_submission_was_not_today?
     Time.at(last_checkin_at).utc.day != Time.now.day
+  end
+
+  # Returns True if this student's name is unique.
+  def name_is_new?
+    return !($database.get_items_by_header('name','students').include? @name)
   end
 end
