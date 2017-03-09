@@ -20,8 +20,7 @@ class Student
 
   # Returns the student's last submission row String.
   def last_submission
-    submissions = $database.all_by("submissions", "name", @name)
-    submissions.last
+   last = $database.get_last("time","name",@name,"submissions")
   end 
 
   private
@@ -33,7 +32,7 @@ class Student
 
   # Returns Integer EPOCH time of last submission.
   def last_checkin_at
-    last_submission.split(",")[1].to_i
+    last_submission["time"].to_i
   end
 
   # Checks to see if last student submission was NOT today.

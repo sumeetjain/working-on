@@ -7,25 +7,25 @@
 	<% @info.each do |post| %>
 		<div class ="post thinBox">
 			<div class = "postProfile">
-				<div class="postname"><%= post[0] %></div>
-				<div class="postdate"><%= post[1] %></div>
+				<div class="postname"><%= post.name %></div>
+				<div class="postdate"><%= post.date %></div>
 			</div>
 			<div class="postsubmission"><span class="post_info"> 
-			<% if post[2] != "first_of_day" %> 
-				Time since previous post: <%= post[2] %><br>
+			<% if post.interval != "first_of_day" %> 
+				Time since previous post: <%= post.interval %><br>
 			<% else %>
 				This is the student's first post today <br>
 			<% end %>
 				Stress Level: 
-					<% if post[3] == "1" %>
+					<% if post.stressLevel == "1" %>
 						<i class="fa fa-smile-o" aria-hidden="true"></i>
-					<% elsif post[3] == "2" %>
+					<% elsif post.stressLevel == "2" %>
 						<i class="fa fa-meh-o" aria-hidden="true"></i>
-					<% elsif post[3] == "3" %>
+					<% elsif post.stressLevel == "3" %>
 						<i class="fa fa-frown-o" aria-hidden="true"></i>
 					<% end %>
 				</span><br>
-				<%= post[4] %>
+				<%= post.submission %>
 			</div>
 		</div>
 	<%end%>
