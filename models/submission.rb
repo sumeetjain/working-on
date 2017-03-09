@@ -16,10 +16,8 @@ class Submission
     student = Student.new(params[:name])
     student.save
     key = student.getKey
-    binding.pry
-    
     submission = params[:submission].gsub("'", "''").gsub(",", "")
-    new_submission = "'#{Time.now.strftime("%x")}','#{Time.now.to_i}','#{student.last_submission_at}','#{params[:name]}',#{params[:stressLevel]},'#{submission}'"
+    new_submission = "'#{Time.now.strftime("%x")}','#{Time.now.to_i}','#{student.last_submission_at}','#{key}',#{params[:stressLevel]},'#{submission}'"
     $database.add(@table, @columns, new_submission)
   end
 

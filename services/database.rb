@@ -46,7 +46,6 @@ class Database
   end
 
   def table_item_by_col_and_val(col,table,key,val)
-    binding.pry
      all_posts = @conn.exec("SELECT #{col} FROM #{table} WHERE #{key}='#{val}'")
   end
   
