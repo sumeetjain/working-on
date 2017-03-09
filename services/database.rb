@@ -30,10 +30,6 @@ class Database
     all_posts = @conn.exec("SELECT * FROM #{table} WHERE #{key}='#{value}'")
   end
 
-  def get_login_database
-    login_items = @conn.exec("SELECT * FROM admin")
-  end
-
   #For a given table, returns
   def get_last(key1, key2, value, table)
     @conn.exec("SELECT #{key1} FROM #{table} WHERE #{key2}='#{value}' ORDER BY #{key1} 
