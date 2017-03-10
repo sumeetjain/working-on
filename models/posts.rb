@@ -26,10 +26,12 @@ class Posts
 	def hold_posts
 		posts = get_search_posts
 		post_holder = []
-			posts.each do |post|
-			post_holder << Post.new(post)
-			end
-			return post_holder
+
+		posts.each do |post|
+			post_holder << post
+		end
+
+		return post_holder
 	end	
 
 	# Creates an Array, splits up posts, modifies the "time" section of posts,
@@ -37,21 +39,36 @@ class Posts
 	# and put into JSON format.
 	#
 	# returns an AJAX request.  
-	def Posts.front_page_json(posts)
+	def Posts.front_page_json
+			posts = $database.all_by("submissions", "date", Time.now.strftime("%D"))
+
       post_array = []
       posts.each do |post|
-      	formatted_time = Time.at(post["time"].to_i).strftime("%m/%d @ %I:%M%p")
-      	json_post = post["name"] + "," + formatted_time + "," + post["submission"]
-      	post_array << json_post
+      	post_array << Post.new(post)
       end
-      return post_array.to_json
+
+      return post_array.map { |post_object| post_object.to_string }.to_json
   end
 
 	private
 
 	# Get all posts of the requested student.
 	def get_requested_posts_by_name
-		posts = $database.all_by("submissions", "name", @student)
+
+		# 1. Get Student's ID for "name"
+		# 2. Get all submission for that ID.
+		student = Student.new(@student)
+
+		student_id = student.getKey
+
+		posts = $database.all_by("submissions", "id", student_id)
+
+    post_array = []
+    posts.each do |post|
+    	post_array << Post.new(post)
+    end
+
+    return post_array
 	end
 
 	# Get all of the students' posts from the requested date.
@@ -60,7 +77,7 @@ class Posts
 	def get_requested_posts_by_date(posts)
 		requested_posts = []
 		posts.each do |post|
-			post_day = post["time"].to_i
+			post_day = post.time.to_i
 			post_day = Time.at(post_day).strftime("%D")
 			if post_day == @day
 				requested_posts << post
