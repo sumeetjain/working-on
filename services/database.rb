@@ -55,12 +55,17 @@ class Database
   def get_stress_for_graph
     stuff = @conn.exec("SELECT submissions.name, submissions.time, submissions.stresslevel FROM submissions WHERE date='#{Time.now.strftime("%D")}'")
     bigthings = "[{id: 'Hour', label: 'Hour', type: 'timeofday'}, "
-    stuff.each do |student_row|
-      student = student_row["name"]
+    bigthingsdata = "rows: ["
+    stuff.each do |row|
+      student = row["name"]
+      formatted_time = row["time"].to_i
+      formatted_time = Time.at(formatted_time).strftime("%D")
       binding.pry
       if !bigthings.include? "id: '" + student
-         bigthings = bigthings + "{id: '" + student + "', label: '" + student + "', type: 'number'},"
-      binding.pry
+          bigthings = bigthings + "{id: '" + student + "', label: '" + student + "', type: 'number'},"
+      end
+      if !bigthingsdata.include? "{c:[{v: " + formatted_time
+          bigthingsdata = bigthingsdata + "{c:[{v: " + formatted_time + "}, {v:"
       end
     end
     binding.pry
