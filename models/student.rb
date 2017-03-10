@@ -36,7 +36,7 @@ class Student
 
   # Deletes this student.
   def remove
-    $database.erase_row_by_column_value(@name,'name', 'students')
+    $database.erase_row_by_column_value('students', 'name', @name)
   end
 
   # Gets name for a student from the students table based on id, or returns nil
