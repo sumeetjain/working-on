@@ -1,4 +1,4 @@
-RSpec.describe(Submission, '#Submission.names') do
+RSpec.describe(Submission, '.names') do
   it("displays all the names in the database") do
     # Setup
     
@@ -17,7 +17,7 @@ RSpec.describe(Submission, '#Submission.names') do
     end
  end
 
-RSpec.describe(Submission, '#Submission.dates') do
+RSpec.describe(Submission, '.dates') do
   it("displays all the dates in the database") do
     # Setup
     params = {:name=>"Ben", :submission=>"bdfafafafaf", :stressLevel=>"1"}
