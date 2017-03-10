@@ -1,27 +1,32 @@
 # Contains all functionality relating to student tracking.
 
 class Student
+  attr_accessor :id
 
-  def initialize(name_or_id)
-    if name_or_id.class == Fixnum
-      @id = name_or_id
-      @name = self.getName
-    elsif 
-      @name = name_or_id
-        if self.valid?
-          self.save
-          @id = self.getKey
-        end
-    end
+  def initialize(name)
+    @name = name
   end
 
-  # Returns a String with the name of the student.
+  # Returns a Student with the given name.
+  def Student.find_or_create_by_name(name)
+    student = Student.new(name)
+    id = student.getKey
+
+    if id
+      student.id = id
+    else
+      student.save
+      student.id = student.getKey
+    end
+
+    return student
+  end
+
+  # Returns a String with the name of the student, or Nil.
   def Student.get_name(id)
     # TODO Write the SQL.
     "Sumeet Jain"
   end
-
-  attr_reader :name, :id
 
   # Saves the Student record.
   def save
@@ -52,7 +57,13 @@ class Student
 
   # Retrieves key corresponding to name column in students table
   def getKey
-    $database.table_item_by_col_and_val('id','students','name',@name)[0]["id"]
+    result = $database.table_item_by_col_and_val('id','students','name',@name)
+
+    if result.ntuples == 0
+      return nil
+    else
+      result[0]["id"]
+    end
   end
 
   # Retrieves key as a class method for convenience to save 4 characters
