@@ -44,6 +44,10 @@ class Database
     all_items = @conn.exec("SELECT #{header} FROM #{table}").map { |key| key.values[0] }
     return all_items.uniq
   end
+
+  def table_item_by_col_and_val(col,table,key,val)
+     all_posts = @conn.exec("SELECT #{col} FROM #{table} WHERE #{key}='#{val}'")
+  end
   
   # Returns all data in the database.
   # 
@@ -55,5 +59,9 @@ class Database
   # Inserts a value into a table for a particular column
   def insert_val_to_table_column(val, column, table)
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
+  end
+
+  def erase_row_by_column_value(table, key, value)
+    @conn.exec("DELETE FROM #{table} WHERE #{key}='#{value}'")
   end
 end

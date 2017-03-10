@@ -4,10 +4,4 @@ RSpec.describe("Time Formatter converts", "seconds") do
 
 		expect(time).to eq("00:13:20")
 	end
-
-	it "to MM/DD/YY format" do
-		time = TimeFormatter.new("1488456000").parseDate
-
-		expect(time).to eq("03/02/17")
-	end
 end

@@ -12,6 +12,10 @@ class Post
 		@post = post
 	end
 
+	def id
+		@post["id"]
+	end
+
 	def date
 		@post["date"]
 	end
@@ -25,7 +29,7 @@ class Post
 	end
 
 	def name
-		@post["name"]
+		Student.get_name(id)
 	end
 
 	def stressLevel
@@ -34,5 +38,14 @@ class Post
 
 	def submission
 		@post["submission"]
+	end
+
+	# Returns a String containing just info needed for the AJAX functionality.
+	def to_string
+		"#{name}, #{formatted_time}, #{submission}"
+	end
+
+	def formatted_time
+		Time.at(time.to_i).strftime("%m/%d @ %I:%M%p")
 	end
 end
