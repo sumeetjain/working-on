@@ -80,3 +80,8 @@ end
 get "/stresslevel" do
 	
 end
+
+###
+get "/test" do
+	erb :"redesign/layout", :layout => false
+end
