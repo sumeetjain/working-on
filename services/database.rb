@@ -46,7 +46,8 @@ class Database
   end
 
   def table_item_by_col_and_val(col,table,key,val)
-     all_posts = @conn.exec("SELECT #{col} FROM #{table} WHERE #{key}='#{val}'")
+    # val = format_sql_val(val)
+    all_posts = @conn.exec("SELECT #{col} FROM #{table} WHERE #{key}='#{val}'")
   end
   
   # Returns all data in the database.
@@ -59,5 +60,11 @@ class Database
   # Inserts a value into a table for a particular column
   def insert_val_to_table_column(val, column, table)
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
+  end
+
+  def format_sql_val(val)
+    if val = Integer
+
+    end
   end
 end

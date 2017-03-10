@@ -22,12 +22,6 @@ class Student
     return student
   end
 
-  # Returns a String with the name of the student, or Nil.
-  def Student.get_name(id)
-    # TODO Write the SQL.
-    "Sumeet Jain"
-  end
-
   # Saves the Student record.
   def save
     if valid?
@@ -45,14 +39,17 @@ class Student
     $database.erase_row_by_column_value(@name,'name', 'students')
   end
 
-  # Retrieves key corresponding to name column in students table
-  def getName
-    $database.table_item_by_col_and_val('name','students','id',@id)[0]["name"]
-  end
-
-  # Retrieves key as a class method for convenience to save 4 characters
-  def Student.getName(id)
-    $database.table_item_by_col_and_val('name','students','id',id)[0]["name"]
+  # Gets name for a student from the students table based on id, or returns nil
+  # 
+  # id - integer
+  def Student.get_name(id) 
+    result = $database.table_item_by_col_and_val('name','students','id',id)
+    
+    if result.ntuples == 0
+      return nil
+    else
+      result[0]["name"]
+    end
   end
 
   # Retrieves key corresponding to name column in students table
