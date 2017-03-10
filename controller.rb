@@ -31,7 +31,7 @@ end
 get "/display" do
 	# TODO Don't refer to $database directly in the controller. Use a model.
 	dailyPosts = $database.all_by("submissions", "date", Time.now.strftime("%D"))
-	@returnPosts = Posts.new({:username => "mike"}).front_page_json(dailyPosts)
+	@returnPosts = Posts.front_page_json(dailyPosts)
 	return @returnPosts
 end
 
