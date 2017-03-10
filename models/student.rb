@@ -20,7 +20,7 @@ class Student
 
   # Deletes this student.
   def remove
-    $database.erase_row_by_column_value(@name,'name', 'students')
+    $database.erase_row_by_column_value('students', 'name', @name)
   end
 
   # Gets the time of the student's last checkin.

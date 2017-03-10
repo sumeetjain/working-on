@@ -19,6 +19,7 @@ end
 post "/submit" do
 	session[:login] = params["name"]
 	submission = Submission.new
+	binding.pry
 	submission.create(params)
 	redirect("/")
 end

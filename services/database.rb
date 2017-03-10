@@ -56,4 +56,8 @@ class Database
   def insert_val_to_table_column(val, column, table)
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
   end
+
+  def erase_row_by_column_value(table, key, value)
+    @conn.exec("DELETE FROM #{table} WHERE #{key}='#{value}'")
+  end
 end
