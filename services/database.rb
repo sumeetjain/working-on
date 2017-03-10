@@ -46,7 +46,8 @@ class Database
   end
 
   def table_item_by_col_and_val(col,table,key,val)
-     all_posts = @conn.exec("SELECT #{col} FROM #{table} WHERE #{key}='#{val}'")
+    # val = format_sql_val(val)
+    all_posts = @conn.exec("SELECT #{col} FROM #{table} WHERE #{key}='#{val}'")
   end
   
   # Returns all data in the database.
@@ -61,7 +62,4 @@ class Database
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
   end
 
-  def erase_row_by_column_value(table, key, value)
-    @conn.exec("DELETE FROM #{table} WHERE #{key}='#{value}'")
-  end
 end
