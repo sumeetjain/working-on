@@ -22,7 +22,6 @@ conn.exec("CREATE TABLE submissions (
   date        VARCHAR(8), 
   time        VARCHAR(30), 
   interval    VARCHAR(30), 
-  name        VARCHAR(255), 
   stressLevel INTEGER, 
   submission  TEXT
 )")
