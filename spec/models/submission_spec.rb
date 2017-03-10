@@ -1,28 +1,34 @@
 RSpec.describe(Submission, '#Submission.names') do
   it("displays all the names in the database") do
     # Setup
-    row = "'07/08/88','1488668340','02:24:33','Ben','1','What is this dude talking about?'"
-    $database.add(row)
-
+    
+    params = {:name=>"Ben", :submission=>"bdfafafafaf", :stressLevel=>"1"}
+    Submission.new.create(params)
+    
     # Exercise
     submission = Submission.names
 	
 
     # Verify
     expect(submission.last).to eq("Ben")
-	end
+	
+    # Teardown
+    $database.erase_row_by_column_value("submissions", "name", "Ben")
+    end
  end
 
 RSpec.describe(Submission, '#Submission.dates') do
   it("displays all the dates in the database") do
     # Setup
-    row = "'07/08/88','1488668340','02:24:33','Ben','1','What is this dude talking about?'"
-    $database.add(row)
+    params = {:name=>"Ben", :submission=>"bdfafafafaf", :stressLevel=>"1"}
+    Submission.new.create(params)
     
     # Exercise
     submission = Submission.dates
     # Verify
-    expect(submission.last).to eq("03/04/17")
-
+    expect(submission.last).to eq("#{Time.now.strftime("%x")}")
+    
+    # Teardown
+    $database.erase_row_by_column_value("submissions", "name", "Ben")
     end
  end
