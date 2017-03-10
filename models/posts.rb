@@ -37,7 +37,7 @@ class Posts
 	# and put into JSON format.
 	#
 	# returns an AJAX request.  
-	def front_page_json(posts)
+	def Posts.front_page_json(posts)
       post_array = []
       posts.each do |post|
       	formatted_time = Time.at(post["time"].to_i).strftime("%m/%d @ %I:%M%p")
