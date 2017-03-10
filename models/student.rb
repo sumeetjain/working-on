@@ -3,7 +3,6 @@
 class Student
 
   def initialize(name_or_id)
-    binding.pry
     if name_or_id.class == Fixnum
       @id = name_or_id
       @name = self.getName
@@ -14,6 +13,12 @@ class Student
           @id = self.getKey
         end
     end
+  end
+
+  # Returns a String with the name of the student.
+  def Student.get_name(id)
+    # TODO Write the SQL.
+    "Sumeet Jain"
   end
 
   attr_reader :name, :id
@@ -47,7 +52,6 @@ class Student
 
   # Retrieves key corresponding to name column in students table
   def getKey
-    binding.pry
     $database.table_item_by_col_and_val('id','students','name',@name)[0]["id"]
   end
 
