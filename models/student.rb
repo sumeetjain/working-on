@@ -101,4 +101,10 @@ class Student
   def name_is_new?
     return !($database.get_items_by_header('name','students').include? @name)
   end
+
+  def get_pic_url
+    git_thing = Github.new
+    user_dump = mal.repos.list user: 'malastrumdominisui'
+    user_dump.body[0]["owner"]["avatar_url"]
+  end
 end
