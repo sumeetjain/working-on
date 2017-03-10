@@ -2,13 +2,20 @@
 
 class Student
 
-  def initialize(name)
-    @name = name
-    if self.valid?
-      self.save
+  def initialize(name_or_id)
+    binding.pry
+    if name_or_id.class == Fixnum
+      @id = name_or_id
+      @name = self.getName
+    elsif 
+      @name = name_or_id
+        if self.valid?
+          self.save
+          @id = self.getKey
+        end
     end
-    @id = self.getKey
   end
+
   attr_reader :name, :id
 
   # Saves the Student record.
@@ -20,7 +27,7 @@ class Student
 
   # Returns True if the record is valid and OK to save.
   def valid?
-    name_is_new?
+    name_is_new? && @name.class == String
   end
 
   # Deletes this student.
@@ -40,6 +47,7 @@ class Student
 
   # Retrieves key corresponding to name column in students table
   def getKey
+    binding.pry
     $database.table_item_by_col_and_val('id','students','name',@name)[0]["id"]
   end
 
