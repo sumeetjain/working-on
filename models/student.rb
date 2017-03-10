@@ -63,11 +63,6 @@ class Student
     end
   end
 
-  # Retrieves key as a class method for convenience to save 4 characters
-  def Student.getKey(a_name)
-    $database.table_item_by_col_and_val('id','students','name',a_name)[0]["id"]
-  end
-
   # Gets the time of the student's last checkin.
   # 
   # Returns Integer EPOCH time.
