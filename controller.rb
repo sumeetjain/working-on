@@ -19,7 +19,6 @@ end
 post "/submit" do
 	session[:login] = params["name"]
 	submission = Submission.new
-	binding.pry
 	submission.create(params)
 	redirect("/")
 end
@@ -51,6 +50,16 @@ end
 get "/admin_logout" do
 	session.delete("admin")
 	erb :index
+end
+
+get "/student_login_" do 
+	login_status = Admin.new(params).check_valid_student_login
+	if login_status = 
+
+end
+
+get "student_signup" do
+
 end
 
 # Loads the admin page.
