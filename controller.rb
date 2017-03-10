@@ -2,6 +2,7 @@
 #
 # Sets @login session variable to store student's name for repeat visits.
 get "/" do
+	binding.pry
 	@login = session[:login]
 	@admin = session[:admin]
 	erb :index

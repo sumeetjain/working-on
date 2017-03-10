@@ -3,7 +3,7 @@ window.addEventListener("load", function(){
 
   displayPosts();
 
- 	setInterval(displayPosts, 10000);
+ 	// setInterval(displayPosts, 10000);
 });
 
 //  sends request to server for data, parses array of daily posts to JSON
