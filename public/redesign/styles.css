@@ -1,3 +1,7 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 #top_container {
   position: fixed;
   display: flex;
@@ -7,24 +11,43 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
+  height: 75px;
   background-color: rgb(77,82,80);
 }
   
   #OCS_logo {
     width: 60px;
+    margin-left: 10px;
   }
 
-  #top_container--login {
+  #top_container-login {
     text-align: center;
     line-height: 2.0em;
   }
 
+  #top_container-admin {
+    margin-right: 10px;
+  }
+
 #bottom_container {
   position: fixed;
+  display: flex;
+  justify-content: flex-start;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100px;
-  background-color: rgb(77,82,80);
+  height: 45px;
 }
+
+  #bottom_container-postbox {
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    resize: none;
+    border: 2px solid rgb(224,224,224);
+    border-radius: 5px;
+  }
+
+  #bottom_container-submit {
+    width: 80px;
+  }
