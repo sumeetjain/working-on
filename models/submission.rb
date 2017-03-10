@@ -33,7 +33,4 @@ class Submission
     array = $database.get_items_by_header("date", "submissions")
   end
 
-  def has_previous_submission?
-
-  end
 end

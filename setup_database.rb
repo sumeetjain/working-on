@@ -23,7 +23,8 @@ conn.exec("CREATE TABLE submissions (
   time        VARCHAR(30), 
   interval    VARCHAR(30), 
   stressLevel INTEGER, 
-  submission  TEXT
+  submission  TEXT,
+  id          INTEGER
 )")
 
 conn.exec("CREATE TABLE students (
