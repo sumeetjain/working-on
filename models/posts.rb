@@ -41,7 +41,8 @@ class Posts
       post_array = []
       posts.each do |post|
       	formatted_time = Time.at(post["time"].to_i).strftime("%m/%d @ %I:%M%p")
-      	json_post = post["name"] + "," + formatted_time + "," + post["submission"]
+      	binding.pry
+      	json_post = "#{Student.getName(post["id"])}" + "," + formatted_time + "," + post["submission"]
       	post_array << json_post
       end
       return post_array.to_json

@@ -4,7 +4,12 @@ class Student
 
   def initialize(name)
     @name = name
+    if self.valid?
+      self.save
+    end
+    @id = self.getKey
   end
+  attr_reader :name, :id
 
   # Saves the Student record.
   def save
@@ -24,8 +29,23 @@ class Student
   end
 
   # Retrieves key corresponding to name column in students table
+  def getName
+    $database.table_item_by_col_and_val('name','students','id',@id)[0]["name"]
+  end
+
+  # Retrieves key as a class method for convenience to save 4 characters
+  def Student.getName(id)
+    $database.table_item_by_col_and_val('name','students','id',id)[0]["name"]
+  end
+
+  # Retrieves key corresponding to name column in students table
   def getKey
-    data = $database.table_item_by_col_and_val('id','students','name',@name)[0]["id"]
+    $database.table_item_by_col_and_val('id','students','name',@name)[0]["id"]
+  end
+
+  # Retrieves key as a class method for convenience to save 4 characters
+  def Student.getKey(a_name)
+    $database.table_item_by_col_and_val('id','students','name',a_name)[0]["id"]
   end
 
   # Gets the time of the student's last checkin.
@@ -42,7 +62,7 @@ class Student
 
   # Returns the student's last EPOCH Time.
   def last_submission
-    $database.get_last("time","name",@name,"submissions")
+    $database.get_last("time","id",@id,"submissions")
   end 
 
   private
