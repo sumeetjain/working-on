@@ -62,9 +62,4 @@ class Database
     @conn.exec("INSERT INTO #{table} (#{column}) VALUES('#{val}')")
   end
 
-  def format_sql_val(val)
-    if val = Integer
-
-    end
-  end
 end
