@@ -1,24 +1,4 @@
-#maybe remove???
-
-# RSpec.describe(Student, '#last_submission') do
-# 	it("displays the last item in Database") do
-# 	    # Setup
-# 	     params = {:name=>"Ben", :submission=>"bdfafafafaf", :stressLevel=>"1"}
-#     Submission.new.create(params)
-# 	    student = Student.new("Ben")
-	    
-# 	    # Exercise
-# 	    student = student.last_submission
-# 	    binding.pry
-# 	    # Verify
-# 	    expect(student).to eq("07/08/88,1488668340,02:24:33,Ben,1,What is this dude talking about?")
-
-# 	    # Teardown
-# 	    $database.erase_row_by_column_value('submissions', "name", "Ben")
-# 	end 	
-# end
-
-RSpec.describe(Student, '#last_submission_at') do
+	RSpec.describe(Student, '#last_submission_at') do
 	it("checks to see if a user exists and has posted today, and finding that they do exist but have not posted, says so") do
 	    # Setup
   		params = {:name=>"Ben", :submission=>"bdfafafafaf", :stressLevel=>"1"}
