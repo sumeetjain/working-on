@@ -1,7 +1,7 @@
 # Contains all functionality relating to student tracking.
 
 class Student
-  attr_accessor :id
+  attr_accessor :id, :git_username, :git_url
 
   def initialize(name)
     @name = name
@@ -21,6 +21,17 @@ class Student
 
     return student
   end
+
+  def set_git_username_url(username)
+    self.git_username = username
+    self.set_pic_url
+  end
+
+  def set_pic_url
+    git_thing = Github.new
+    user_dump = git_thing.repos.list user: 'malastrumdominisui'
+    self.git_url = user_dump.body[0]["owner"]["avatar_url"]
+  end 
 
   # Saves the Student record.
   def save
@@ -102,9 +113,4 @@ class Student
     return !($database.get_items_by_header('name','students').include? @name)
   end
 
-  def get_pic_url
-    git_thing = Github.new
-    user_dump = mal.repos.list user: 'malastrumdominisui'
-    user_dump.body[0]["owner"]["avatar_url"]
-  end
 end
