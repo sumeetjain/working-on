@@ -40,6 +40,10 @@ class Post
 		@post["submission"]
 	end
 
+	# def git_name
+	# 	@post["git_name"]
+	# end
+
 	# Returns a String containing just info needed for the AJAX functionality.
 	def to_string
 		"#{name}, #{formatted_time}, #{submission}"

@@ -19,7 +19,14 @@ function displayPosts() {
     
     for (x = 0; x < dailyPosts.length; x++) {
       post = dailyPosts[x].split(",")
-      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + post[0] + "</div><div class=\"postdate\">" + post[1] + "</div></div><div class=\"postsubmission\">" + post[2] + "</div></div></div>";
+      var html= "<img src=\"https://github.com/" + malastrumdominisui + ".png?size=40\"class=\"git_pic\">" +
+                "<div class=\"post thinBox\">" +
+                  "<div class=\"postProfile\">" +
+                    "<div class=\"postname\">" + post[0] + "</div>"+
+                    "<div class=\"postdate\">" + post[1] + "</div>"+
+                  "</div>"+
+                  "<div class=\"postsubmission\">" + post[2] + "</div>" + 
+                "</div></div>";
 
     dailyFeed.insertAdjacentHTML("afterbegin", html);
    }

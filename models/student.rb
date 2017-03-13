@@ -22,16 +22,11 @@ class Student
     return student
   end
 
-  def set_git_username_url(username)
-    self.git_username = username
-    self.set_pic_url
+  def set_git(login, password)
+    git_student = Github.new
+    git_student.login = login
+    git_student.password = password
   end
-
-  def set_pic_url
-    git_thing = Github.new
-    user_dump = git_thing.repos.list user: 'malastrumdominisui'
-    self.git_url = user_dump.body[0]["owner"]["avatar_url"]
-  end 
 
   # Saves the Student record.
   def save
