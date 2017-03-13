@@ -19,7 +19,7 @@ function displayPosts() {
     
     for (x = 0; x < dailyPosts.length; x++) {
       post = dailyPosts[x].split(",")
-      var html= "<img src=\"https://github.com/" + malastrumdominisui + ".png?size=40\"class=\"git_pic\">" +
+      var html= "<img src=\"https://github.com/" + post[3] + ".png?size=40\"class=\"git_pic\">" +
                 "<div class=\"post thinBox\">" +
                   "<div class=\"postProfile\">" +
                     "<div class=\"postname\">" + post[0] + "</div>"+

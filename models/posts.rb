@@ -45,7 +45,6 @@ class Posts
       post_array = []
       posts.each do |post|
       	post_array << Post.new(post)
-      	binding.pry
       end
 
       return post_array.map { |post_object| post_object.to_string }.to_json

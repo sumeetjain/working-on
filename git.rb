@@ -25,5 +25,3 @@ profile_pic = images[0]["src"]
 #   user_dump = git_thing.repos.list user: 'malastrumdominisui'
 #   self.git_url = user_dump.body[0]["owner"]["avatar_url"]
 # end 
-binding.pry
-

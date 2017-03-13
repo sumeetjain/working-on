@@ -29,7 +29,7 @@ class Post
 	end
 
 	def name
-		Student.get_name(id)
+		Student.get_column_by_id('name',id)
 	end
 
 	def stressLevel
@@ -40,13 +40,13 @@ class Post
 		@post["submission"]
 	end
 
-	# def git_name
-	# 	@post["git_name"]
-	# end
+	def git_username
+		Student.get_column_by_id('git', id)
+	end
 
 	# Returns a String containing just info needed for the AJAX functionality.
 	def to_string
-		"#{name}, #{formatted_time}, #{submission}"
+		"#{name},#{formatted_time},#{submission},#{git_username}"
 	end
 
 	def formatted_time

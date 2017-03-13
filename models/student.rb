@@ -48,13 +48,13 @@ class Student
   # Gets name for a student from the students table based on id, or returns nil
   # 
   # id - integer
-  def Student.get_name(id) 
-    result = $database.table_item_by_col_and_val('name','students','id',id)
+  def Student.get_column_by_id(col,id) 
+    result = $database.table_item_by_col_and_val(col,'students','id',id)
     
     if result.ntuples == 0
       return nil
     else
-      result[0]["name"]
+      result[0][col]
     end
   end
 
