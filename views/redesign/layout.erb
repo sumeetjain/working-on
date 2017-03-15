@@ -15,10 +15,11 @@
       Welcome! Please login:<br>
       <form method="post" action="">
         <input type="text" name="username" placeholder="Enter your name" required>
-        <input type="password" name="password" placeholder="Enter your password" required>
+        <input type="password" name="password" placeholder="Enter your password" required><br>
+        <input type="submit">
     </div>
     <div id="top_container-admin">
-      <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-lock fa-2x" aria-hidden="true" id="admin_button"></i>
     </div>
   </div>
 
@@ -184,16 +185,26 @@
   <div id="bottom_container">
     <form method="post" action="">
       <textarea id="bottom_container-postbox"></textarea>
+      <label class="radio_button"><input type="radio" name="stressLevel" value="1" required><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></label>
+      <label class="radio_button"><input type="radio" name="stressLevel" value ="2"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></label>
+      <label class="radio_button"><input type="radio" name="stressLevel" value ="3"><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></label>
       <div id="bottom_container-submit_button">
         <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
       </div>
     </form>
   </div>
 
-  <div id="smiley_modal">
-    <div id="close"><a href="javascript:;">X</a></div>
+  <div id="modal_background">
+  </div>
+
+  <div id="admin_modal">
+    <div id="close">
+      <a href="javascript:;">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+      </a>
+    </div>
     <div id="title"><strong>Administration Login</strong></div>
-    <div id="happiness_is_bliss">
+    <div id="admin_login-form">
       <form action="" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>

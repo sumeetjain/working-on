@@ -4,6 +4,7 @@ body {
   letter-spacing: 0.03em;
 }
 
+/* Top Container */
 #top_container {
   position: fixed;
   display: flex;
@@ -24,7 +25,7 @@ body {
 
   #top_container-login {
     text-align: center;
-    line-height: 2.0em;
+    line-height: 1.55em;
   }
 
   #top_container-admin {
@@ -37,6 +38,7 @@ body {
     cursor: pointer;
   }
 
+/* Middle Container */
 #middle_container {
   padding-top: 75px;
   padding-bottom: 45px;
@@ -81,6 +83,7 @@ body {
   .post_container-content {
   }
 
+/* Bottom Container */
 #bottom_container {
   background-color: white;
   margin-left: 10%;
@@ -102,6 +105,25 @@ body {
     border-radius: 5px;
   }
 
+  .radio_button > input {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .radio_button > input + i { 
+    cursor:pointer;
+  }
+
+  .radio_button > input:checked + i {
+    color: red;
+  }
+
+  .radio_button {
+    margin-top: 6px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
   #bottom_container-submit_button {
     width: 50px;
     color: white;
@@ -117,11 +139,12 @@ body {
     cursor: pointer;
   }
 
-#smiley_modal {
+/* Admin Login Modal */
+#admin_modal {
   color: black;
   display: none;
   width: 400px;
-  height: 175px;
+  height: 80px;
   position: fixed;
   z-index: 9999;
   left: 50%;
@@ -131,16 +154,28 @@ body {
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 40px;
 }
 
-#modal_background{
-  display: none;
-  background: rgba(0,0,0,0.5);
-  position: fixed;
-  z-index: 9998;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-}
+  #modal_background{
+    display: none;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    z-index: 9998;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+
+  #close {
+    text-align: right;
+    padding-right: 5px;
+  }
+
+  #title {
+    text-align: center;
+  }
+
+  #admin_login-form {
+    text-align: center;
+  }
