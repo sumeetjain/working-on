@@ -23,18 +23,15 @@ class Admin
 		return login_status
 	end
 
-	def check_valid_student_login
-		# TODO Refactor this like so...
-		# $database.all_with_two_matches("admin", 
-		#   {"username" => @user, "password" => @pass})
-		
-		login_database = $database.get_all_from_table("student")
+	def check_valid_student_login		
+		login_database = $database.get_all_from_table("students")
 		login_status = false
 		login_database.each do |login|
-			if login["username"].include?(@user) && login["password"].include?(@pass)
+			if login["name"].include?(@user) && login["password"].include?(@pass)
 				login_status = true
 			end
 		end
 		return login_status
 	end
+
 end

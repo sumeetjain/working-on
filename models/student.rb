@@ -22,6 +22,14 @@ class Student
     return student
   end
 
+  def Student.first_time_login(username, github, password)
+    student = Student.new(username)
+    columns = "(name, github, password)"
+    data = "'#{username}', '#{github}', '#{password}'"
+    $database.add('students', columns, data)
+  end
+
+
   # Saves the Student record.
   def save
     if valid?

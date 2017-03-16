@@ -52,14 +52,24 @@ get "/admin_logout" do
 	erb :index
 end
 
-get "/student_login_" do 
-	login_status = Admin.new(params).check_valid_student_login
-	if login_status = 
-
+post "/student_login" do 
+		login_status = Admin.new(params).check_valid_student_login
+		if login_status == true
+			session[:login] = params["username"]
+			redirect("/")
+		else
+			redirect("/")
+		end
 end
 
-get "student_signup" do
-
+post "/student_signup" do
+		if $database.all_by("students", "name", "#{params["username"]}").ntuples == 0
+			Student.first_time_login(params["username"], params["github"], params["password"])
+	 		session[:login] = params["username"]
+ 			redirect("/")
+ 		else
+ 			redirect("/")
+ 		end	
 end
 
 # Loads the admin page.
