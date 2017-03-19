@@ -19,7 +19,6 @@ end
 post "/submit" do
 	session[:login] = params["name"]
 	submission = Submission.new
-	binding.pry
 	submission.create(params)
 	redirect("/")
 end
@@ -51,6 +50,29 @@ end
 get "/admin_logout" do
 	session.delete("admin")
 	erb :index
+end
+
+# Allows students to login and post their work, redirects user to hompage
+post "/student_login" do 
+		login_status = Admin.new(params).check_valid_student_login
+		if login_status == true
+			session[:login] = params["username"]
+			redirect("/")
+		else
+			redirect("/")
+		end
+end
+
+# Creates a new student user in the students database, using the information inputted on
+# the main page. Redirects user to home page.
+post "/student_signup" do
+		if $database.all_by("students", "name", "#{params["username"]}").ntuples == 0
+			Student.first_time_login(params["username"], params["github"], params["password"])
+	 		session[:login] = params["username"]
+ 			redirect("/")
+ 		else
+ 			redirect("/")
+ 		end	
 end
 
 # Loads the admin page.

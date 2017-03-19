@@ -21,6 +21,17 @@ class Student
 
     return student
   end
+  
+  #Creates a new student entry in the database using information provided
+  #
+  #
+  def Student.first_time_login(username, github, password)
+    student = Student.new(username)
+    columns = "(name, github, password)"
+    data = "'#{username}', '#{github}', '#{password}'"
+    $database.add('students', columns, data)
+  end
+
 
   # Saves the Student record.
   def save

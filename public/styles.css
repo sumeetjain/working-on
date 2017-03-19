@@ -261,8 +261,39 @@ input[type="radio"] {
 #close {
 	text-align: right;
 }
+/*student login modal*/
+#student_login_modal {
+  color: black;
+  display: none;
+  width: 400px;
+  height: 175px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 50%;
+  margin-left: -185px;
+  margin-top: -100px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 40px;
+}
 
-#close a:link, a:visited {
+#student_modal_background{
+  display: none;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  z-index: 9998;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+#student_close {
+  text-align: right;
+}
+#student_close a:link, a:visited {
 	color: black;
 	text-decoration: none;
 }
