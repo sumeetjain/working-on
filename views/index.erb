@@ -8,7 +8,7 @@
 <div id="bottom_container">
   <form method="post" action="/submit" id="bottom_form">
     <input type="hidden" name="name" value="<%= @login %>">
-    <textarea name="submission" id="bottom_container-postbox"></textarea>
+    <textarea name="submission" id="bottom_container-postbox" placeholder="What are you working on?" required></textarea>
     <label class="radio_button"><input type="radio" name="stressLevel" value="1" required><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></label>
     <label class="radio_button"><input type="radio" name="stressLevel" value ="2"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></label>
     <label class="radio_button"><input type="radio" name="stressLevel" value ="3"><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></label>
