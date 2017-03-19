@@ -97,13 +97,3 @@ get "/getinfo" do
   @info = Posts.new(params).hold_posts		
   erb :getinfo, :layout => :admin_layout
 end
-
-###
-get "/stresslevel" do
-	
-end
-
-###
-get "/test" do
-	erb :"redesign/layout", :layout => false
-end

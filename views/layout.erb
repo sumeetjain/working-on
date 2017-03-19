@@ -1,68 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-	<title>Omaha Code School - Student Working On</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-	<script type="text/javascript" src="scripts.js"></script>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <title>Omaha Code School - Working On</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="https://use.fontawesome.com/28ea288129.js"></script>
 </head>
 <body>
 
 <div id="top_container">
-  <div><img src="ocs.png" id="OCS_logo"></div>
+  <div>
+    <a href="/"><img src="ocs.png" id="OCS_logo"></a>
+  </div>
   <div id="top_container-login">
+  <% if @login == nil %>
     Welcome! Please login:<br>
-    <form method="post" action="">
+    <form method="post" action="/student_login">
       <input type="text" name="username" placeholder="Enter your name" required>
       <input type="password" name="password" placeholder="Enter your password" required><br>
       <input type="submit">
+    </form>
+  <% else %>
+    Welcome <%=@login%>!
+  <% end %>
   </div>
   <div id="top_container-admin">
     <i class="fa fa-lock fa-2x" aria-hidden="true" id="admin_button"></i>
   </div>
-</div>
-
-
-
-
-
-
-
-<div class="topbar" id="topbarId">
-	<div class = "topbar--imgBox">
-		<a href="/"><img src="ocs.png" id="imgOCS"></a>
-	</div>
-
-	<div class="topbar--submission_area">
-		<form method="post" action="/submit">
-			<% if @login == nil %>
-				<button type="button" id="student_login_button">Login</button><br>
-			<%else%>
-				<div><%=@login%> what you are you working on?</div>
-				<input type="hidden" name="name" value="<%= @login %>">
-			
-
-			<textarea name="submission" class="topbar--textarea" placeholder="Describe what you are currently working on" required></textarea>
-			<div class="topbar--stress_header">Rate Your Stress Level. (Honestly)</div>
-			<label class="radio_button"><input type="radio" name="stressLevel" value="1" required><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></label>
-			<label class="radio_button"><input type="radio" name="stressLevel" value ="2"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></label>
-			<label class="radio_button"><input type="radio" name="stressLevel" value ="3"><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></label><br>
-			<input type="submit" class = "submit-an--drop" id="topbar--submitButton">
-		</form>
-		<%end%>
-	</div>
-
-	<div class= "topbar--adminButton">
-		<% if @admin == nil %>
-			<!-- TODO Use event.preventDefault() instead of a null HREF. -->
-			<a href="javascript:;"><i class="fa fa-key" aria-hidden="true" id="adminKey"></a></i>
-		<% else %>
-			<a href="/admin"><i class="fa fa-tachometer" aria-hidden="true" id="dashboard"></i></a>
-			<a href="/admin_logout"><i class="fa fa-sign-out" aria-hidden="true" id="adminKey"></i></a>
-		<% end %>
-	</div>
 </div>
 
 <%= yield %>

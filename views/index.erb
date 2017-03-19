@@ -1,46 +1,57 @@
 <script type="text/javascript" src="timing.js"></script>
 <script type="text/javascript" src="modal.js"></script>
 
-<div id="dailyFeed">
+<div id="middle_container">
+<!-- post content populated here through JavaScript -->
 </div>
 
-<a href="/reset" style="color: black">Logout & Reset User</a>
+<div id="bottom_container">
+  <form method="post" action="/submit" id="bottom_form">
+    <input type="hidden" name="name" value="<%= @login %>">
+    <textarea name="submission" id="bottom_container-postbox"></textarea>
+    <label class="radio_button"><input type="radio" name="stressLevel" value="1" required><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></label>
+    <label class="radio_button"><input type="radio" name="stressLevel" value ="2"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></label>
+    <label class="radio_button"><input type="radio" name="stressLevel" value ="3"><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></label>
+    <label id="hidden_submit">
+      <input type="submit" id="hidden_submit">
+        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+    </label>
+  </form>
+</div>
 
 <div id="modal_background">
 </div>
 
-<div id="admin_login_modal">
-	<div id="close"><a href="javascript:;">X</a></div>
-	<div id="title"><strong>Administration Login</strong></div>
-	<div id="login">
-		<form action="/admin_login" method="post">
-			<input type="text" name="username" placeholder="Username" required>
-			<input type="password" name="password" placeholder="Password" required>
-			<input type="submit">
-		</form>
-</div>
-</div>
+<div id="admin_modal">
+  <div id="close">
+    <a href="javascript:;">
+      <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </a>
+  </div>
+  <% if @admin != nil %>
+    <div id="admin_already_logged">
+      Administrator logged in as: <%= @admin %><br>
+      <a href="/admin">Return to admin menu</a>
+    </div>
+  <% else %>
+    <div class="title"><strong>Administration Login</strong></div>
+    <div class="admin_login-form">
+      <form action="/admin_login" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit">
+      </form>
+    </div>
+  <% end %>
 
-<div id="student_modal_background">
-</div>
-
-<div id="student_login_modal">
-  <div id="student_close"><a href="javascript:;">X</a></div>
-  <div id="title"><strong>Login</strong></div>
-  <div id="student_login">
-    <form action="/student_login" method="post">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <input type="submit">
-    </form>
-</div>
-<div>
- <div id="title"><strong>Sign Up!</strong></div>
+  <div class="title"><strong>New Student Sign Up!</strong></div>
+  <div class="admin_login-form">
     <form action="/student_signup" method="post">
       <input type="text" name="username" placeholder="Username" required>
-      <input type= "text" name="github" placeholder="Github Account" required>
+      <input type= "text" name="github" placeholder="GitHub Account Name" required>
       <input type="password" name="password" placeholder="Password" id = "signup" maxlength= "10" required>
       <input type="submit">
     </form>
-</div>
+  </div>
+  </div>
 </div>
