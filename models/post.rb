@@ -41,7 +41,7 @@ class Post
 	end
 
 	def git_username
-		Student.get_column_by_id('git', id)
+		Student.get_column_by_id('github', id)
 	end
 
 	# Returns a String containing just info needed for the AJAX functionality.

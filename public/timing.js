@@ -17,7 +17,7 @@ function displayPosts() {
     
     for (x = 0; x < dailyPosts.length; x++) {
       post = dailyPosts[x].split(",")
-      var html = "<div class=\"post_container\"><div class=\"post_container-left\">https://github.com/" + post[3] + ".png?size=40</div><div class=\"post_container-right\"><div class=\"post_container-header\"><span class=\"post_container-header_name\">" + post[0] + "</span><span class=\"post_container-header_date\">" + post[1] + "</span></div><div class=\"post_container-content\">" + post[2] + "</div></div></div>";
+      var html = "<div class=\"post_container\"><div class=\"post_container-left\"><img src=\"https://github.com/" + post[3] + ".png\" class=\"profilePhoto\"></div><div class=\"post_container-right\"><div class=\"post_container-header\"><span class=\"post_container-header_name\">" + post[0] + "</span><span class=\"post_container-header_date\">" + post[1] + "</span></div><div class=\"post_container-content\">" + post[2] + "</div></div></div>";
       dailyFeed.insertAdjacentHTML("afterbegin", html);
     }
     logout_html = "<a href=\"/reset\" id=\"student_logout\">Logout & Reset User</a>";
