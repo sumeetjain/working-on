@@ -1,9 +1,7 @@
 window.addEventListener("load", function(){
-  window.dailyFeed = document.getElementById("dailyFeed");
+  window.dailyFeed = document.getElementById("middle_container");
 
   displayPosts();
-
- 	setInterval(displayPosts, 10000);
 });
 
 //  sends request to server for data, parses array of daily posts to JSON
@@ -19,11 +17,11 @@ function displayPosts() {
     
     for (x = 0; x < dailyPosts.length; x++) {
       post = dailyPosts[x].split(",")
-      var html = "<div class=\"post thinBox\"><div class=\"postProfile\"><div class=\"postname\">" + post[0] + "</div><div class=\"postdate\">" + post[1] + "</div></div><div class=\"postsubmission\">" + post[2] + "</div></div></div>";
-
-    dailyFeed.insertAdjacentHTML("afterbegin", html);
-   }
-  };
-
+      var html = "<div class=\"post_container\"><div class=\"post_container-left\"><img src=\"generic_user.jpg\" class=\"profilePhoto\"></div><div class=\"post_container-right\"><div class=\"post_container-header\"><span class=\"post_container-header_name\">" + post[0] + "</span><span class=\"post_container-header_date\">" + post[1] + "</span></div><div class=\"post_container-content\">" + post[2] + "</div></div></div>";
+      dailyFeed.insertAdjacentHTML("afterbegin", html);
+    }
+    logout_html = "<a href=\"/reset\" id=\"student_logout\">Logout & Reset User</a>";
+    dailyFeed.insertAdjacentHTML("beforeend", logout_html);
+  }
   xhttp.send();
 }

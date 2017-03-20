@@ -21,12 +21,17 @@ class Student
 
     return student
   end
-
-  # Returns a String with the name of the student, or Nil.
-  def Student.get_name(id)
-    # TODO Write the SQL.
-    "Sumeet Jain"
+  
+  #Creates a new student entry in the database using information provided
+  #
+  #
+  def Student.first_time_login(username, github, password)
+    student = Student.new(username)
+    columns = "(name, github, password)"
+    data = "'#{username}', '#{github}', '#{password}'"
+    $database.add('students', columns, data)
   end
+
 
   # Saves the Student record.
   def save
@@ -45,14 +50,17 @@ class Student
     $database.erase_row_by_column_value('students', 'name', @name)
   end
 
-  # Retrieves key corresponding to name column in students table
-  def getName
-    $database.table_item_by_col_and_val('name','students','id',@id)[0]["name"]
-  end
-
-  # Retrieves key as a class method for convenience to save 4 characters
-  def Student.getName(id)
-    $database.table_item_by_col_and_val('name','students','id',id)[0]["name"]
+  # Gets name for a student from the students table based on id, or returns nil
+  # 
+  # id - integer
+  def Student.get_name(id) 
+    result = $database.table_item_by_col_and_val('name','students','id',id)
+    
+    if result.ntuples == 0
+      return nil
+    else
+      result[0]["name"]
+    end
   end
 
   # Retrieves key corresponding to name column in students table
@@ -64,11 +72,6 @@ class Student
     else
       result[0]["id"]
     end
-  end
-
-  # Retrieves key as a class method for convenience to save 4 characters
-  def Student.getKey(a_name)
-    $database.table_item_by_col_and_val('id','students','name',a_name)[0]["id"]
   end
 
   # Gets the time of the student's last checkin.

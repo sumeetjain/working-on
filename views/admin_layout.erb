@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-	<title>Omaha Code School - Admin</title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-	<script type="text/javascript" src="scripts.js"></script>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+  <title>Omaha Code School - Working On</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="https://use.fontawesome.com/28ea288129.js"></script>
 </head>
 <body>
 
-<div class="topbar" id="topbarId">
-	<div class = "topbar--imgBox">
-		<a href="/"><img src="ocs.png" id="imgOCS"></a>
-	</div>
-
-	<div class="topbar--submission_area">
-		<div>Welcome <strong><%= @admin %></strong>!</div>
-		<form method="get" action="/getinfo" class= "dropBox--holder">
-			<select name="student" class="submit-an--drop" id="dropBox">
+<div id="top_container">
+  <div>
+    <a href="/"><img src="ocs.png" id="OCS_logo"></a>
+  </div>
+  <div id="top_container-login">
+		<div><strong><%= @admin %></strong> logged in as administrator</div>
+		<form method="get" action="/getinfo">
+			<select name="student">
 			<% @names.each do |name| %>
 				<option value="<%= name %>"><%=name%></option>
 			<% end %>
 			</select>
-
-			<select name="day" class ="submit-an--drop" id ="dropBox">
+			<select name="day">
 			<% @dates.each do |date| %>
 				<option value="<%= date %>"><%=date%></option>
 			<% end %>
-		</select>
-
-		<button type="submit" class="submit-an--drop" id="dropBox--submit">Show Information</button>
+			</select>
+			<button type="submit">Show Information</button>
 		</form>
-	</div>
-
-	<div class= "topbar--adminButton">
-		<a href="/admin_logout"><i class="fa fa-sign-out" aria-hidden="true" id="adminKey"></i></a></i>
-	</div>
+	</div>	
+  <div id="top_container-admin">
+    <div id="logout_button">
+      <a href="/admin_logout">
+        <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
 </div>
 
 <%= yield %>
