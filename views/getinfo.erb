@@ -9,7 +9,7 @@
       <div class="post_container-header">
         <span class="post_container-header_name"><%= post.name %></span>
         <span class="post_container-header_date">
-        	<%= time = post.time.to_i
+        	<% time = post.time.to_i
         		formatted_time = Time.at(time).strftime("%x @ %I:%M:%S%p") %>
         	<%= formatted_time %>
         </span>
