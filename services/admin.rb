@@ -22,4 +22,16 @@ class Admin
 		end
 		return login_status
 	end
+
+	def check_valid_student_login		
+		login_database = $database.get_all_from_table("students")
+		login_status = false
+		login_database.each do |login|
+			if login["name"].include?(@user) && login["password"].include?(@pass)
+				login_status = true
+			end
+		end
+		return login_status
+	end
+
 end

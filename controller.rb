@@ -52,6 +52,29 @@ get "/admin_logout" do
 	erb :index
 end
 
+# Allows students to login and post their work, redirects user to hompage
+post "/student_login" do 
+		login_status = Admin.new(params).check_valid_student_login
+		if login_status == true
+			session[:login] = params["username"]
+			redirect("/")
+		else
+			redirect("/")
+		end
+end
+
+# Creates a new student user in the students database, using the information inputted on
+# the main page. Redirects user to home page.
+post "/student_signup" do
+		if $database.all_by("students", "name", "#{params["username"]}").ntuples == 0
+			Student.first_time_login(params["username"], params["github"], params["password"])
+	 		session[:login] = params["username"]
+ 			redirect("/")
+ 		else
+ 			redirect("/")
+ 		end	
+end
+
 # Loads the admin page.
 #
 # Builds dropdown menus of available student names and dates using the Submission class.
@@ -73,9 +96,4 @@ get "/getinfo" do
   @dates = Submission.dates
   @info = Posts.new(params).hold_posts		
   erb :getinfo, :layout => :admin_layout
-end
-
-###
-get "/stresslevel" do
-	
 end

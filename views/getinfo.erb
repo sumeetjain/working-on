@@ -1,32 +1,39 @@
-<div id="dailyFeed">
-	<form method="get" action="/admin" class= "dropBox--holder">
-		<button type="submit" class ="submit-an--drop" id="dropBox--submit">Back</button>
-	</form>
-
+<div id="middle_container">
 
 	<% @info.each do |post| %>
-		<div class ="post thinBox">
-			<div class = "postProfile">
-				<div class="postname"><%= post.name %></div>
-				<div class="postdate"><%= post.date %></div>
-			</div>
-			<div class="postsubmission"><span class="post_info">
-			<% if post.interval != "first_of_day" %> 
-				Time since previous post: <%= post.interval %><br>
-			<% else %>
-				This is the student's first post today <br>
-			<% end %>
+	<div class="post_container">
+  	<div class="post_container-left">
+    	<img src="generic_user.jpg" class="profilePhoto">
+    </div>
+    <div class="post_container-right">
+      <div class="post_container-header">
+        <span class="post_container-header_name"><%= post.name %></span>
+        <span class="post_container-header_date">
+        	<% time = post.time.to_i
+        		formatted_time = Time.at(time).strftime("%x @ %I:%M:%S%p") %>
+        	<%= formatted_time %>
+        </span>
+      </div>
+      <div class="post_container-content">
+      	<%= post.submission %>
+      </div>
+      <div class="admin_divider"></div>
+      <div class="post_container-admin_info">
+      	<% if post.interval != "first_of_day" %> 
+					Time since previous post: <%= post.interval %> ***
+				<% else %>
+					This is the student's first post today ***
+				<% end %>
 				Stress Level: 
-					<% if post.stressLevel == "1" %>
-						<i class="fa fa-smile-o" aria-hidden="true"></i>
-					<% elsif post.stressLevel == "2" %>
-						<i class="fa fa-meh-o" aria-hidden="true"></i>
-					<% elsif post.stressLevel == "3" %>
-						<i class="fa fa-frown-o" aria-hidden="true"></i>
-					<% end %>
-				</span><br>
-				<%= post.submission %>
+				<% if post.stressLevel == "1" %>
+					<i class="fa fa-smile-o" aria-hidden="true"></i>
+				<% elsif post.stressLevel == "2" %>
+					<i class="fa fa-meh-o" aria-hidden="true"></i>
+				<% elsif post.stressLevel == "3" %>
+					<i class="fa fa-frown-o" aria-hidden="true"></i>
+				<% end %>
 			</div>
-		</div>
-	<%end%>
+    </div>
+  </div>
+  <% end %>
 </div>
