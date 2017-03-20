@@ -29,10 +29,12 @@
 
 # conn.exec("CREATE TABLE students (
 # 	id SERIAL PRIMARY KEY,
-# 	name VARCHAR(128)
+# 	name VARCHAR(20)
+#   github VARCHAR(20)
+#   password VARCHAR(20)
 # )")
 
 # conn.exec("CREATE TABLE admin (
 #   username    VARCHAR(10), 
-#   password    VARCHAR(10)
+#   password    VARCHAR(20)
 # )")
