@@ -1,7 +1,7 @@
 # Contains all functionality relating to student tracking.
 
 class Student
-  attr_accessor :id
+  attr_accessor :id, :git_username, :git_url
 
   def initialize(name)
     @name = name
@@ -20,6 +20,12 @@ class Student
     end
 
     return student
+  end
+
+  def set_git(login, password)
+    git_student = Github.new
+    git_student.login = login
+    git_student.password = password
   end
 
   # Saves the Student record.
@@ -42,13 +48,13 @@ class Student
   # Gets name for a student from the students table based on id, or returns nil
   # 
   # id - integer
-  def Student.get_name(id) 
-    result = $database.table_item_by_col_and_val('name','students','id',id)
+  def Student.get_column_by_id(col,id) 
+    result = $database.table_item_by_col_and_val(col,'students','id',id)
     
     if result.ntuples == 0
       return nil
     else
-      result[0]["name"]
+      result[0][col]
     end
   end
 
@@ -101,4 +107,5 @@ class Student
   def name_is_new?
     return !($database.get_items_by_header('name','students').include? @name)
   end
+
 end

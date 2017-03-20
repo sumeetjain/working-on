@@ -67,7 +67,6 @@ class Posts
     posts.each do |post|
     	post_array << Post.new(post)
     end
-
     return post_array
 	end
 
