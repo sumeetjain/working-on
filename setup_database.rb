@@ -6,15 +6,21 @@
 # -----------------------------------------------------------------------------
 
 require "pg"
+require "uri"
 
 # When you need to set up the database, just UNCOMMENT the below.
 # Remember to comment it back out when you're done.
 
-conn = PG.connect( dbname: 'postgres' )
-conn.exec("CREATE DATABASE working_on_development")
-conn.exec("CREATE DATABASE working_on_test")
+if ENV['DATABASE_URL']
+  uri = URI.parse(ENV['DATABASE_URL'])
+  conn = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
+else
+  conn = PG.connect( dbname: 'postgres' )
+  conn.exec("CREATE DATABASE working_on_development")
+  conn.exec("CREATE DATABASE working_on_test")
 
-conn = PG.connect( dbname: 'working_on_development' )
+  conn = PG.connect( dbname: 'working_on_development' )
+end
 
 # And create tables...
 

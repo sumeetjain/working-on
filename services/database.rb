@@ -6,7 +6,12 @@
 class Database
 
   def initialize(db_name='working_on_development')
-    @conn = PG.connect( dbname: db_name )
+    if ENV['DATABASE_URL']
+      uri = URI.parse(ENV['DATABASE_URL'])
+      @conn = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
+    else
+      @conn = PG.connect( dbname: db_name )
+    end
   end
 
   # Adds a row to the database.
