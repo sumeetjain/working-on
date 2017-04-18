@@ -12,10 +12,16 @@
     <label class="radio_button"><input type="radio" name="stressLevel" value="1" required><i class="fa fa-smile-o fa-2x" aria-hidden="true"></i></label>
     <label class="radio_button"><input type="radio" name="stressLevel" value ="2"><i class="fa fa-meh-o fa-2x" aria-hidden="true"></i></label>
     <label class="radio_button"><input type="radio" name="stressLevel" value ="3"><i class="fa fa-frown-o fa-2x" aria-hidden="true"></i></label>
-    <label id="hidden_submit">
-      <input type="submit" id="hidden_submit">
-        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
-    </label>
+    <% if @login != nil %>
+      <label id="hidden_submit">
+        <input type="submit" id="hidden_submit">
+          <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+      </label>
+    <% else %>
+      <label id="no_submit">
+        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+      </label>
+    <% end %>
   </form>
 </div>
 
