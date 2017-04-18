@@ -1,7 +1,8 @@
 # Contains all functionality relating to student tracking.
 
 class Student
-  attr_accessor :id, :git_username, :git_url, :password_hash
+  include BCrypt
+  attr_accessor :id, :git_username, :git_url
 
   def initialize(name)
     @name = name
@@ -26,6 +27,7 @@ class Student
   #
   #
   def Student.first_time_login(username, github, password)
+    password = BCrypt::Password.create(password)
     student = Student.new(username)
     columns = "(name, github, password)"
     data = "'#{username}', '#{github}', '#{password}'"
