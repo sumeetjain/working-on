@@ -1,7 +1,7 @@
 # Contains all functionality relating to student tracking.
 
 class Student
-  attr_accessor :id, :git_username, :git_url
+  attr_accessor :id, :git_username, :git_url, :password_hash
 
   def initialize(name)
     @name = name
