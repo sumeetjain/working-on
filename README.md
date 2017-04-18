@@ -44,4 +44,4 @@ Setting up an administrator will require adding a new user to the admin table in
 
 ## Deploying
 
-Follow he same setup steps above to build the initial database. You will need to have access to your database in order to setup administrators.
+Follow the same setup steps above to build the initial database. You will need to have access to your database in order to setup administrators.
