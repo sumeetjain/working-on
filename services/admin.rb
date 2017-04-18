@@ -2,7 +2,7 @@ class Admin
 	include BCrypt
 	def initialize(params)
 		@user = params[:username]
-		@pass = BCrypt::Password.create(params[:password])
+		@pass = params[:password]
 	end
 
 	# Checks is username and password exist together in the admin table.
@@ -23,6 +23,8 @@ class Admin
 		login_database = $database.get_all_from_table("students")
 		login_status = false
 		login_database.each do |login|
+			password = BCrypt::Password.new(login["password"])
+			binding.pry
 			if login["name"].include?(@user) && login["password"].include?(@pass)
 				login_status = true
 			end

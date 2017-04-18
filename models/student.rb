@@ -28,6 +28,7 @@ class Student
   #
   def Student.first_time_login(username, github, password)
     password = BCrypt::Password.create(password)
+    binding.pry
     student = Student.new(username)
     columns = "(name, github, password)"
     data = "'#{username}', '#{github}', '#{password}'"
