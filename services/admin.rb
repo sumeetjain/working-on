@@ -23,7 +23,7 @@ class Admin
 		login_database = $database.get_all_from_table("students")
 		login_status = false
 		login_database.each do |login|
-			password = BCrypt::Password.new(login["password"])
+			password = BCrypt::Password.new("$2a$10$612Tu6PsD0Ie6jlk8jZzK.yWkY3ytF.g8pQDoJZ9/QWMWN9m3fT3i")
 			binding.pry
 			if login["name"].include?(@user) && login["password"].include?(@pass)
 				login_status = true
